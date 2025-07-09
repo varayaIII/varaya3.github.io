@@ -1,1 +1,8 @@
-
+@media (max-width: 600px) {
+  .header-content h1 {
+    font-size: 1.8rem;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
