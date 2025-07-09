@@ -1,32 +1,233 @@
-/* Estilos para la sección de contacto */
-.contact-info {
-  background-color: #111;
-  border: 1px solid #333;
+:root {
+  --primary-dark: #0a192f;
+  --secondary-dark: #172a45;
+  --accent: #64ffda;
+  --text-primary: #ccd6f6;
+  --text-secondary: #8892b0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--primary-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Navbar */
+.bg-primary-dark {
+  background-color: var(--primary-dark) !important;
+}
+
+.navbar {
+  border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+  padding: 1rem 0;
+}
+
+.nav-link {
+  color: var(--text-primary) !important;
+  margin: 0 1rem;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: var(--accent) !important;
+}
+
+/* Hero Section */
+.hero-section {
+  background-color: var(--primary-dark);
+  padding: 8rem 0;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.btn-accent {
+  background-color: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-accent:hover {
+  background-color: rgba(100, 255, 218, 0.1);
+}
+
+/* Secciones */
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 2px;
+  background-color: var(--accent);
+  margin-top: 1rem;
+}
+
+/* Proyectos */
+.project-card {
+  background-color: var(--secondary-dark);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  height: 100%;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-img {
+  height: 200px;
+  overflow: hidden;
+}
+
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-info {
   padding: 1.5rem;
+}
+
+.project-tech {
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.project-description {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.project-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+}
+
+.project-link i {
+  margin-left: 0.5rem;
+  transition: transform 0.3s;
+}
+
+.project-link:hover i {
+  transform: translateX(5px);
+}
+
+/* Habilidades */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.skill-category {
+  background-color: var(--secondary-dark);
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.skill-category h3 {
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.skill-category h3 i {
+  margin-right: 1rem;
+}
+
+.skill-category ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.skill-category li {
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Contacto */
+.contact-info {
   max-width: 600px;
   margin: 0 auto;
 }
 
 .contact-item {
-  margin-bottom: 1rem;
   display: flex;
   align-items: center;
-  gap: 10px;
+  margin-bottom: 1.5rem;
 }
 
 .contact-item i {
-  color: #7cb342;
-  width: 20px;
+  color: var(--accent);
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  width: 30px;
   text-align: center;
 }
 
 .contact-item a {
-  color: #e0e0e0;
+  color: var(--text-primary);
   text-decoration: none;
   transition: color 0.3s;
 }
 
 .contact-item a:hover {
-  color: #7cb342;
-  text-decoration: underline;
+  color: var(--accent);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--secondary-dark);
+  padding: 2rem 0;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.footer p {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
 }
