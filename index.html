@@ -4,64 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tu Nombre - DevOps Engineer</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- CSS Personalizado (Fondo Negro Forzado) -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <header class="header">
-    <div class="header-content">
-      <h1>Hola, soy <span class="highlight">[Tu Nombre]</span></h1>
-      <p class="subtitle">DevOps Junior | Automatización | Cloud (AWS/GCP) | CI/CD</p>
-      <a href="assets/cv.pdf" class="btn">Descargar CV</a>
+<body class="bg-black text-white"> <!-- Cambiado de bg-dark a bg-black -->
+  <!-- Navbar (Negro más oscuro) -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+    <div class="container">
+      <a class="navbar-brand" href="#">DevOps Portfolio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Proyectos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="home" class="py-5 bg-black"> <!-- Fondo negro forzado -->
+    <div class="container text-center py-5">
+      <h1 class="display-4 fw-bold">Hola, soy <span class="text-primary">[Tu Nombre]</span></h1>
+      <p class="lead">DevOps Engineer | AWS | Kubernetes | CI/CD</p>
+      <a href="assets/cv.pdf" class="btn btn-primary btn-lg mt-3">
+        <i class="fas fa-download me-2"></i>Descargar CV
+      </a>
     </div>
   </header>
 
-  <section id="projects" class="section">
-    <h2>Proyectos Destacados</h2>
-    <div class="project-grid">
-      <!-- Proyecto 1 -->
-      <div class="project-card">
-        <h3>🚀 Pipeline CI/CD con GitHub Actions</h3>
-        <p>Automaticé pruebas y despliegues en AWS EKS para una app Python.</p>
-        <a href="projects/pipeline-github-actions.md" class="btn-link">Ver detalles técnicos</a>
-      </div>
-      <!-- Proyecto 2 -->
-      <div class="project-card">
-        <h3>☁️ Infraestructura como Código (Terraform)</h3>
-        <p>Desplegué una arquitectura en AWS con VPC, EC2 y RDS.</p>
-        <a href="projects/terraform-aws.md" class="btn-link">Ver arquitectura</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills" class="section">
-    <h2>Tecnologías</h2>
-    <div class="skills-container">
-      <div class="skill-category">
-        <h3>Cloud</h3>
-        <ul>
-          <li>AWS (EC2, S3, EKS)</li>
-          <li>Google Cloud</li>
-        </ul>
-      </div>
-      <div class="skill-category">
-        <h3>DevOps Tools</h3>
-        <ul>
-          <li>Terraform</li>
-          <li>Docker & Kubernetes</li>
-          <li>Jenkins/GitHub Actions</li>
-        </ul>
+  <!-- Proyectos -->
+  <section id="projects" class="py-5 bg-black"> <!-- Fondo negro forzado -->
+    <div class="container">
+      <h2 class="text-center mb-5"><i class="fas fa-code-branch me-2"></i>Mis Proyectos</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card bg-dark text-white h-100 border-secondary"> <!-- Card oscura -->
+            <div class="card-body">
+              <h3 class="card-title text-primary">🚀 Pipeline CI/CD</h3>
+              <p class="card-text">Automatización con GitHub Actions y AWS EKS.</p>
+              <a href="projects/proyecto1.html" class="btn btn-outline-light">Ver Detalles</a>
+            </div>
+          </div>
+        </div>
+        <!-- Más proyectos... -->
       </div>
     </div>
   </section>
 
-  <footer>
-    <p>Contacto: <a href="mailto:tu@email.com">tu@email.com</a></p>
-    <div class="social-links">
-      <a href="https://github.com/tuusuario" target="_blank">GitHub</a>
-      <a href="https://linkedin.com/in/tuperfil" target="_blank">LinkedIn</a>
+  <!-- Footer -->
+  <footer class="py-4 bg-dark"> <!-- Fondo oscuro -->
+    <div class="container text-center">
+      <p class="mb-0">© 2023 Tu Nombre. Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
