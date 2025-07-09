@@ -1,8 +1,33 @@
-@media (max-width: 600px) {
-  .header-content h1 {
-    font-size: 1.8rem;
-  }
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
+/* Fondo negro en TODAS las secciones */
+body, header, section, footer {
+  background-color: #000000 !important; /* Negro puro */
+}
+
+/* Texto blanco y tipografía tech */
+body {
+  color: #ffffff;
+  font-family: 'Courier New', monospace; /* Estilo código */
+}
+
+/* Efecto brillante para títulos */
+h1, h2, h3 {
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Efecto neón */
+}
+
+/* Botones con borde neón */
+.btn-outline-light {
+  border: 1px solid #00ffff;
+  color: #00ffff;
+  transition: all 0.3s;
+}
+.btn-outline-light:hover {
+  background-color: #00ffff;
+  color: #000000;
+  box-shadow: 0 0 15px #00ffff;
+}
+
+/* Tarjetas transparentes */
+.card {
+  background-color: rgba(20, 20, 20, 0.8) !important;
+  border: 1px solid #333 !important;
 }
