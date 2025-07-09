@@ -1,33 +1,39 @@
-/* Fondo negro en TODAS las secciones */
-body, header, section, footer {
-  background-color: #000000 !important; /* Negro puro */
-}
-
-/* Texto blanco y tipografía tech */
+/* Estilo principal */
 body {
-  color: #ffffff;
-  font-family: 'Courier New', monospace; /* Estilo código */
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: #000;
+  color: #e0e0e0;
+  line-height: 1.6;
+  font-size: 14px; /* Tamaño controlado */
 }
 
-/* Efecto brillante para títulos */
+/* Títulos sobrios */
 h1, h2, h3 {
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Efecto neón */
+  font-weight: 500; /* Negrita moderada */
+  letter-spacing: 0; /* Sin separación excesiva */
 }
 
-/* Botones con borde neón */
-.btn-outline-light {
-  border: 1px solid #00ffff;
-  color: #00ffff;
-  transition: all 0.3s;
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1rem; }
+
+/* Enlaces discretos */
+a {
+  color: #7cb342; /* Verde discreto */
+  text-decoration: none;
 }
-.btn-outline-light:hover {
-  background-color: #00ffff;
-  color: #000000;
-  box-shadow: 0 0 15px #00ffff;
+a:hover {
+  text-decoration: underline;
 }
 
-/* Tarjetas transparentes */
-.card {
-  background-color: rgba(20, 20, 20, 0.8) !important;
-  border: 1px solid #333 !important;
+/* Bordes y espacios */
+.border-secondary {
+  border-color: #333 !important;
+}
+
+/* Efecto consola para código */
+pre, code {
+  background-color: #111;
+  padding: 2px 4px;
+  border-radius: 2px;
 }
