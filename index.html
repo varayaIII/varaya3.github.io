@@ -4,119 +4,144 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tu Nombre - DevOps Engineer</title>
-  <!-- Bootstrap 5 + Fonts -->
+  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- CSS Personalizado -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Navbar Mejorado -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+  <!-- Navbar Elegante -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary-dark">
     <div class="container">
-      <span class="navbar-brand">$ tu_nombre > portfolio</span>
-      <div class="collapse navbar-collapse">
+      <a class="navbar-brand" href="#">TuNombre</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#projects">./proyectos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#tools">./herramientas</a></li>
-          <li class="nav-item"><a class="nav-link" href="#certifications">./certificaciones</a></li>
-          <li class="nav-item"><a class="nav-link" href="#blog">./blog</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">./contacto</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#home">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Proyectos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Habilidades</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section con Estadísticas -->
-  <header class="container py-5 text-center">
-    <h1 class="display-5">> Hola, soy <span class="text-success">[Tu_Nombre]</span></h1>
-    <p class="lead text-muted">DevOps Engineer | AWS | Kubernetes | Terraform</p>
-    <div class="stats mt-4">
-      <div class="stat-item">
-        <span class="text-success">10+</span> <span class="text-muted">proyectos</span>
-      </div>
-      <div class="stat-item">
-        <span class="text-success">5</span> <span class="text-muted">certificaciones</span>
+  <!-- Hero Section -->
+  <header id="home" class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Hola, soy <span class="text-accent">[Tu Nombre]</span></h1>
+        <p class="hero-subtitle">DevOps Engineer especializado en soluciones cloud y automatización</p>
+        <a href="#projects" class="btn btn-accent">Ver mis proyectos</a>
       </div>
     </div>
   </header>
 
-  <!-- Sección de Contacto (Versión Minimalista) -->
-<section id="contact" class="container py-4">
-  <h2 class="section-title">$ Contacto_</h2>
-  <div class="contact-info">
-    <div class="contact-item">
-      <i class="fas fa-envelope"></i>
-      <a href="mailto:tu@email.com">tu@email.com</a>
-    </div>
-    <div class="contact-item">
-      <i class="fab fa-linkedin"></i>
-      <a href="https://linkedin.com/in/tuperfil" target="_blank">linkedin.com/in/tuperfil</a>
-    </div>
-    <div class="contact-item">
-      <i class="fab fa-github"></i>
-      <a href="https://github.com/tuusuario" target="_blank">github.com/tuusuario</a>
-    </div>
-  </div>
-</section>
-
-  <!-- Nueva Sección: Herramientas -->
-  <section id="tools" class="container py-4">
-    <h2 class="section-title">$ Stack_Tecnológico_</h2>
-    <div class="tools-grid">
-      <div class="tool-item">
-        <img src="assets/icons/aws-icon.png" alt="AWS">
-        <span>AWS</span>
-      </div>
-      <div class="tool-item">
-        <img src="assets/icons/terraform-icon.png" alt="Terraform">
-        <span>Terraform</span>
-      </div>
-      <!-- Más herramientas... -->
-    </div>
-  </section>
-
-  <!-- Nueva Sección: Certificaciones -->
-  <section id="certifications" class="container py-4">
-    <h2 class="section-title">$ Certificaciones_</h2>
-    <div class="cert-grid">
-      <div class="cert-card">
-        <h3>> AWS Certified Solutions Architect</h3>
-        <p class="text-muted">2023 | Credencial: ABC-123</p>
-        <a href="certifications/aws-certified.html" class="btn-link">Ver credencial →</a>
+  <!-- Sección de Proyectos -->
+  <section id="projects" class="section-projects">
+    <div class="container">
+      <h2 class="section-title">Proyectos Destacados</h2>
+      <div class="row g-4">
+        <!-- Proyecto 1 -->
+        <div class="col-md-6">
+          <div class="project-card">
+            <div class="project-img">
+              <img src="assets/projects/pipeline.jpg" alt="Pipeline CI/CD">
+            </div>
+            <div class="project-info">
+              <h3>Pipeline CI/CD Automatizado</h3>
+              <p class="project-tech">AWS EKS | GitHub Actions | Terraform</p>
+              <p class="project-description">Implementación de un pipeline completo con despliegue automático en Kubernetes.</p>
+              <a href="projects/pipeline.html" class="project-link">Ver detalles <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- Proyecto 2 -->
+        <div class="col-md-6">
+          <div class="project-card">
+            <div class="project-img">
+              <img src="assets/projects/monitoring.jpg" alt="Sistema de Monitorización">
+            </div>
+            <div class="project-info">
+              <h3>Sistema de Monitorización</h3>
+              <p class="project-tech">Prometheus | Grafana | Alertmanager</p>
+              <p class="project-description">Solución completa para monitorización de infraestructura cloud.</p>
+              <a href="projects/monitoring.html" class="project-link">Ver detalles <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Nueva Sección: Blog -->
-  <section id="blog" class="container py-4">
-    <h2 class="section-title">$ Blog_Técnico_</h2>
-    <div class="blog-preview">
-      <h3>> Cómo optimicé costos en AWS un 40%</h3>
-      <p class="text-muted">Usando instancias Spot y Auto Scaling Groups...</p>
-      <a href="blog/optimizacion-costos-aws.html" class="btn-link">Leer más →</a>
+  <!-- Sección de Habilidades -->
+  <section id="skills" class="section-skills">
+    <div class="container">
+      <h2 class="section-title">Habilidades Técnicas</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3><i class="fas fa-cloud"></i> Cloud</h3>
+          <ul>
+            <li>AWS (EC2, EKS, S3, RDS)</li>
+            <li>Google Cloud Platform</li>
+            <li>Terraform</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-server"></i> DevOps</h3>
+          <ul>
+            <li>Docker & Kubernetes</li>
+            <li>CI/CD (Jenkins, GitHub Actions)</li>
+            <li>Monitorización (Prometheus, Grafana)</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-code"></i> Desarrollo</h3>
+          <ul>
+            <li>Python & Bash Scripting</li>
+            <li>Infraestructura como Código</li>
+            <li>Git & GitHub</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Contacto -->
-  <section id="contact" class="container py-4">
-    <h2 class="section-title">$ Contacto_</h2>
-    <form class="contact-form">
-      <input type="text" placeholder="Tu nombre" class="form-input">
-      <input type="email" placeholder="Email" class="form-input">
-      <textarea placeholder="Mensaje" class="form-input"></textarea>
-      <button type="submit" class="submit-btn">Enviar</button>
-    </form>
+  <!-- Sección de Contacto -->
+  <section id="contact" class="section-contact">
+    <div class="container">
+      <h2 class="section-title">Contacto</h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:tu@email.com">tu@email.com</a>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-linkedin"></i>
+          <a href="https://linkedin.com/in/tuperfil" target="_blank">linkedin.com/in/tuperfil</a>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-github"></i>
+          <a href="https://github.com/tuusuario" target="_blank">github.com/tuusuario</a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Footer Mejorado -->
-  <footer class="container py-4 border-top">
-    <div class="footer-content">
-      <p class="small">© 2023 [Tu_Nombre]. Hecho con Bootstrap 5.</p>
-      <div class="social-links">
-        <a href="#"><img src="assets/icons/github-icon.png" alt="GitHub"></a>
-        <a href="#"><img src="assets/icons/linkedin-icon.png" alt="LinkedIn"></a>
-      </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2023 Tu Nombre. Todos los derechos reservados.</p>
     </div>
   </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
