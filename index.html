@@ -43,25 +43,32 @@
     </div>
   </header>
 
-  <!-- Sección de Proyectos -->
-  <section id="projects" class="section-projects">
-    <div class="container">
-      <h2 class="section-title">Proyectos Destacados</h2>
-      <div class="row g-4">
-        <!-- Proyecto 1 -->
-        <div class="col-md-6">
-          <div class="project-card">
-            <div class="project-img">
-              <img src="assets/projects/pipeline.jpg" alt="Pipeline CI/CD">
-            </div>
-            <div class="project-info">
-              <h3>Pipeline CI/CD Automatizado</h3>
-              <p class="project-tech">AWS EKS | GitHub Actions | Terraform</p>
-              <p class="project-description">Implementación de un pipeline completo con despliegue automático en Kubernetes.</p>
-              <a href="projects/pipeline.html" class="project-link">Ver detalles <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
+  <!-- Elimina cualquier estilo inline -->
+<section id="home" class="d-flex align-items-center min-vh-100"> <!-- Hero a pantalla completa -->
+  <div class="container text-center py-5">
+    <h1 class="hero-title mb-4">Hola, soy <span class="text-accent">[Tu Nombre]</span></h1>
+    <p class="lead text-secondary mb-4">DevOps Engineer especializado en arquitecturas cloud</p>
+    <a href="#projects" class="btn btn-accent px-4 py-2">Ver proyectos</a>
+  </div>
+</section>
+
+<!-- Sección de proyectos ajustada -->
+<section id="projects" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Proyectos Recientes</h2>
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="project-card h-100 p-4">
+          <h3 class="mb-3">Pipeline CI/CD</h3>
+          <p class="text-secondary mb-4">Automatización con GitHub Actions y AWS</p>
+          <a href="#" class="d-inline-flex align-items-center">
+            Ver detalles <i class="fas fa-arrow-right ms-2"></i>
+          </a>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
         <!-- Proyecto 2 -->
         <div class="col-md-6">
           <div class="project-card">
