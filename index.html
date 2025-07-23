@@ -1,52 +1,70 @@
+<!-- index.html (Dashboard de Inicio) -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Font Awesome para iconos -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inicio | Victor Araya</title>
-  <link rel="stylesheet" href="/public/css/style.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Victor Araya | Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="public/css/style.css">
 </head>
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<body>
-  <!-- Navbar -->
-  <header class="mb-4">
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-      <div class="container">
-        <a class="navbar-brand" href="/">Personal website</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
-            <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+<body class="bg-dark text-white d-flex flex-column min-vh-100">
+  <!-- Header -->
+  <header class="bg-black p-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <h1 class="h4 mb-0">Victor Araya</h1>
+      <nav>
+        <a href="index.html" class="text-white me-3">Inicio</a>
+        <a href="views/projects/index.html" class="text-white me-3">Proyectos</a>
+        <a href="views/blog/index.html" class="text-white">Blog</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Contenido principal -->
-  <main class="flex-fill container text-center">
-    <h1 class="mb-4">Bienvenido, soy Víctor Araya</h1>
-    <p class="lead">Cloud Engineer autodidacta y futuro DevOps o SRE</p>
-    <p>Este es mi portafolio profesional.</p>
+  <!-- Dashboard -->
+  <main class="flex-grow-1">
+    <div class="container py-5">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card bg-secondary text-white h-100">
+            <div class="card-body">
+              <h5 class="card-title">Proyectos</h5>
+              <p class="card-text">Mira mis desarrollos personales y colaborativos.</p>
+              <a href="views/projects/index.html" class="btn btn-light">Ir a Proyectos</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card bg-secondary text-white h-100">
+            <div class="card-body">
+              <h5 class="card-title">Blog</h5>
+              <p class="card-text">Lee mis artículos, ideas y experiencias en tecnología.</p>
+              <a href="views/blog/index.html" class="btn btn-light">Ir al Blog</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <!-- Footer fijo abajo -->
-  <footer class="bg-dark text-center text-white py-3 mt-auto">
-    <small>&copy; 2025 varaya producciones. Todos los derechos reservados.</small>
+  <!-- Footer -->
+  <footer class="bg-black text-center text-white py-3 mt-auto">
+    <div class="container">
+      <p class="mb-2">© 2025 Victor Araya</p>
+      <div>
+        <a href="https://github.com/varayaIII" target="_blank" class="text-white me-3">
+          <i class="bi bi-github"></i> GitHub
+        </a>
+        <a href="https://linkedin.com/in/victor-araya" target="_blank" class="text-white me-3">
+          <i class="bi bi-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://x.com/victoraraya" target="_blank" class="text-white">
+          <i class="bi bi-twitter-x"></i> X
+        </a>
+      </div>
+    </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
