@@ -37,8 +37,27 @@ function renderBlog() {
   `).join("");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  includePartials();
-  renderProjects();
-  renderBlog();
+// Animación de aparición al hacer scroll
+document.addEventListener('DOMContentLoaded', function() {
+  const fadeElements = document.querySelectorAll('.fade-in');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('appear');
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+  
+  fadeElements.forEach(element => {
+    observer.observe(element);
+  });
+  
+  // Actualizar año en el footer
+  const currentYear = new Date().getFullYear();
+  document.getElementById('current-year').textContent = currentYear;
+});
 });
