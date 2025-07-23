@@ -1,7 +1,10 @@
 body, h1, h2, h3, h4, h5, h6, p, a, li, span, div {
   color: #ffffff !important;
 }
-
+.card, .navbar, .footer {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
 a {
   color: #0d6efd;
 }
