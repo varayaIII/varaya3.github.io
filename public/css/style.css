@@ -1,36 +1,20 @@
-body, h1, h2, h3, h4, h5, h6, p, a, li, span, div {
-  color: #ffffff !important;
+body {
+  background-color: #000;
+  color: #fff;
 }
-.card, .navbar, .footer {
-  background-color: #121212 !important;
-  color: #ffffff !important;
+
+a, h1, h2, h3, h4, h5, h6, p {
+  color: #fff;
 }
-a {
+
+.nav-link:hover {
   color: #0d6efd;
 }
 
-a:hover {
-  color: #1e90ff;
-  text-decoration: underline;
-}
-
-header, footer {
-  background-color: #222;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-}
-
-nav a {
-  margin: 0 1rem;
-  color: white;
-  text-decoration: none;
-}
-
-main {
-  padding: 2rem;
-}
-
-section {
-  margin-top: 2rem;
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #111;
+  color: #ccc;
 }
