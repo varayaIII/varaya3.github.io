@@ -1,70 +1,78 @@
-<!-- index.html (Dashboard de Inicio) -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website personal</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="public/css/style.css">
+  <title>Website de Victor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./public/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+    .nav-link {
+      color: #fff;
+    }
+    .nav-link:hover {
+      color: #0d6efd;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #111;
+      color: #ccc;
+    }
+  </style>
 </head>
-<body class="bg-dark text-white d-flex flex-column min-vh-100">
-  <!-- Header -->
-  <header class="bg-black p-3">
-    <div class="container d-flex justify-content-between align-items-center">
-      <h1 class="h4 mb-0">Website personal</h1>
-      <nav>
-        <a href="index.html" class="text-white me-3">Inicio</a>
-        <!--<a href="views/projects/index.html" class="text-white me-3">Proyectos</a>
-        <a href="views/blog/index.html" class="text-white">Blog</a>-->
+<body>
+  <header class="p-3 mb-4 border-bottom border-secondary">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center">
+      <h1 class="mb-0">Mi website</h1>
+      <nav class="nav">
+        <a class="nav-link" href="./index.html">Inicio</a>
+        <a class="nav-link" href="./views/projects/index.html">Proyectos</a>
+        <a class="nav-link" href="./views/blog/index.html">Blog</a>
       </nav>
     </div>
   </header>
 
-  <!-- Dashboard -->
-  <main class="flex-grow-1">
-    <div class="container py-5">
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="card bg-secondary text-white h-100">
-            <div class="card-body">
-              <h5 class="card-title">Proyectos</h5>
-              <p class="card-text">Mira mis desarrollos personales y colaborativos.</p>
-              <a href="views/projects/index.html" class="btn btn-light">Ir a Proyectos</a>
-            </div>
+  <main class="container py-5">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card bg-dark border-light h-100">
+          <div class="card-body">
+            <h5 class="card-title">Proyectos</h5>
+            <p class="card-text">Explora mis proyectos personales y profesionales.</p>
+            <a href="./views/projects/index.html" class="btn btn-outline-light">Ver Proyectos</a>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="card bg-secondary text-white h-100">
-            <div class="card-body">
-              <h5 class="card-title">Blog</h5>
-              <p class="card-text">Lee mis artículos, ideas y experiencias en tecnología.</p>
-              <a href="views/blog/index.html" class="btn btn-light">Ir al Blog</a>
-            </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card bg-dark border-light h-100">
+          <div class="card-body">
+            <h5 class="card-title">Blog</h5>
+            <p class="card-text">Lee artículos y pensamientos sobre tecnología y más.</p>
+            <a href="./views/blog/index.html" class="btn btn-outline-light">Ir al Blog</a>
           </div>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-black text-center text-white py-3 mt-auto">
+  <footer class="text-center py-3 mt-4">
     <div class="container">
-      <p class="mb-2">© 2025 Victor Araya</p>
-      <div>
-        <a href="https://github.com/varayaIII" target="_blank" class="text-white me-3">
-          <i class="bi bi-github"></i> GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/victor-araya-alegr%C3%ADa-1630b561/" target="_blank" class="text-white me-3">
-          <i class="bi bi-linkedin"></i> LinkedIn
-        </a>
-        <a href="https://x.com/VictorA81542268" target="_blank" class="text-white">
-          <i class="bi bi-twitter-x"></i> X
-        </a>
+      <div class="mb-2">
+        <a href="https://github.com/varayaIII" class="text-light me-3" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://twitter.com" class="text-light me-3" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://linkedin.com/in/tuusuario" class="text-light" target="_blank"><i class="fab fa-linkedin"></i></a>
       </div>
+      <small>&copy; 2025 varaya. Todos los derechos reservados.</small>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
