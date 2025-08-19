@@ -3,40 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Victor Araya – SRE autodidacta</title>
-  <meta name="description" content="Portafolio y blog de Victor Araya (varaya labs): SRE/DevOps autodidacta con proyectos de IaC, CI/CD, Kubernetes y monitoreo." />
-  <meta name="theme-color" content="#0b1020" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="varaya labs – SRE autodidacta" />
-  <meta property="og:description" content="Proyectos y artículos sobre SRE/DevOps: Terraform, Kubernetes, Jenkins, Prometheus, Grafana." />
-  <meta property="og:image" content="/assets/og-image.png" />
+  <title>Victor Araya - SRE Autodidacta</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="./public/css/style.css">
-  <style>
-    /* Accesibilidad mínima sin tocar tu CSS */
-    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-    .skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;background:#000;color:#fff;padding:.5rem .75rem;border-radius:.5rem;z-index:9999}
-    :focus-visible{outline:3px solid #22d3a6;outline-offset:3px;border-radius:.4rem}
-  </style>
 </head>
 <body>
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <!-- Capa de fondo fija para que el blur funcione sin artefactos -->
+  <div id="page-bg" aria-hidden="true"></div>
+
   <!-- Header -->
-  <header class="sticky-top bg-dark bg-opacity-75 border-bottom border-secondary-subtle" style="backdrop-filter:saturate(160%) blur(6px)">
+  <header>
     <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Principal">
+      <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-          <a class="navbar-brand fw-bold" href="#hero">varaya <span class="text-info">labs</span></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
+          <a class="navbar-brand" href="#hero">Varaya labs</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-              <li class="nav-item"><a id="nav-inicio" class="nav-link active" href="#hero" aria-current="page">Inicio</a></li>
-              <li class="nav-item"><a id="nav-proyectos" class="nav-link" href="#projects">Proyectos</a></li>
-              <li class="nav-item"><a id="nav-blog" class="nav-link" href="#blog">Blog</a></li>
-              <!-- <li class="nav-item"><a id="nav-sobre" class="nav-link" href="#about">Sobre mí</a></li> -->
+              <li class="nav-item">
+                <a class="nav-link active" href="#hero">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#projects">Proyectos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#blog">Blog</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -44,136 +39,145 @@
     </div>
   </header>
 
-  <main id="contenido">
-    <!-- Hero Section -->
-    <section class="hero py-5" id="hero">
-      <div class="container">
-        <div class="hero-content text-center mx-auto" style="max-width: 760px;">
-          <h1 class="display-4 fw-bold">SRE <span class="text-info">Autodidacta</span></h1>
-          <h2 class="h4 text-light-50">Un camino largo por recorrer</h2>
-          <p class="lead text-secondary">Acompáñame en este proceso de aprendizaje para convertirme en SRE/DevOps.</p>
-          <div class="d-flex gap-2 justify-content-center flex-wrap mt-3">
-            <a href="#projects" class="btn btn-teal btn-lg">Ver proyectos</a>
-            <a href="#blog" class="btn btn-outline-light btn-lg">Leer blog</a>
-          </div>
-        </div>
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>SRE Autodidacta</h1>
+        <h2>Un camino largo por recorrer</h2>
+        <p>Acompáñame en este proceso de aprendizaje para convertirme en SRE DevOps</p>
+        <br><br><br>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Sección de Proyectos -->
-    <section class="section py-5" id="projects">
-      <div class="container">
-        <h2 class="section-title h2 text-center">Proyectos Destacados</h2>
-        <div class="d-flex justify-content-center mb-4"><div style="width:120px;height:4px;background:linear-gradient(90deg,#22d3a6,transparent);border-radius:4px"></div></div>
-        <div class="projects-grid" id="projects-grid">
-          <!-- Proyecto 1 -->
-          <div class="project-card col-12 col-sm-6 col-lg-3">
-            <div class="h-100 p-4 rounded-4 border border-secondary-subtle bg-dark bg-opacity-25">
-              <div class="project-image fs-1 mb-3 text-info"><i class="fas fa-server" aria-hidden="true"></i></div>
-              <div class="project-content">
-                <h3 class="project-title h5">Infraestructura como código</h3>
-                <p class="project-description text-secondary">Implementación de infraestructura en la nube usando Terraform y AWS para despliegues automatizados.</p>
-                <a href="https://github.com/varayaIII/proyecto-iac" target="_blank" rel="noopener" class="project-link fw-semibold">Ver repositorio <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i></a>
-              </div>
-            </div>
-          </div>
-          <!-- Proyecto 2 -->
-          <div class="project-card col-12 col-sm-6 col-lg-3">
-            <div class="h-100 p-4 rounded-4 border border-secondary-subtle bg-dark bg-opacity-25">
-              <div class="project-image fs-1 mb-3 text-info"><i class="fas fa-code-branch" aria-hidden="true"></i></div>
-              <div class="project-content">
-                <h3 class="project-title h5">Pipeline CI/CD</h3>
-                <p class="project-description text-secondary">Integración y despliegue continuo para aplicaciones web usando Jenkins y Docker.</p>
-                <a href="https://github.com/varayaIII/cicd-pipeline" target="_blank" rel="noopener" class="project-link fw-semibold">Ver repositorio <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i></a>
-              </div>
-            </div>
-          </div>
-          <!-- Proyecto 3 -->
-          <div class="project-card col-12 col-sm-6 col-lg-3">
-            <div class="h-100 p-4 rounded-4 border border-secondary-subtle bg-dark bg-opacity-25">
-              <div class="project-image fs-1 mb-3 text-info"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
-              <div class="project-content">
-                <h3 class="project-title h5">Monitoreo de sistemas</h3>
-                <p class="project-description text-secondary">Solución de monitoreo con Prometheus, Grafana y Alertmanager para infraestructura distribuida.</p>
-                <a href="https://github.com/varayaIII/monitoring-system" target="_blank" rel="noopener" class="project-link fw-semibold">Ver repositorio <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i></a>
-              </div>
-            </div>
-          </div>
-          <!-- Proyecto 4 -->
-          <div class="project-card col-12 col-sm-6 col-lg-3">
-            <div class="h-100 p-4 rounded-4 border border-secondary-subtle bg-dark bg-opacity-25">
-              <div class="project-image fs-1 mb-3 text-info"><i class="fas fa-cloud" aria-hidden="true"></i></div>
-              <div class="project-content">
-                <h3 class="project-title h5">Clúster de Kubernetes</h3>
-                <p class="project-description text-secondary">Configuración y gestión de un clúster de Kubernetes para aplicaciones en contenedores.</p>
-                <a href="https://github.com/varayaIII/k8s-cluster" target="_blank" rel="noopener" class="project-link fw-semibold">Ver repositorio <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- Sección de Proyectos -->
+  <section class="section" id="projects">
+    <div class="container">
+      <h2 class="section-title">Proyectos Destacados</h2>
 
-    <!-- Sección de Blog -->
-    <section class="section py-5" id="blog">
-      <div class="container">
-        <h2 class="section-title h2 text-center">Últimas publicaciones</h2>
-        <div class="d-flex justify-content-center mb-4"><div style="width:120px;height:4px;background:linear-gradient(90deg,#22d3a6,transparent);border-radius:4px"></div></div>
-        <div class="blog-grid row g-4">
-          <!-- Entrada 1 -->
-          <div class="blog-card col-12 col-md-6 col-lg-4">
-            <div class="h-100 p-4 rounded-4 border border-secondary-subtle bg-dark bg-opacity-25">
-              <div class="blog-header mb-2">
-                <div class="blog-date text-secondary">15 de enero de 2025 · <span data-read="k8s">—</span></div>
-                <h3 class="blog-title h5">Fundamentos de Kubernetes para SRE</h3>
-              </div>
-              <div class="blog-content">
-                <p class="blog-excerpt text-secondary">Explorando los conceptos esenciales de Kubernetes y cómo aplicarlos en entornos de Site Reliability Engineering…</p>
-                <a href="#" class="blog-link fw-semibold">Leer más <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i></a>
-              </div>
-            </div>
+      <!-- Usa tu propio grid CSS (sin clases row/col de Bootstrap para evitar conflictos) -->
+      <div class="projects-grid" id="projects-grid">
+        <!-- Proyecto 1 -->
+        <div class="project-card">
+          <div class="project-image">
+            <i class="fas fa-server" aria-hidden="true"></i>
           </div>
-          <!-- Entrada 2 -->
-          <div class="blog-card col-12 col-md-6 col-lg-4">
-            <div class="h-100 p-4 rounded-4 border border-secondary-subtle bg-dark bg-opacity-25">
-              <div class="blog-header mb-2">
-                <div class="blog-date text-secondary">10 de enero de 2025 · <span data-read="tf">—</span></div>
-                <h3 class="blog-title h5">Automatización con Terraform</h3>
-              </div>
-              <div class="blog-content">
-                <p class="blog-excerpt text-secondary">Cómo implementar infraestructura como código usando Terraform para gestionar recursos en múltiples nubes…</p>
-                <a href="#" class="blog-link fw-semibold">Leer más <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i></a>
-              </div>
-            </div>
+          <div class="project-content">
+            <h3 class="project-title">Infraestructura como Código</h3>
+            <p class="project-description">Implementación de infraestructura en la nube usando Terraform y AWS para despliegues automatizados.</p>
+            <a href="https://github.com/varayaIII/proyecto-iac" target="_blank" rel="noopener" class="project-link">
+              Ver en GitHub <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
           </div>
-          <!-- Entrada 3 -->
-          <div class="blog-card col-12 col-md-6 col-lg-4">
-            <div class="h-100 p-4 rounded-4 border border-secondary-subtle bg-dark bg-opacity-25">
-              <div class="blog-header mb-2">
-                <div class="blog-date text-secondary">5 de enero de 2025 · <span data-read="prom">—</span></div>
-                <h3 class="blog-title h5">Monitoreo eficiente con Prometheus</h3>
-              </div>
-              <div class="blog-content">
-                <p class="blog-excerpt text-secondary">Configuración avanzada de Prometheus para monitoreo de sistemas distribuidos y estrategias de alerting efectivas…</p>
-                <a href="#" class="blog-link fw-semibold">Leer más <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i></a>
-              </div>
-            </div>
+        </div>
+
+        <!-- Proyecto 2 -->
+        <div class="project-card">
+          <div class="project-image">
+            <i class="fas fa-code-branch" aria-hidden="true"></i>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Pipeline CI/CD</h3>
+            <p class="project-description">Sistema de integración y despliegue continuo para aplicaciones web usando Jenkins y Docker.</p>
+            <a href="https://github.com/varayaIII/cicd-pipeline" target="_blank" rel="noopener" class="project-link">
+              Ver en GitHub <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Proyecto 3 -->
+        <div class="project-card">
+          <div class="project-image">
+            <i class="fas fa-chart-line" aria-hidden="true"></i>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Monitoreo de Sistemas</h3>
+            <p class="project-description">Solución de monitoreo con Prometheus, Grafana y Alertmanager para infraestructura distribuida.</p>
+            <a href="https://github.com/varayaIII/monitoring-system" target="_blank" rel="noopener" class="project-link">
+              Ver en GitHub <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Proyecto 4 -->
+        <div class="project-card">
+          <div class="project-image">
+            <i class="fas fa-cloud" aria-hidden="true"></i>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Clúster de Kubernetes</h3>
+            <p class="project-description">Configuración y gestión de un clúster de Kubernetes para aplicaciones en contenedores.</p>
+            <a href="https://github.com/varayaIII/k8s-cluster" target="_blank" rel="noopener" class="project-link">
+              Ver en GitHub <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <!-- Sección de Blog -->
+  <section class="section" id="blog">
+    <div class="container">
+      <h2 class="section-title">Últimas Publicaciones</h2>
+
+      <div class="blog-grid">
+        <!-- Entrada 1 -->
+        <div class="blog-card">
+          <div class="blog-header">
+            <div class="blog-date">15 de enero, 2025</div>
+            <h3 class="blog-title">Fundamentos de Kubernetes para SRE</h3>
+          </div>
+          <div class="blog-content">
+            <p class="blog-excerpt">Explorando los conceptos esenciales de Kubernetes y cómo aplicarlos en entornos de Site Reliability Engineering...</p>
+            <a href="#" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Entrada 2 -->
+        <div class="blog-card">
+          <div class="blog-header">
+            <div class="blog-date">10 de enero, 2025</div>
+            <h3 class="blog-title">Automatización con Terraform</h3>
+          </div>
+          <div class="blog-content">
+            <p class="blog-excerpt">Cómo implementar infraestructura como código usando Terraform para gestionar recursos en múltiples nubes...</p>
+            <a href="#" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Entrada 3 -->
+        <div class="blog-card">
+          <div class="blog-header">
+            <div class="blog-date">5 de enero, 2025</div>
+            <h3 class="blog-title">Monitoreo Eficiente con Prometheus</h3>
+          </div>
+          <div class="blog-content">
+            <p class="blog-excerpt">Configuración avanzada de Prometheus para monitoreo de sistemas distribuidos y estrategias de alerting efectivas...</p>
+            <a href="#" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="py-4 border-top border-secondary-subtle">
+  <footer>
     <div class="container">
-      <div class="footer-content text-center">
-        <div class="social-links d-flex justify-content-center gap-3 mb-3">
-          <a href="https://github.com/varayaIII" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github fa-lg"></i></a>
-          <a href="https://x.com/VictorA81542268" target="_blank" rel="noopener" aria-label="X/Twitter"><i class="fab fa-x-twitter fa-lg"></i></a>
-          <a href="https://www.linkedin.com/in/victor-araya-alegr%C3%ADa-1630b561/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in fa-lg"></i></a>
+      <div class="footer-content">
+        <div class="social-links">
+          <a href="https://github.com/varayaIII" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://x.com/VictorA81542268" target="_blank" rel="noopener" title="Twitter" aria-label="X/Twitter">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/victor-araya-alegr%C3%ADa-1630b561/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
         </div>
-        <div class="copyright small">© <span id="year"></span> varaya labs. Todos los derechos reservados.</div>
+        <div class="copyright">© <span id="year"></span> varaya labs. Todos los derechos reservados.</div>
       </div>
     </div>
   </footer>
@@ -182,60 +186,6 @@
   <script>
     // Año dinámico
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Botón primario con buen contraste usando Bootstrap
-    (function(){
-      const style = document.createElement('style');
-      style.textContent = `.btn-teal{ --bs-btn-color:#0b1020; --bs-btn-bg:#22d3a6; --bs-btn-border-color:#1fcaa0; --bs-btn-hover-bg:#16bd95; --bs-btn-hover-border-color:#15b48d; --bs-btn-focus-shadow-rgb:34,211,166; }`;
-      document.head.appendChild(style);
-    })();
-
-    // Resaltar item activo del navbar según sección visible
-    const sections = ['hero','projects','blog'];
-    const links = {
-      hero: document.getElementById('nav-inicio'),
-      projects: document.getElementById('nav-proyectos'),
-      blog: document.getElementById('nav-blog')
-    };
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          Object.values(links).forEach(a=>a.classList.remove('active'));
-          links[e.target.id]?.classList.add('active');
-          Object.values(links).forEach(a=>a.removeAttribute('aria-current'));
-          links[e.target.id]?.setAttribute('aria-current','page');
-        }
-      })
-    },{rootMargin:'-45% 0px -50% 0px'});
-    sections.forEach(id=>io.observe(document.getElementById(id)));
-
-    // Tiempo de lectura aproximado (200 wpm)
-    const readMap = { k8s:620, tf:760, prom:680 };
-    for(const [k,words] of Object.entries(readMap)){
-      const el = document.querySelector(`[data-read="${k}"]`);
-      if(el) el.textContent = Math.max(1, Math.round(words/200)) + ' min';
-    }
-
-    // (Opcional) Cargar proyectos desde /data/proyectos.json si existe
-    fetch('/data/proyectos.json').then(r=> r.ok ? r.json() : Promise.reject()).then(items=>{
-      const grid = document.getElementById('projects-grid');
-      grid.innerHTML='';
-      const frag = document.createDocumentFragment();
-      items.forEach(p=>{
-        const col = document.createElement('div');
-        col.className = 'project-card col-12 col-sm-6 col-lg-3';
-        col.innerHTML = `
-          <div class="h-100 p-4 rounded-4 border border-secondary-subtle bg-dark bg-opacity-25">
-            <div class="fs-1 mb-3 text-info"><i class="${p.icon || 'fas fa-circle-nodes'}" aria-hidden="true"></i></div>
-            <h3 class="h5">${p.titulo}</h3>
-            <p class="text-secondary">${p.descripcion}</p>
-            <a class="fw-semibold" href="${p.github}" target="_blank" rel="noopener">Ver repositorio <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i></a>
-          </div>`;
-        frag.appendChild(col);
-      });
-      grid.appendChild(frag);
-    }).catch(()=>{/* deja las cards estáticas como fallback */});
   </script>
-  <!-- Si prefieres un JS separado, copia el script anterior a ./public/js/main.js y elimina este bloque. -->
 </body>
 </html>
