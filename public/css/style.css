@@ -446,36 +446,29 @@ footer {
   }
 }
 
-/* --- FIX mezcla Bootstrap row + CSS Grid --- */
-
-/* Asegura que grid gobierne */
+/* --- 1) Forzar tu grid y contener las cards --- */
 .projects-grid {
   display: grid !important;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 }
+.projects-grid.row { margin-left:0 !important; margin-right:0 !important; }
+.projects-grid .project-card { max-width: initial !important; flex: initial !important; }
 
-/* Neutraliza los estilos de .row/.col-* si quedaron en los hijos */
-.projects-grid.row {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-.projects-grid .project-card {
-  max-width: initial !important;
-  flex: initial !important;
-}
-
-/* Contiene brillos/sombras y evita desbordes altos */
-.project-card {
+.project-card, .blog-card {
   position: relative;
   overflow: hidden;
   height: auto !important;
   border-radius: 16px;
 }
 
-/* Si hay wrappers con .h-100 adentro, que no fuercen la altura */
-.project-card > .h-100 { height: auto !important; }
+/* --- 2) Quitar artefactos de blur con fondo fixed --- */
+body { background-attachment: scroll !important; }        /* <— desactiva el fixed */
+.project-card, .blog-card, header {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  background: rgba(30,30,46,.55);                         /* mantiene look “glass” sin blur */
+}
 
-/* Por si algún estilo antiguo dibuja pseudo-elementos altos */
-.project-card::before,
-.project-card::after { content: none !important; }
+/* Si algún estilo viejo dibuja pseudo-elementos altos, apágalos: */
+.project-card::before, .project-card::after { content: none !important; }
