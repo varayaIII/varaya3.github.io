@@ -167,49 +167,54 @@
   </section>
   <!-- Sección de Contacto / Contratación -->
   <section class="section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">Trabajemos juntos</h2>
+  <div class="container">
+    <h2 class="section-title">Trabajemos juntos</h2>
 
-      <div class="blog-grid">
-        <!-- Card: Empresas (Consultoría) -->
-        <div class="blog-card">
-          <div class="blog-header">
-            <div class="blog-date">Para empresas · Varaya Labs</div>
-            <h3 class="blog-title">Consultoría DevOps / Cloud</h3>
-          </div>
-          <div class="blog-content">
-            <p class="blog-excerpt">Te ayudo a acelerar entregas y confiabilidad. Servicios: IaC (Terraform), CI/CD, contenedores (Docker/Kubernetes), observabilidad (Prometheus/Grafana), hardening y optimización de costos cloud.</p>
-            <ul class="text-secondary" style="margin-bottom:1rem">
-              <li>• Discovery y plan de acción en 1–2 semanas</li>
-              <li>• Implementación y traspaso documentado</li>
-              <li>• Training a tu equipo (hands-on)</li>
-            </ul>
-            <div class="d-flex gap-2 flex-wrap">
-              <a href="mailto:contacto@varayalabs.com?subject=Consulta%20Consultor%C3%ADa%20DevOps" class="btn btn-primary">Solicitar propuesta</a>
-              <a href="#" class="btn btn-outline-light" aria-label="Agendar una llamada de 15 minutos">Agendar llamada (15 min)</a>
-            </div>
-          </div>
+    <div class="blog-grid">
+      <!-- Empresas (Consultoría) -->
+      <div class="blog-card">
+        <div class="blog-header">
+          <div class="blog-date">Para negocios con Varaya Labs</div>
+          <h3 class="blog-title">Consultoría DevOps / Cloud</h3>
         </div>
-
-        <!-- Card: Empleo (Full-time) -->
-        <div class="blog-card">
-          <div class="blog-header">
-            <div class="blog-date">Para empleo · Full-time</div>
-            <h3 class="blog-title">¿Buscas DevOps / Cloud Engineer?</h3>
-          </div>
-          <div class="blog-content">
-            <p class="blog-excerpt">Estoy abierto a roles SRE/DevOps/Cloud Engineer. Interés en IaC, CI/CD, Kubernetes, observabilidad y SLOs. Ubicación: Santiago (Chile), modalidad remota o híbrida.</p>
-            <div class="d-flex gap-2 flex-wrap" style="margin-bottom:1rem">
-              <a href="/assets/CV-Victor-Araya.pdf" class="btn btn-primary" download aria-label="Descargar CV en PDF">Descargar CV</a>
-              <a href="https://www.linkedin.com/in/victor-araya-alegr%C3%ADa-1630b561/" target="_blank" rel="noopener" class="btn btn-outline-light" aria-label="Ver perfil en LinkedIn">Ver LinkedIn</a>
-            </div>
-            <p class="text-secondary" style="margin:0">Contacto directo: <a href="mailto:victor@varayalabs.com">victor@varayalabs.com</a></p>
+        <div class="blog-content">
+          <p class="blog-excerpt">Te ayudo a acelerar entregas y confiabilidad. IaC (Terraform), CI/CD, contenedores (Docker/Kubernetes), observabilidad (Prometheus/Grafana), hardening y optimización de costos cloud.</p>
+          <ul class="features">
+            <li>Discovery y plan de acción en 1–2 semanas</li>
+            <li>Implementación y traspaso documentado</li>
+            <li>Training a tu equipo (hands-on)</li>
+          </ul>
+          <div class="cta-row">
+            <a href="mailto:contacto@varayalabs.com?subject=Solicitud%20propuesta%20DevOps"
+               class="btn btn-compact primary">Solicitar propuesta</a>
+            <a href="#"
+               class="btn btn-compact secondary" aria-label="Agendar una llamada corta">Agendar llamada (15 min)</a>
           </div>
         </div>
       </div>
 
-      <!-- Formulario rápido (opcional, funciona con servicios tipo Formspree) -->
-      <form action="https://formspree.io/f/XXXXXXX" method="POST" class="mt-4" onsubmit="this.querySelector('button').disabled=true">
+      <!-- Empleo (Full-time) -->
+      <div class="blog-card">
+        <div class="blog-header">
+          <div class="blog-date">Para empleo · Full-time</div>
+          <h3 class="blog-title">¿Buscas DevOps / Cloud Engineer?</h3>
+        </div>
+        <div class="blog-content">
+          <p class="blog-excerpt">Abierto a roles SRE/DevOps/Cloud Engineer. Enfoque en IaC, CI/CD, Kubernetes, observabilidad y SLOs. Santiago (Chile). Remoto o híbrido.</p>
+          <div class="cta-row">
+            <a id="btn-cv" href="/assets/CV-Victor-Araya.pdf" download class="btn btn-compact primary">Descargar CV</a>
+          </div>
+          <p class="text-secondary" style="margin: .5rem 0 0;">Contacto directo:
+            <a href="mailto:victor@varayalabs.com">victor@varayalabs.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario (más discreto y al final) -->
+    <div id="contact-form-wrap">
+      <form id="contact-form" action="https://formspree.io/f/XXXXXXX" method="POST"
+            onsubmit="this.querySelector('button').disabled=true">
         <div class="row g-3">
           <div class="col-md-6">
             <label class="form-label">Nombre</label>
@@ -221,70 +226,16 @@
           </div>
           <div class="col-12">
             <label class="form-label">¿Qué necesitas?</label>
-            <textarea class="form-control" name="mensaje" rows="4" placeholder="Ej.: Queremos migrar a Kubernetes / Necesitamos pipeline CI/CD / Buscamos DevOps full-time" required></textarea>
+            <textarea class="form-control" name="mensaje" rows="4"
+              placeholder="Ej.: Migrar a Kubernetes / Pipeline CI/CD / DevOps full-time" required></textarea>
           </div>
-          <div class="col-12 d-flex gap-2">
-            <button class="btn btn-primary" type="submit">Enviar</button>
-            <small class="text-secondary align-self-center">O escríbeme a <a href="mailto:contacto@varayalabs.com">contacto@varayalabs.com</a></small>
+          <div class="col-12">
+            <button class="btn btn-compact primary btn-send" type="submit">Enviar</button>
+            <small class="text-secondary ms-2">o escríbeme a
+              <a href="mailto:contacto@varayalabs.com">contacto@varayalabs.com</a></small>
           </div>
         </div>
       </form>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="social-links">
-          <a href="https://github.com/varayaIII" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://x.com/VictorA81542268" target="_blank" rel="noopener" title="Twitter" aria-label="X/Twitter">
-            <i class="fab fa-x-twitter"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/https://www.linkedin.com/in/victor-a-1630b561/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
-        <div class="copyright">© <span id="year"></span> Varaya Labs. Todos los derechos reservados.</div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Año dinámico
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-  
-  <!-- SEO: JSON-LD para persona y organización -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "name": "Victor Araya",
-        "jobTitle": "DevOps / SRE",
-        "email": "mailto:victor@varayalabs.com",
-        "url": "https://tu-dominio.tld/",
-        "sameAs": [
-          "https://github.com/varayaIII",
-          "https://x.com/VictorA81542268",
-          "https://www.linkedin.com/in/victor-araya-alegr%C3%ADa-1630b561/"
-        ]
-      },
-      {
-        "@type": "Organization",
-        "name": "Varaya Labs",
-        "url": "https://www.victor-araya.xyz/",
-        "email": "mailto:varaya.slp@gmail.com",
-        "logo": "https://tu-dominio.tld/assets/og-image.png"
-      }
-    ]
-  }
-  </script>
-</body>
-</html>
-</html>
+  </div>
+</section>
