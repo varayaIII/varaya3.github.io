@@ -445,3 +445,37 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- FIX mezcla Bootstrap row + CSS Grid --- */
+
+/* Asegura que grid gobierne */
+.projects-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Neutraliza los estilos de .row/.col-* si quedaron en los hijos */
+.projects-grid.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.projects-grid .project-card {
+  max-width: initial !important;
+  flex: initial !important;
+}
+
+/* Contiene brillos/sombras y evita desbordes altos */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  height: auto !important;
+  border-radius: 16px;
+}
+
+/* Si hay wrappers con .h-100 adentro, que no fuercen la altura */
+.project-card > .h-100 { height: auto !important; }
+
+/* Por si algún estilo antiguo dibuja pseudo-elementos altos */
+.project-card::before,
+.project-card::after { content: none !important; }
