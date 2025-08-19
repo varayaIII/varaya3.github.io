@@ -385,3 +385,46 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- Contacto: botones compactos y formulario discreto --- */
+.btn-compact {
+  padding: 8px 14px;
+  font-size: .95rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  border: 1px solid transparent;
+}
+.btn-compact.primary { background: var(--primary); border-color: var(--primary); color:#fff; }
+.btn-compact.primary:hover { filter: brightness(1.05); transform: translateY(-1px); }
+.btn-compact.secondary { background: transparent; border:1px solid rgba(255,255,255,.18); color:#fff; }
+.btn-compact.secondary:hover { background: rgba(255,255,255,.08); }
+
+#contacto { padding-top: 80px; padding-bottom: 80px; }
+#contacto .blog-grid { gap: 24px; }
+#contacto .blog-card { border-radius: 14px; }
+
+#btn-cv { background:#2b6ef7; border-color:#2b6ef7; }
+#btn-cv:hover { filter: brightness(1.06); transform: translateY(-1px); }
+
+/* Más aire antes del formulario y tamaño contenido */
+#contact-form-wrap {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+#contact-form { max-width: 880px; margin: 0 auto; }
+#contact-form .form-label { font-weight: 500; color: rgba(255,255,255,.85); }
+#contact-form .form-control {
+  padding: .55rem .75rem;
+  border-radius: 10px;
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.12);
+  color:#fff;
+}
+#contact-form textarea.form-control { min-height: 110px; }
+#contact-form .btn-send { padding: .55rem 1rem; border-radius: 10px; }
+
+/* En móvil mantiene todo ligero */
+@media (max-width: 768px){
+  #contacto { padding-top: 60px; padding-bottom: 70px; }
+}
