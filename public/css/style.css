@@ -1,3 +1,8 @@
+/* =========================================================
+   Varaya Labs
+   Estilos base + glassmorphism con backdrop-filter estable
+   ========================================================= */
+
 /* Variables de colores */
 :root {
   --primary: #0d6efd;
@@ -9,30 +14,41 @@
   --glass-border: rgba(255, 255, 255, 0.1);
 }
 
-/* Estilos globales */
+/* Utilidad UX */
+html { scroll-behavior: smooth; }
+
+/* Estilos globales
+   (el fondo se mueve a #page-bg para evitar artefactos con blur) */
 body {
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background: none !important;              /* <— antes estaba aquí */
   color: var(--light);
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-attachment: fixed;
   position: relative;
   overflow-x: hidden;
   padding-bottom: 70px;
 }
+body::before { content: none !important; }
 
-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 10% 20%, rgba(32, 201, 151, 0.1) 0%, transparent 20%),
-    radial-gradient(circle at 90% 80%, rgba(13, 110, 253, 0.1) 0%, transparent 20%);
+/* Capa de fondo fija (sustituye el fondo del body + ::before) */
+#page-bg{
+  position: fixed;
+  inset: 0;
   z-index: -1;
+  pointer-events: none;
+  background:
+    /* lo que antes tenías en body */
+    linear-gradient(135deg, #0f0c29, #302b63, #24243e),
+    /* y los brillos que estaban en body::before */
+    radial-gradient(circle at 10% 20%, rgba(32, 201, 151, 0.10) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(13, 110, 253, 0.10) 0%, transparent 20%);
 }
+
+/* Aísla las capas con blur para que “miren” a #page-bg */
+main, header, footer { isolation: isolate; }
+
+/* Accesibilidad mínima */
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 
 /* Header */
 header {
@@ -55,10 +71,7 @@ header {
   -webkit-text-fill-color: transparent;
   transition: all 0.3s ease;
 }
-
-.navbar-brand:hover {
-  transform: scale(1.05);
-}
+.navbar-brand:hover { transform: scale(1.05); }
 
 .nav-link {
   color: rgba(255, 255, 255, 0.8);
@@ -66,11 +79,7 @@ header {
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
 }
-
-.nav-link:hover, .nav-link.active {
-  color: white;
-}
-
+.nav-link:hover, .nav-link.active { color: white; }
 .nav-link::after {
   content: '';
   position: absolute;
@@ -81,10 +90,7 @@ header {
   background: var(--accent);
   transition: width 0.3s ease;
 }
-
-.nav-link:hover::after {
-  width: 80%;
-}
+.nav-link:hover::after { width: 80%; }
 
 /* Hero section */
 .hero {
@@ -96,14 +102,12 @@ header {
   display: flex;
   align-items: center;
 }
-
 .hero-content {
   position: relative;
   z-index: 2;
   max-width: 800px;
   margin: 0 auto;
 }
-
 .hero h1 {
   font-size: 3.5rem;
   font-weight: 800;
@@ -112,14 +116,12 @@ header {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 .hero h2 {
   font-size: 1.8rem;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1.5rem;
 }
-
 .hero p {
   font-size: 1.2rem;
   max-width: 600px;
@@ -136,7 +138,6 @@ header {
   flex-wrap: wrap;
   margin-bottom: 40px;
 }
-
 .btn-primary {
   background: var(--primary);
   border: none;
@@ -147,12 +148,10 @@ header {
   transition: all 0.3s ease;
   box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
 }
-
 .btn-primary:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(13, 110, 253, 0.6);
 }
-
 .btn-outline-light {
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.3);
@@ -162,7 +161,6 @@ header {
   font-weight: 500;
   transition: all 0.3s ease;
 }
-
 .btn-outline-light:hover {
   background: var(--primary);
   border-color: var(--primary);
@@ -171,10 +169,7 @@ header {
 }
 
 /* Secciones de contenido */
-.section {
-  padding: 80px 0;
-}
-
+.section { padding: 80px 0; }
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -186,7 +181,6 @@ header {
   position: relative;
   padding-bottom: 15px;
 }
-
 .section-title::after {
   content: '';
   position: absolute;
@@ -206,7 +200,6 @@ header {
   gap: 30px;
   margin-top: 30px;
 }
-
 .project-card {
   background: var(--glass);
   backdrop-filter: blur(10px);
@@ -217,13 +210,11 @@ header {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
-
 .project-card:hover {
   transform: translateY(-15px);
   border-color: var(--accent);
   box-shadow: 0 15px 35px rgba(32, 201, 151, 0.2);
 }
-
 .project-image {
   height: 180px;
   background-color: #2a2a4a;
@@ -231,30 +222,23 @@ header {
   align-items: center;
   justify-content: center;
 }
-
 .project-image i {
   font-size: 4rem;
   color: var(--accent);
   opacity: 0.7;
 }
-
-.project-content {
-  padding: 25px;
-}
-
+.project-content { padding: 25px; }
 .project-title {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
   color: var(--accent);
 }
-
 .project-description {
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 1.5rem;
   min-height: 80px;
 }
-
 .project-link {
   display: inline-flex;
   align-items: center;
@@ -263,19 +247,9 @@ header {
   font-weight: 500;
   transition: all 0.3s ease;
 }
-
-.project-link i {
-  margin-left: 8px;
-  transition: transform 0.3s ease;
-}
-
-.project-link:hover {
-  color: #fff;
-}
-
-.project-link:hover i {
-  transform: translateX(5px);
-}
+.project-link i { margin-left: 8px; transition: transform 0.3s ease; }
+.project-link:hover { color: #fff; }
+.project-link:hover i { transform: translateX(5px); }
 
 /* Sección de blog */
 .blog-grid {
@@ -284,7 +258,6 @@ header {
   gap: 30px;
   margin-top: 30px;
 }
-
 .blog-card {
   background: var(--glass);
   backdrop-filter: blur(10px);
@@ -294,41 +267,32 @@ header {
   overflow: hidden;
   transition: all 0.3s ease;
 }
-
 .blog-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 35px rgba(32, 201, 151, 0.2);
 }
-
 .blog-header {
   padding: 20px;
   background: rgba(40, 40, 70, 0.6);
   border-bottom: 1px solid var(--glass-border);
 }
-
 .blog-date {
   font-size: 0.9rem;
   color: var(--accent);
   margin-bottom: 5px;
 }
-
 .blog-title {
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 0;
   color: #fff;
 }
-
-.blog-content {
-  padding: 20px;
-}
-
+.blog-content { padding: 20px; }
 .blog-excerpt {
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 20px;
   line-height: 1.6;
 }
-
 .blog-link {
   display: inline-flex;
   align-items: center;
@@ -336,19 +300,9 @@ header {
   text-decoration: none;
   font-weight: 500;
 }
-
-.blog-link i {
-  margin-left: 8px;
-  transition: transform 0.3s ease;
-}
-
-.blog-link:hover {
-  color: #fff;
-}
-
-.blog-link:hover i {
-  transform: translateX(5px);
-}
+.blog-link i { margin-left: 8px; transition: transform 0.3s ease; }
+.blog-link:hover { color: #fff; }
+.blog-link:hover i { transform: translateX(5px); }
 
 /* Footer */
 footer {
@@ -360,20 +314,17 @@ footer {
   width: 100%;
   z-index: 10;
 }
-
 .footer-content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 .social-links {
   display: flex;
   justify-content: center;
   gap: 15px;
   margin-bottom: 15px;
 }
-
 .social-links a {
   display: inline-flex;
   align-items: center;
@@ -386,89 +337,51 @@ footer {
   font-size: 1.1rem;
   transition: all 0.3s ease;
 }
-
 .social-links a:hover {
   transform: translateY(-3px);
   background: var(--primary);
 }
-
 .copyright {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-  .hero h1 {
-    font-size: 3rem;
-  }
-  
-  .hero h2 {
-    font-size: 1.6rem;
-  }
-  
-  .section {
-    padding: 60px 0;
+/* Fallback si el navegador no soporta backdrop-filter */
+@supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+  header, .project-card, .blog-card, footer {
+    background: rgba(30,30,46,.60);
   }
 }
 
+/* Motion-safe */
+@media (prefers-reduced-motion: reduce){
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .hero h1 { font-size: 3rem; }
+  .hero h2 { font-size: 1.6rem; }
+  .section { padding: 60px 0; }
+}
 @media (max-width: 768px) {
   .hero {
     min-height: auto;
     padding: 60px 0 30px;
   }
-  
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-  
-  .hero h2 {
-    font-size: 1.4rem;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-  }
-  
+  .hero h1 { font-size: 2.5rem; }
+  .hero h2 { font-size: 1.4rem; }
+  .section-title { font-size: 2rem; }
   .btn-container {
     flex-direction: column;
     align-items: center;
     gap: 15px;
   }
-  
   .btn-primary, .btn-outline-light {
     width: 80%;
     max-width: 300px;
   }
-  
   .projects-grid, .blog-grid {
     grid-template-columns: 1fr;
   }
 }
-
-/* --- 1) Forzar tu grid y contener las cards --- */
-.projects-grid {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-.projects-grid.row { margin-left:0 !important; margin-right:0 !important; }
-.projects-grid .project-card { max-width: initial !important; flex: initial !important; }
-
-.project-card, .blog-card {
-  position: relative;
-  overflow: hidden;
-  height: auto !important;
-  border-radius: 16px;
-}
-
-/* --- 2) Quitar artefactos de blur con fondo fixed --- */
-body { background-attachment: scroll !important; }        /* <— desactiva el fixed */
-.project-card, .blog-card, header {
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
-  background: rgba(30,30,46,.55);                         /* mantiene look “glass” sin blur */
-}
-
-/* Si algún estilo viejo dibuja pseudo-elementos altos, apágalos: */
-.project-card::before, .project-card::after { content: none !important; }
