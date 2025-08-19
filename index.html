@@ -17,20 +17,14 @@
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#hero">Varaya Labs</a>
+          <a class="navbar-brand" href="#hero">varaya labs</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            $1
               <li class="nav-item">
-                <a class="nav-link active" href="#hero">Inicio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#projects">Proyectos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#blog">Blog</a>
+                <a class="nav-link" href="#contacto">Contacto</a>
               </li>
             </ul>
           </div>
@@ -46,10 +40,13 @@
         <h1>SRE Autodidacta</h1>
         <h2>Un camino largo por recorrer</h2>
         <p>Acompáñame en este proceso de aprendizaje para convertirme en SRE DevOps</p>
-        <br><br><br>
+        <div class="btn-container">
+          <a href="#projects" class="btn btn-primary">Ver Proyectos</a>
+          <a href="#blog" class="btn btn-outline-light">Ver Blog</a>
+        </div>
       </div>
     </div>
-  </section><br><br><br>
+  </section>
 
   <!-- Sección de Proyectos -->
   <section class="section" id="projects">
@@ -161,6 +158,72 @@
       </div>
     </div>
   </section>
+  <!-- Sección de Contacto / Contratación -->
+  <section class="section" id="contacto">
+    <div class="container">
+      <h2 class="section-title">Trabajemos juntos</h2>
+
+      <div class="blog-grid">
+        <!-- Card: Empresas (Consultoría) -->
+        <div class="blog-card">
+          <div class="blog-header">
+            <div class="blog-date">Para empresas · Varaya Labs</div>
+            <h3 class="blog-title">Consultoría DevOps / Cloud</h3>
+          </div>
+          <div class="blog-content">
+            <p class="blog-excerpt">Te ayudo a acelerar entregas y confiabilidad. Servicios: IaC (Terraform), CI/CD, contenedores (Docker/Kubernetes), observabilidad (Prometheus/Grafana), hardening y optimización de costos cloud.</p>
+            <ul class="text-secondary" style="margin-bottom:1rem">
+              <li>• Discovery y plan de acción en 1–2 semanas</li>
+              <li>• Implementación y traspaso documentado</li>
+              <li>• Training a tu equipo (hands-on)</li>
+            </ul>
+            <div class="d-flex gap-2 flex-wrap">
+              <a href="mailto:contacto@varayalabs.com?subject=Consulta%20Consultor%C3%ADa%20DevOps" class="btn btn-primary">Solicitar propuesta</a>
+              <a href="#" class="btn btn-outline-light" aria-label="Agendar una llamada de 15 minutos">Agendar llamada (15 min)</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Empleo (Full-time) -->
+        <div class="blog-card">
+          <div class="blog-header">
+            <div class="blog-date">Para empleo · Full-time</div>
+            <h3 class="blog-title">¿Buscas DevOps / Cloud Engineer?</h3>
+          </div>
+          <div class="blog-content">
+            <p class="blog-excerpt">Estoy abierto a roles SRE/DevOps/Cloud Engineer. Interés en IaC, CI/CD, Kubernetes, observabilidad y SLOs. Ubicación: Santiago (Chile), modalidad remota o híbrida.</p>
+            <div class="d-flex gap-2 flex-wrap" style="margin-bottom:1rem">
+              <a href="/assets/CV-Victor-Araya.pdf" class="btn btn-primary" download aria-label="Descargar CV en PDF">Descargar CV</a>
+              <a href="https://www.linkedin.com/in/victor-araya-alegr%C3%ADa-1630b561/" target="_blank" rel="noopener" class="btn btn-outline-light" aria-label="Ver perfil en LinkedIn">Ver LinkedIn</a>
+            </div>
+            <p class="text-secondary" style="margin:0">Contacto directo: <a href="mailto:victor@varayalabs.com">victor@varayalabs.com</a></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario rápido (opcional, funciona con servicios tipo Formspree) -->
+      <form action="https://formspree.io/f/XXXXXXX" method="POST" class="mt-4" onsubmit="this.querySelector('button').disabled=true">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Nombre</label>
+            <input class="form-control" type="text" name="nombre" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input class="form-control" type="email" name="email" required>
+          </div>
+          <div class="col-12">
+            <label class="form-label">¿Qué necesitas?</label>
+            <textarea class="form-control" name="mensaje" rows="4" placeholder="Ej.: Queremos migrar a Kubernetes / Necesitamos pipeline CI/CD / Buscamos DevOps full-time" required></textarea>
+          </div>
+          <div class="col-12 d-flex gap-2">
+            <button class="btn btn-primary" type="submit">Enviar</button>
+            <small class="text-secondary align-self-center">O escríbeme a <a href="mailto:contacto@varayalabs.com">contacto@varayalabs.com</a></small>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
@@ -173,7 +236,7 @@
           <a href="https://x.com/VictorA81542268" target="_blank" rel="noopener" title="Twitter" aria-label="X/Twitter">
             <i class="fab fa-x-twitter"></i>
           </a>
-          <a href="https://www.linkedin.com/in/victor-araya-alegr%C3%ADa-1630b561/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/https://www.linkedin.com/in/victor-a-1630b561/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
             <i class="fab fa-linkedin-in"></i>
           </a>
         </div>
@@ -187,5 +250,34 @@
     // Año dinámico
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  
+  <!-- SEO: JSON-LD para persona y organización -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "name": "Victor Araya",
+        "jobTitle": "DevOps / SRE",
+        "email": "mailto:victor@varayalabs.com",
+        "url": "https://tu-dominio.tld/",
+        "sameAs": [
+          "https://github.com/varayaIII",
+          "https://x.com/VictorA81542268",
+          "https://www.linkedin.com/in/victor-araya-alegr%C3%ADa-1630b561/"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "name": "Varaya Labs",
+        "url": "https://www.victor-araya.xyz/",
+        "email": "mailto:varaya.slp@gmail.com",
+        "logo": "https://tu-dominio.tld/assets/og-image.png"
+      }
+    ]
+  }
+  </script>
 </body>
+</html>
 </html>
