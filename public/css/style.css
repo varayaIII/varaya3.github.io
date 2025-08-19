@@ -428,3 +428,37 @@ footer {
 @media (max-width: 768px){
   #contacto { padding-top: 60px; padding-bottom: 70px; }
 }
+
+/* --- Botones compactos y fila de CTAs --- */
+.btn-compact{
+  padding: .5rem .9rem;          /* más pequeño */
+  font-size: .95rem;
+  border-radius: 10px;
+}
+.cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
+
+/* Espaciado de la sección y separación con el formulario */
+#contacto{ padding-top:80px; padding-bottom:100px; }
+#contact-form-wrap{
+  margin-top:34px;
+  padding-top:24px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+/* Formulario discreto (más pequeño) */
+#contact-form{ max-width:880px; margin:0 auto; }
+#contact-form .form-label{ font-weight:500; color:rgba(255,255,255,.85); }
+#contact-form .form-control{
+  padding:.45rem .65rem;         /* más chico */
+  font-size:.95rem;
+  border-radius:10px;
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.12);
+  color:#fff;
+}
+#contact-form textarea.form-control{ min-height:96px; }
+#contact-form .btn-send{ padding:.5rem .9rem; border-radius:10px; }
+
+/* Botón CV ligeramente destacado */
+#btn-cv{ background:#2b6ef7; border-color:#2b6ef7; }
+#btn-cv:hover{ filter:brightness(1.06); transform:translateY(-1px); }
