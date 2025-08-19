@@ -185,3 +185,25 @@ footer .copyright{ font-size:.9rem; color:rgba(255,255,255,.65); }
   .hero{ padding:72px 0 48px; min-height:auto; }
   .section-title{ font-size:2rem; }
 }
+
+/* --- Empuja Proyectos fuera del primer pliegue --- */
+:root { --nav-h: 68px; } /* alto aprox. del navbar */
+
+.hero{
+  /* que el hero ocupe la pantalla menos el navbar */
+  min-height: calc(100svh - var(--nav-h));
+  padding-top: calc(var(--nav-h) + 16px);
+  /* un poco más de aire abajo para que no se vea la siguiente sección */
+  padding-bottom: clamp(72px, 10vh, 128px);
+}
+
+/* fallback para navegadores sin unidades svh */
+@supports not (height: 1svh){
+  .hero{ min-height: calc(100vh - var(--nav-h)); }
+}
+
+/* por si algún margen empuja Proyectos hacia arriba */
+#projects{ margin-top: 0; }
+
+/* anclas: al hacer click no tapar títulos con el navbar sticky */
+section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
