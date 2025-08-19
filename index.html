@@ -227,5 +227,57 @@
   <script defer>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script>
+(function () {
+  const grid = document.getElementById('projects-grid') || document.querySelector('.projects-grid');
+  if (!grid) return;
+
+  // Cómo dibujar cada card a partir de un item del JSON
+  const tpl = (p) => `
+    <div class="project-card">
+      <div class="project-image"><i class="${p.icon || 'fas fa-circle-nodes'}" aria-hidden="true"></i></div>
+      <div class="project-content">
+        <h3 class="project-title">${p.titulo}</h3>
+        <p class="project-description">${p.descripcion}</p>
+        <a href="${p.github}" target="_blank" rel="noopener" class="project-link">
+          Ver en GitHub <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>`;
+
+  function render(items) {
+    grid.innerHTML = items.map(tpl).join("");
+  }
+
+  // Si todo falla, armamos un fallback leyendo tus cards actuales
+  const fallback = Array.from(grid.querySelectorAll('.project-card')).map(card => ({
+    titulo: card.querySelector('.project-title')?.textContent?.trim() || 'Proyecto',
+    descripcion: card.querySelector('.project-description')?.textContent?.trim() || '',
+    github: card.querySelector('.project-link')?.href || '#',
+    icon: card.querySelector('.project-image i')?.className || 'fas fa-circle-nodes'
+  }));
+
+  // Probamos primero .json y luego .jason
+  const sources = [
+    '/views/projects/projects.json',
+    '/views/projects/projects.jason'
+  ];
+
+  (async () => {
+    for (const url of sources) {
+      try {
+        const r = await fetch(url, { cache: 'no-store' });
+        if (r.ok) {
+          const data = await r.json();
+          if (Array.isArray(data) && data.length) render(data);
+          else render(fallback);
+          return;
+        }
+      } catch (e) { /* seguimos con el próximo intento */ }
+    }
+    // Si ninguno funcionó, dejamos tus cards tal cual
+  })();
+})();
+</script>
 </body>
 </html>
