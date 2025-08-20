@@ -12,7 +12,7 @@
     /* Espaciado extra para que el formulario quede bien separado del blog */
     #contacto { scroll-margin-top: 6rem; }
     .spacer-xl { margin-top: clamp(4rem, 10vh, 8rem); }
-    /* Opcional: línea sutil encima del contacto para separar visualmente */
+    /* Línea sutil encima del contacto para separar visualmente */
     #contacto .container { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; }
   </style>
 </head>
@@ -59,7 +59,7 @@
     <div class="container">
       <h2 class="section-title">Proyectos Destacados</h2>
 
-      <div class="projects-grid">
+      <div class="projects-grid" id="projects-grid">
         <div class="project-card">
           <div class="project-image"><i class="fas fa-server" aria-hidden="true"></i></div>
           <div class="project-content">
@@ -108,33 +108,33 @@
         <article class="blog-card">
           <div class="blog-header">
             <div class="blog-date">15 de enero, 2025</div>
-            <h3 class="blog-title">Fundamentos de Kubernetes para SRE</h3>
+            <h3 class="blog-title">Fundamentos</h3>
           </div>
           <div class="blog-content">
             <p class="blog-excerpt">Explorando los conceptos esenciales de Kubernetes y cómo aplicarlos en entornos de Site Reliability Engineering…</p>
-            <a href="#" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <a href="./views/blog/fundamentos.html" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
           </div>
         </article>
 
         <article class="blog-card">
           <div class="blog-header">
             <div class="blog-date">10 de enero, 2025</div>
-            <h3 class="blog-title">Automatización con Terraform</h3>
+            <h3 class="blog-title">Automatización</h3>
           </div>
           <div class="blog-content">
             <p class="blog-excerpt">Cómo implementar infraestructura como código usando Terraform para gestionar recursos en múltiples nubes…</p>
-            <a href="#" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <a href="./views/blog/automatizacion.html" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
           </div>
         </article>
 
         <article class="blog-card">
           <div class="blog-header">
             <div class="blog-date">5 de enero, 2025</div>
-            <h3 class="blog-title">Monitoreo eficiente con Prometheus</h3>
+            <h3 class="blog-title">Monitoreo</h3>
           </div>
           <div class="blog-content">
             <p class="blog-excerpt">Configuración avanzada de Prometheus para monitoreo de sistemas distribuidos y estrategias de alerting efectivas…</p>
-            <a href="#" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <a href="./views/blog/monitoreo.html" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
           </div>
         </article>
       </div>
@@ -148,43 +148,38 @@
 
       <!-- Formulario -->
       <div id="contact-form-wrap">
-            <form id="contact-form"
-            action="https://formspree.io/f/mldlybyj"
-            method="POST"
-            novalidate>
-      <!-- Opcionales útiles -->
-        <input type="hidden" name="_subject" value="Nuevo mensaje desde varayalabs.com">
-        <!-- Honeypot antispam (invisible) -->
-        <input type="text" name="website" tabindex="-1" autocomplete="off"
-               style="position:absolute;left:-9999px;">
-    
-      <div class="row g-3">
-        <div class="col-md-6">
-          <label class="form-label" for="nombre">Nombre</label>
-          <input id="nombre" class="form-control form-control-sm"
-                 type="text" name="nombre" autocomplete="name" required>
-        </div>
-        <div class="col-md-6">
-          <label class="form-label" for="email">Email</label>
-          <input id="email" class="form-control form-control-sm"
-                 type="email" name="email" autocomplete="email" required>
-        </div>
-        <div class="col-12">
-          <label class="form-label" for="mensaje">Deja tu mensaje</label>
-          <textarea id="mensaje" class="form-control form-control-sm"
-                    name="mensaje" rows="4" required></textarea>
-        </div>
-        <div class="col-12 d-flex align-items-center gap-2">
-          <button class="btn btn-primary btn-sm btn-send" type="submit">Enviar</button>
-          <small class="text-secondary">o escríbeme a
-            <a href="mailto:contacto@varayalabs.com">contacto@varayalabs.com</a></small>
-        </div>
-      </div>
-    </form>
+        <form id="contact-form"
+              action="https://formspree.io/f/mldlybyj"
+              method="POST"
+              novalidate>
+          <!-- Opcionales útiles -->
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde varayalabs.com">
+          <!-- Honeypot antispam (invisible) -->
+          <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;">
 
-<!-- Aquí aparecerán los mensajes de éxito/error -->
-<div id="form-status" class="mt-3"></div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="nombre">Nombre</label>
+              <input id="nombre" class="form-control form-control-sm" type="text" name="nombre" autocomplete="name" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="email">Email</label>
+              <input id="email" class="form-control form-control-sm" type="email" name="email" autocomplete="email" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="mensaje">Deja tu mensaje</label>
+              <textarea id="mensaje" class="form-control form-control-sm" name="mensaje" rows="4" required></textarea>
+            </div>
+            <div class="col-12 d-flex align-items-center gap-2">
+              <button class="btn btn-primary btn-sm btn-send" type="submit">Enviar</button>
+              <small class="text-secondary">o escríbeme a
+                <a href="mailto:contacto@varayalabs.com">contacto@varayalabs.com</a></small>
+            </div>
+          </div>
+        </form>
 
+        <!-- Mensajes de éxito/error -->
+        <div id="form-status" class="mt-3"></div>
       </div>
     </div>
   </section>
@@ -209,36 +204,37 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
   <script defer>
     document.addEventListener('DOMContentLoaded', () => {
       const el = document.getElementById('year');
       if (el) el.textContent = new Date().getFullYear();
     });
   </script>
+
+  <!-- Carga dinámica de proyectos desde JSON con fallback -->
   <script>
   (function () {
     const grid = document.getElementById('projects-grid') || document.querySelector('.projects-grid');
     if (!grid) return;
 
-    // Cómo dibujar cada card a partir de un item del JSON
     const tpl = (p) => `
       <div class="project-card">
         <div class="project-image"><i class="${p.icon || 'fas fa-circle-nodes'}" aria-hidden="true"></i></div>
         <div class="project-content">
           <h3 class="project-title">${p.titulo}</h3>
           <p class="project-description">${p.descripcion}</p>
-          <a href="${p.github}" target="_blank" rel="noopener" class="project-link">
+          <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">
             Ver en GitHub <i class="fas fa-arrow-right" aria-hidden="true"></i>
           </a>
         </div>
       </div>`;
 
-    function render(items) {
-      grid.innerHTML = items.map(tpl).join("");
-    }
+    function render(items) { grid.innerHTML = items.map(tpl).join(""); }
 
-    // Si todo falla, armamos un fallback leyendo tus cards actuales
+    // Fallback leyendo las cards actuales si el JSON no existe
     const fallback = Array.from(grid.querySelectorAll('.project-card')).map(card => ({
       titulo: card.querySelector('.project-title')?.textContent?.trim() || 'Proyecto',
       descripcion: card.querySelector('.project-description')?.textContent?.trim() || '',
@@ -246,7 +242,6 @@
       icon: card.querySelector('.project-image i')?.className || 'fas fa-circle-nodes'
     }));
 
-    // Probamos primero .json y luego .jason (rutas relativas para GitHub Pages)
     const sources = [
       './views/projects/projects.json',
       './views/projects/projects.jason'
@@ -262,14 +257,14 @@
             else render(fallback);
             return;
           }
-        } catch (e) { /* seguimos con el próximo intento */ }
+        } catch (e) { /* probar siguiente */ }
       }
-      // Si ninguno funcionó, dejamos tus cards tal cual
+      // Si ninguno funcionó, se mantienen las cards estáticas
     })();
   })();
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-  <script src="./public/js/app.js" defer></script>
+
+  <!-- Envío del formulario (AJAX) con mensajes de estado -->
   <script>
   (() => {
     const form = document.getElementById('contact-form');
