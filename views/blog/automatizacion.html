@@ -18,35 +18,36 @@
       <article class="post">
         <p class="text-secondary small mb-2">Publicado el 10 de enero, 2025</p>
         <h1>Automatización DevOps: De la Infraestructura al Despliegue</h1>
-        <p class="lead">La automatización es el corazón que bombea la sangre en las venas de DevOps y SRE. Es la fuerza que nos permite ser más rápidos, más consistentes y más confiables. Pero "automatizar" es un término muy amplio. En este post, desglosaremos cómo estructuro la automatización en tres áreas críticas: la infraestructura, los pipelines de entrega y las operaciones del día a día.</p>
+        <p class="lead">La automatización es el corazón que bombea la sangre en las venas de DevOps y SRE...</p>
 
         <h2 class="mt-4">Infraestructura como Código (IaC): Los Cimientos</h2>
-        <p>Atrás quedaron los días de aprovisionar servidores manualmente a través de una consola web. La Infraestructura como Código (IaC) nos permite definir y gestionar nuestra infraestructura (servidores, bases de datos, redes) usando archivos de código, que luego se versionan en Git. La herramienta por excelencia para esto es Terraform.</p>
-        <p>Mi enfoque se basa en tres principios:</p>
+        <p>Atrás quedaron los días de aprovisionar servidores manualmente...</p>
         <ul>
-            <li><strong>Modularización:</strong> No escribo un archivo gigante de Terraform para todo. Divido la infraestructura en módulos reutilizables (ej. un módulo para la red VPC, otro para el clúster de Kubernetes, otro para la base de datos RDS). Esto hace que el código sea más limpio, fácil de mantener y reutilizable en diferentes entornos (desarrollo, producción) o incluso en diferentes proyectos.</li>
-            <li><strong>Reutilización:</strong> Gracias a los módulos, puedo crear un nuevo entorno completo en minutos, con la certeza de que será idéntico al de producción. Esto elimina el clásico "en mi máquina funciona".</li>
-            <li><strong>Manejo de Estados Remotos:</strong> Terraform necesita un archivo de "estado" para saber qué infraestructura ha creado. Este archivo nunca debe guardarse localmente. Lo configuro para que se almacene de forma remota y segura (ej. en un bucket de AWS S3) con bloqueo de estado. Esto es fundamental para que múltiples miembros del equipo puedan trabajar en la misma infraestructura sin pisarse los talos.</li>
+            <li><strong>Modularización:</strong> No escribo un archivo gigante de Terraform para todo...</li>
+            <li><strong>Reutilización:</strong> Gracias a los módulos, puedo crear un nuevo entorno completo en minutos...</li>
+            <li><strong>Manejo de Estados Remotos:</strong> Terraform necesita un archivo de "estado" para saber qué infraestructura ha creado...</li>
         </ul>
+        <p class="text-center">
+            <img src="../../public/assets/automatizacion-1.png" class="img-fluid rounded my-3" alt="Esquema de Infraestructura como Código (IaC) con Terraform y AWS.">
+            <small class="text-muted d-block mb-2">Definiendo la nube con código versionado.</small>
+        </p>
 
         <h2 class="mt-4">Pipelines de CI/CD: La Línea de Ensamblaje</h2>
-        <p>Un pipeline de CI/CD es una línea de ensamblaje automatizada que lleva el código desde el repositorio hasta producción. Cada pipeline debe ser un guardián de la calidad y la seguridad.</p>
-        <p>Una estructura de pipeline robusta suele tener estas etapas:</p>
+        <p>Un pipeline de CI/CD es una línea de ensamblaje automatizada...</p>
         <ol>
-            <li><strong>Build:</strong> Se compila el código y, más comúnmente hoy en día, se construye una imagen de contenedor (Docker). Esta imagen es el artefacto inmutable que viajará por el resto del pipeline.</li>
-            <li><strong>Test:</strong> Se ejecutan pruebas automatizadas contra el artefacto recién creado. Esto incluye pruebas unitarias, de integración y, a veces, de rendimiento. Si alguna prueba falla, el pipeline se detiene.</li>
-            <li><strong>Seguridad:</strong> ¡La seguridad no es negociable! En esta etapa, se escanea la imagen de Docker en busca de vulnerabilidades conocidas (CVEs) y se analiza el código fuente en busca de malas prácticas de seguridad (SAST).</li>
-            <li><strong>Despliegue:</strong> Si todas las etapas anteriores (o "gates de calidad") se superan, el pipeline despliega el artefacto al entorno correspondiente (primero a desarrollo, luego a staging y finalmente a producción).</li>
+            <li><strong>Build:</strong> Se compila el código y, más comúnmente hoy en día, se construye una imagen de contenedor (Docker)...</li>
+            <li><strong>Test:</strong> Se ejecutan pruebas automatizadas contra el artefacto recién creado...</li>
+            <li><strong>Seguridad:</strong> ¡La seguridad no es negociable!...</li>
+            <li><strong>Despliegue:</strong> Si todas las etapas anteriores (o "gates de calidad") se superan, el pipeline despliega el artefacto...</li>
         </ol>
+        <p class="text-center">
+            <img src="../../public/assets/automatizacion-2.png" class="img-fluid rounded my-3" alt="Diagrama de un pipeline CI/CD típico con fases de Build, Test, Security y Deploy.">
+            <small class="text-muted d-block mb-2">El camino automatizado del código a producción.</small>
+        </p>
 
         <h2 class="mt-4">Operación Confiable: Despliegues a Prueba de Fallos</h2>
-        <p>Llegar a producción es solo la mitad del camino. Debemos asegurarnos de que las operaciones sean seguras y que podamos reaccionar rápidamente ante un problema.</p>
-        <ul>
-            <li><strong>Rollbacks Seguros:</strong> Gracias a IaC y al versionamiento, si un nuevo despliegue causa problemas, hacer un rollback es tan simple como revertir un commit en Git y volver a ejecutar el pipeline con la versión anterior. Es un proceso rápido, predecible y que reduce drásticamente el tiempo de recuperación (MTTR).</li>
-            <li><strong>Feature Flags (Banderas de Funcionalidad):</strong> Permiten desacoplar el despliegue del lanzamiento. Podemos subir código de una nueva funcionalidad a producción, pero mantenerlo "apagado" detrás de una bandera. Luego, podemos activarlo para un grupo reducido de usuarios (o internamente) para probarlo en el entorno real. Esto nos da un control granular increíble sobre lo que ven nuestros usuarios.</li>
-            <li><strong>Despliegues Graduales:</strong> En lugar de lanzar una nueva versión al 100% de los usuarios de golpe, usamos estrategias como <strong>Blue-Green</strong> (desplegar la nueva versión en un entorno idéntico y luego cambiar el tráfico) o <strong>Canary</strong> (liberar la nueva versión a un pequeño porcentaje de usuarios y monitorizar el impacto antes de continuar). Estos patrones reducen significativamente el riesgo de un despliegue fallido.</li>
-        </ul>
-
+        <p>Llegar a producción es solo la mitad del camino...</p>
+        
         <nav class="mt-5">
           <a href="../../index.html#blog" class="btn btn-outline-light btn-sm">← Volver al blog</a>
         </nav>
