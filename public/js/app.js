@@ -58,21 +58,3 @@ document.addEventListener('DOMContentLoaded', async () => {
   setYear();
   normalizeNavLinks();
 });
-<script>
-document.addEventListener('DOMContentLoaded', async () => {
-  // Cargar footer parcial si existe el atributo data-include
-  const footer = document.querySelector('#site-footer[data-include]');
-  if (footer) {
-    try {
-      const url = footer.getAttribute('data-include');
-      const res = await fetch(url, { cache: 'no-store' });
-      if (res.ok) footer.innerHTML = await res.text();
-    } catch (_) { /* noop */ }
-  }
-  // Ajustar el año (funciona tanto con footer inline como con el cargado)
-  const y = document.getElementById('year');
-  if (y) y.textContent = new Date().getFullYear();
-});
-</script>
-
-
