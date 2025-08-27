@@ -18,36 +18,48 @@
       <article class="post">
         <p class="text-secondary small mb-2">Publicado el 15 de enero, 2025</p>
         <h1>Fundamentos SRE/DevOps: Conceptos Clave para Empezar</h1>
-        <p class="lead">Todo gran viaje comienza con un primer paso. En el mundo de la ingeniería de confiabilidad (SRE) y DevOps, ese paso es entender los conceptos fundamentales que sustentan todo lo demás. Estos no son solo términos de moda; son los pilares sobre los que construimos sistemas resilientes, escalables y eficientes.</p>
+        <p class="lead">Todo gran viaje comienza con un primer paso...</p>
 
         <h2 class="mt-4">¿Qué Problema Resuelven Estas Metodologías?</h2>
-        <p>Históricamente, el desarrollo de software (Dev) y la operación de sistemas (Ops) vivían en mundos separados, o "silos". Los desarrolladores querían lanzar nuevas funcionalidades rápidamente, mientras que los operadores buscaban estabilidad y temían los cambios. Esta fricción generaba cuellos de botella, despliegues manuales propensos a errores y una lentitud frustrante para entregar valor. DevOps y SRE nacen para romper estos silos, uniendo a los equipos bajo un objetivo común: entregar software de alta calidad de manera rápida y confiable, utilizando la automatización y la colaboración como herramientas principales.</p>
+        <p>Históricamente, el desarrollo de software (Dev) y la operación de sistemas (Ops) vivían en mundos separados...</p>
+        <p class="text-center">
+          <img src="../../public/assets/fundamentos-1.png" class="img-fluid rounded my-3" alt="Esquema de silos entre Dev y Ops, y cómo DevOps los une.">
+          <small class="text-muted d-block mb-2">De silos aislados a equipos colaborativos.</small>
+        </p>
 
         <h2 class="mt-4">Conceptos Clave que Debes Dominar</h2>
-        <p>Para pensar como un ingeniero de SRE/DevOps, ciertos conceptos deben formar parte de tu ADN. Veamos los más importantes.</p>
+        <p>Para pensar como un ingeniero de SRE/DevOps, ciertos conceptos deben formar parte de tu ADN...</p>
         <ul>
           <li>
-            <strong>Declarativo vs. Imperativo:</strong> Imagina que quieres un café. El enfoque <strong>imperativo</strong> sería darle al barista instrucciones paso a paso: "Toma un vaso, muele 18 gramos de café, extrae un espresso por 25 segundos, calienta la leche a 65°C...". El enfoque <strong>declarativo</strong> es simplemente decir: "Quiero un latte". Tú declaras el estado final deseado, y la herramienta (el barista) se encarga de los pasos. Herramientas como Terraform o Kubernetes son declarativas: defines el estado final de tu infraestructura y ellas se encargan de hacerlo realidad. Los scripts de Bash, en cambio, suelen ser imperativos.
+            <strong>Declarativo vs. Imperativo:</strong> Imagina que quieres un café...
+          </li>
+          <p class="text-center">
+            <img src="../../public/assets/fundamentos-2.png" class="img-fluid rounded my-3" alt="Esquema comparando el enfoque declarativo e imperativo.">
+            <small class="text-muted d-block mb-2">Declaras el "qué", no el "cómo".</small>
+          </p>
+          <li>
+            <strong>Idempotencia:</strong> Es una propiedad crucial para la automatización segura...
           </li>
           <li>
-            <strong>Idempotencia:</strong> Es una propiedad crucial para la automatización segura. Significa que puedes ejecutar una operación múltiples veces, pero el resultado será siempre el mismo que si la hubieras ejecutado una sola vez. Por ejemplo, un script idempotente para crear un usuario, si se ejecuta 10 veces, solo creará el usuario la primera vez y las siguientes 9 no hará nada porque detectará que ya existe. Esto evita errores y hace que tus procesos de automatización sean predecibles y fiables.
-          </li>
-          <li>
-            <strong>Inmutabilidad:</strong> Este concepto, aplicado a la infraestructura, significa: "nunca modifiques un servidor en producción; reemplázalo". En lugar de actualizar una librería o aplicar un parche en un servidor activo (lo que puede llevar a un estado inconsistente o "configuration drift"), construyes una nueva imagen de servidor con los cambios, la despliegas y das de baja la antigua. Los contenedores (Docker) son el mejor ejemplo de inmutabilidad. Este enfoque garantiza que cada instancia sea idéntica, predecible y facilita enormemente los rollbacks.
+            <strong>Inmutabilidad:</strong> Este concepto, aplicado a la infraestructura, significa: "nunca modifiques un servidor en producción; reemplázalo"...
           </li>
         </ul>
 
         <h2 class="mt-4">Buenas Prácticas para Empezar con el Pie Derecho</h2>
         <ul>
           <li>
-            <strong>Versionar todo (GitOps):</strong> Tu código de aplicación ya está en Git, ¿verdad? Pues tu infraestructura (Terraform), tu configuración (Ansible) y tus pipelines (Jenkinsfile, GitHub Actions) también deberían estarlo. Tratar todo como código te da un historial de cambios, la capacidad de hacer revisiones (Pull Requests), colaborar en equipo y, lo más importante, una fuente única de verdad para restaurar o replicar tu sistema en cualquier momento.
+            <strong>Versionar todo (GitOps):</strong> Tu código de aplicación ya está en Git, ¿verdad?...
           </li>
           <li>
-            <strong>Automatizar pruebas y despliegues (CI/CD):</strong> La Integración Continua (CI) y la Entrega Continua (CD) son el motor de DevOps. Cada cambio en el código debe disparar un proceso automático que compile, ejecute pruebas (unitarias, de integración) y verifique la calidad. Si todo pasa, se empaqueta un artefacto listo para ser desplegado. El CD lleva esto un paso más allá, automatizando el despliegue de ese artefacto a producción. El objetivo es hacer que los despliegues sean eventos aburridos, frecuentes y de bajo riesgo.
+            <strong>Automatizar pruebas y despliegues (CI/CD):</strong> La Integración Continua (CI) y la Entrega Continua (CD) son el motor de DevOps...
           </li>
           <li>
-            <strong>Observabilidad Mínima Viable:</strong> No puedes mejorar lo que no puedes medir. Desde el día uno, asegúrate de tener al menos las "tres patas de la observabilidad": <strong>Métricas</strong> (datos numéricos en el tiempo, como uso de CPU o latencia), <strong>Logs</strong> (registros de eventos, como un error en la aplicación) y <strong>Traces</strong> (el seguimiento de una solicitud a través de múltiples servicios). Herramientas como Prometheus para métricas y Grafana para visualización son un excelente punto de partida.
+            <strong>Observabilidad Mínima Viable:</strong> No puedes mejorar lo que no puedes medir...
           </li>
+          <p class="text-center">
+            <img src="../../public/assets/fundamentos-3.png" class="img-fluid rounded my-3" alt="Esquema de las tres patas de la observabilidad (Métricas, Logs, Traces).">
+            <small class="text-muted d-block mb-2">Los tres pilares para entender tu sistema.</small>
+          </p>
         </ul>
 
         <nav class="mt-5">
