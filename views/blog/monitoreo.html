@@ -18,29 +18,33 @@
       <article class="post">
         <p class="text-secondary small mb-2">Publicado el 5 de enero, 2025</p>
         <h1>Monitoreo Accionable: Métricas, Alertas y Dashboards</h1>
-        <p class="lead">El monitoreo no se trata de coleccionar datos y gráficos bonitos; se trata de obtener la información correcta, en el momento correcto, para tomar acciones que protejan la experiencia del usuario. Un mal sistema de monitoreo genera ruido, fatiga y es ignorado. Un buen sistema es el sistema nervioso central de tu infraestructura. Mi stack preferido para esto es Prometheus, Grafana y Alertmanager.</p>
+        <p class="lead">El monitoreo no se trata de coleccionar datos y gráficos bonitos...</p>
 
         <h2 class="mt-4">Diseño de Métricas: La Calidad sobre la Cantidad</h2>
-        <p>Con Prometheus, la base de todo son las métricas y sus etiquetas. Un mal diseño aquí puede hacer que tu sistema de monitoreo sea lento, caro e inútil.</p>
+        <p>Con Prometheus, la base de todo son las métricas y sus etiquetas...</p>
         <ul>
-            <li><strong>Cardinalidad Controlada:</strong> La cardinalidad es el número de series temporales únicas que una métrica genera. Se calcula por la combinación de sus etiquetas. Por ejemplo, una métrica `http_requests_total` con etiquetas `method` y `status_code` tiene una cardinalidad baja y controlada. Pero si le añades una etiqueta `user_id`, ¡la cardinalidad se dispara! Cada usuario generaría una nueva serie, sobrecargando Prometheus. La regla de oro es: usa etiquetas para agrupar y filtrar, pero nunca con valores de cardinalidad infinita.</li>
-            <li><strong>Etiquetas que Aportan Contexto:</strong> Las etiquetas son superpoderes. No te limites a las que vienen por defecto. Añade etiquetas que te ayuden a entender el contexto del negocio o de la aplicación, como `environment` (prod, dev), `service_name` o `release_version`. Esto te permitirá crear queries mucho más potentes, como "muéstrame la tasa de errores de la última versión desplegada solo en producción".</li>
+            <li><strong>Cardinalidad Controlada:</strong> La cardinalidad es el número de series temporales únicas que una métrica genera...</li>
+            <li><strong>Etiquetas que Aportan Contexto:</strong> Las etiquetas son superpoderes...</li>
         </ul>
+        <p class="text-center">
+            <img src="../../public/assets/monitoreo-1.png" class="img-fluid rounded my-3" alt="Esquema mostrando cómo las etiquetas de métricas afectan la cardinalidad en Prometheus.">
+            <small class="text-muted d-block mb-2">Etiquetas correctas para queries eficientes.</small>
+        </p>
 
         <h2 class="mt-4">Alertas Útiles: Menos Ruido, Más Señal</h2>
-        <p>El objetivo de las alertas no es avisar de "algo está mal", sino de "algo está mal, este es el impacto, y necesita tu atención ahora (o no)". La herramienta para gestionar esto es Alertmanager.</p>
+        <p>El objetivo de las alertas no es avisar de "algo está mal"...</p>
         <ul>
-            <li><strong>Rutas y Receptores:</strong> No todas las alertas son iguales ni deben ir al mismo sitio. Alertmanager permite crear rutas inteligentes. Las alertas críticas de la base de datos pueden ir a PagerDuty para despertar al equipo de SRE, mientras que un aviso sobre un disco llenándose al 80% puede ir a un canal de Slack para ser revisado durante el horario laboral.</li>
-            <li><strong>Severidades Claras:</strong> Clasifico las alertas en niveles de severidad. Una alerta de nivel <strong>`warning`</strong> es informativa, algo a lo que hay que echarle un ojo. Una alerta de nivel <strong>`critical`</strong> significa que hay un impacto real en el usuario y requiere una acción inmediata. Esto ayuda a combatir la fatiga por alertas.</li>
-            <li><strong>Agrupación y Silencios:</strong> Si 50 servidores de un clúster tienen el mismo problema, no quieres 50 alertas. Alertmanager agrupa alertas similares en una sola notificación. Además, durante un mantenimiento programado, es crucial poder "silenciar" las alertas esperadas para que el equipo no se distraiga con falsos positivos.</li>
+            <li><strong>Rutas y Receptores:</strong> No todas las alertas son iguales ni deben ir al mismo sitio...</li>
+            <li><strong>Severidades Claras:</strong> Clasifico las alertas en niveles de severidad...</li>
+            <li><strong>Agrupación y Silencios:</strong> Si 50 servidores de un clúster tienen el mismo problema, no quieres 50 alertas...</li>
         </ul>
+        <p class="text-center">
+            <img src="../../public/assets/monitoreo-2.png" class="img-fluid rounded my-3" alt="Diagrama de flujo de Alertmanager: cómo agrupa y enruta las alertas.">
+            <small class="text-muted d-block mb-2">Enrutando la alerta correcta a la persona correcta.</small>
+        </p>
         
         <h2 class="mt-4">Dashboards que Sirven: Contando una Historia</h2>
-        <p>Un dashboard de Grafana no debe ser un cementerio de gráficos. Debe contar una historia clara y guiar al observador desde el síntoma hasta la causa raíz.</p>
-        <ul>
-            <li><strong>Paneles Resumidos (Vista de Pájaro):</strong> El primer dashboard que alguien ve debería ser de alto nivel. ¿Estamos cumpliendo nuestros SLOs (Objetivos de Nivel de Servicio)? ¿Cuál es la latencia, el tráfico y la tasa de error (las "Golden Signals")? Esta vista debe responder en segundos a la pregunta: "¿Está todo bien?".</li>
-            <li><strong>Contexto y Drill-Down:</strong> La magia está en la interactividad. Si en el dashboard de alto nivel veo un pico de errores, quiero poder hacer clic en ese gráfico y que me lleve a un dashboard más detallado, filtrado por ese periodo de tiempo. Este segundo nivel podría mostrarme los errores por servicio, por endpoint o por código de estado. Desde ahí, podría hacer otro drill-down a los logs correspondientes. Un buen dashboard es una herramienta de investigación, no solo de visualización.</li>
-        </ul>
+        <p>Un dashboard de Grafana no debe ser un cementerio de gráficos...</p>
 
         <nav class="mt-5">
           <a href="../../index.html#blog" class="btn btn-outline-light btn-sm">← Volver al blog</a>
