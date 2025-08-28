@@ -11,26 +11,30 @@
   <style>
     /* Estilo para la foto de perfil */
     .profile-picture {
-      width: 250px; /* Tamaño más grande para la foto */
-      height: 250px; /* Mantener la proporción */
+      width: 250px;
+      height: 250px;
       object-fit: cover;
       border-radius: 50%;
-      border: 4px solid var(--glass-border); /* Asegúrate de que 'var(--glass-border)' esté definido en tu style.css */
+      border: 4px solid var(--glass-border);
       box-shadow: 0 10px 30px rgba(0,0,0,.3);
-      margin: 0 auto 2.5rem auto; /* Centrado y con más margen inferior */
+      margin: 0 auto 2.5rem auto; /* Centrado y con margen inferior */
       display: block;
     }
-    
-    /* Estilo para mejorar la legibilidad de la lista de tecnologías */
-    .tech-item strong {
-        display: block; /* Título (ej. IaC) en su propia línea */
-        color: #fff; /* Asegura que el texto sea blanco */
-        font-size: 1.1rem; /* Un poco más grande para el título de la tecnología */
+    /* Contenedor principal centrado */
+    .about-container {
+        max-width: 800px; /* Ancho máximo para el texto para buena legibilidad */
     }
-    .tech-item span {
-        display: block; /* La descripción de la tecnología en su propia línea */
-        color: rgba(255, 255, 255, 0.7); /* Color más suave para la descripción */
-        font-size: 0.95rem;
+    .about-container h1, .about-container .lead {
+        text-align: center; /* Centrar el título y el primer párrafo */
+    }
+    .about-container h3 {
+        text-align: center;
+        padding-top: 1rem;
+        border-top: 1px solid var(--glass-border); /* Línea separadora sutil */
+        margin-top: 2rem;
+    }
+    .about-container p {
+        text-align: justify; /* Justificar el texto para un look más limpio */
     }
   </style>
 </head>
@@ -40,89 +44,24 @@
   <header id="site-header" data-include="./partials/header.html"></header>
 
   <main class="section" id="about">
-    <div class="container">
-      <div class="row gy-5 gx-lg-5 align-items-center">
-        <div class="col-lg-8">
-          <h1>Mi Filosofía de Trabajo</h1>
-          <p class="lead">
-            Soy Víctor Araya, padre de familia, un ingeniero de sistemas autodidacta enfocado en el ecosistema Cloud. Mi trayectoria en tecnología me ha enseñado una lección fundamental: los sistemas más robustos no son los que nunca fallan, sino los que están diseñados para ser resilientes, observables y capaces de recuperarse con rapidez.
-          </p>
+    <div class="container about-container">
+      
+      <img src="../public/assets/yo-nieve.jpg" alt="Foto de Víctor Araya" class="profile-picture">
+      
+      <h1>Mi Filosofía de Trabajo</h1>
+      <p class="lead">
+        Soy Víctor Araya, padre de familia, un ingeniero de sistemas autodidacta enfocado en el ecosistema Cloud. Mi trayectoria en tecnología me ha enseñado una lección fundamental: los sistemas más robustos no son los que nunca fallan, sino los que están diseñados para ser resilientes, observables y capaces de recuperarse con rapidez.
+      </p>
 
-          <h3 class="mt-4">Del "Cómo" al "Porqué"</h3>
-          <p>
-            Mi pasión por DevOps nació de la curiosidad por ir más allá de la simple ejecución de tareas. En lugar de preguntar "¿cómo despliego esta aplicación?", comencé a preguntarme "¿cómo construimos un sistema que permita despliegues seguros y automatizados, a cualquier hora y con mínima intervención humana?".
-          </p>
-          <p>
-            Esta pregunta me llevó a profundizar en los principios de la <strong>Infraestructura como Código (IaC)</strong>, la <strong>entrega continua (CI/CD)</strong> y la <strong>observabilidad</strong>. Entiendo la tecnología no como un fin en sí misma, sino como un medio para alcanzar objetivos de negocio cruciales: agilidad, estabilidad y confianza.
-          </p>
+      <h3 class="mt-4">Del "Cómo" al "Porqué"</h3>
+      <p>
+        Mi pasión por DevOps nació de la curiosidad por ir más allá de la simple ejecución de tareas. En lugar de preguntar "¿cómo despliego esta aplicación?", comencé a preguntarme "¿cómo construimos un sistema que permita despliegues seguros y automatizados, a cualquier hora y con mínima intervención humana?". Esta pregunta me llevó a profundizar en los principios de la Infraestructura como Código (IaC), la entrega continua (CI/CD) y la observabilidad. Entiendo la tecnología no como un fin en sí misma, sino como un medio para alcanzar objetivos de negocio cruciales: agilidad, estabilidad y confianza.
+      </p>
 
-          <h3 class="mt-4">Cultura de Mejora Continua</h3>
-          <p>
-            Adopto una mentalidad de mejora iterativa en todo lo que hago. Creo firmemente que la automatización es la clave para liberar el potencial humano, permitiendo que los equipos se centren en la innovación en lugar de en la gestión de crisis. Para mí, un pipeline de CI/CD bien diseñado o un script de Terraform idempotente son más que simples herramientas; son la materialización de una cultura que valora la consistencia, la previsibilidad y la colaboración.
-          </p>
-        </div>
-
-        <div class="col-lg-4">
-          
-          <img src="../public/assets/yo-nieve.jpg" alt="Foto de Víctor Araya" class="profile-picture">
-          
-          <div class="card bg-dark border-secondary mb-4">
-            <div class="card-body p-4">
-              <h5 class="card-title text-white mb-3">Tecnologías Principales</h5>
-              <ul class="list-unstyled mb-0">
-                <li class="d-flex align-items-start mb-3 tech-item">
-                  <i class="fas fa-server fa-fw me-3 text-primary mt-1" aria-hidden="true"></i>
-                  <div>
-                    <strong>IaC:</strong>
-                    <span>Terraform, AWS</span>
-                  </div>
-                </li>
-                <li class="d-flex align-items-start mb-3 tech-item">
-                  <i class="fas fa-code-branch fa-fw me-3 text-primary mt-1" aria-hidden="true"></i>
-                  <div>
-                    <strong>CI/CD:</strong>
-                    <span>Jenkins, GitHub Actions</span>
-                  </div>
-                </li>
-                <li class="d-flex align-items-start mb-3 tech-item">
-                  <i class="fas fa-cloud fa-fw me-3 text-primary mt-1" aria-hidden="true"></i>
-                  <div>
-                    <strong>Contenedores:</strong>
-                    <span>Docker, Kubernetes</span>
-                  </div>
-                </li>
-                <li class="d-flex align-items-start mb-0 tech-item"> <i class="fas fa-chart-line fa-fw me-3 text-primary mt-1" aria-hidden="true"></i>
-                  <div>
-                    <strong>Observabilidad:</strong>
-                    <span>Prometheus, Grafana</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="card bg-dark border-secondary mt-4">
-            <div class="card-body p-4">
-              <h5 class="card-title text-white mb-3">Principios Clave</h5>
-              <ul class="list-unstyled mb-0">
-                  <li class="d-flex align-items-start mb-2">
-                    <i class="fas fa-redo-alt fa-fw me-3 text-success mt-1"></i>
-                    <span>Automatización y Eficiencia</span>
-                  </li>
-                  <li class="d-flex align-items-start mb-2">
-                    <i class="fas fa-book-open fa-fw me-3 text-success mt-1"></i>
-                    <span>Infraestructura como Código</span>
-                  </li>
-                  <li class="d-flex align-items-start mb-0">
-                    <i class="fas fa-shield-alt fa-fw me-3 text-success mt-1"></i>
-                    <span>Diseño para la Resiliencia y Fiabilidad</span>
-                  </li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </div>
+      <h3 class="mt-4">Cultura de Mejora Continua</h3>
+      <p>
+        Adopto una mentalidad de mejora iterativa en todo lo que hago. Creo firmemente que la automatización es la clave para liberar el potencial humano, permitiendo que los equipos se centren en la innovación en lugar de en la gestión de crisis. Para mí, un pipeline de CI/CD bien diseñado o un script de Terraform idempotente son más que simples herramientas; son la materialización de una cultura que valora la consistencia, la previsibilidad y la colaboración.
+      </p>
 
       <nav class="mt-5 text-center">
         <a href="../index.html#hero" class="btn btn-outline-light btn-sm">← Ir al inicio</a>
