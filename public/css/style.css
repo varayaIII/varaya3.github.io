@@ -1,3 +1,5 @@
+
+
 /* =========================================================
    Varaya Labs – Victor Araya
    Estilos base + glassmorphism con backdrop-filter estable
@@ -207,3 +209,32 @@ footer .copyright{ font-size:.9rem; color:rgba(255,255,255,.65); }
 
 /* anclas: al hacer click no tapar títulos con el navbar sticky */
 section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
+
+
+/* Mejora para el fondo de la página */
+#page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: #0f0c29; /* Color base sólido */
+  /* Gradiente principal más sutil */
+  background-image: 
+    radial-gradient(circle at 15% 25%, rgba(32, 201, 151, 0.1), transparent 30%),
+    radial-gradient(circle at 85% 75%, rgba(13, 110, 253, 0.12), transparent 40%),
+    linear-gradient(135deg, #0f0c29 0%, #24243e 60%, #302b63 100%);
+  
+  /* Opcional: Patrón de puntos sutil para dar textura */
+  /* Descomenta la siguiente línea si te gusta el efecto */
+  /* background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(135deg, #0f0c29 0%, #24243e 100%);
+  background-size: 30px 30px, 30px 30px; */
+}
+
+/* Ajuste al texto del Hero para asegurar legibilidad */
+.hero h1 {
+  font-size: 3.5rem; /* Un poco más grande para mayor impacto */
+  text-shadow: 0 0 15px rgba(32, 201, 151, 0.2); /* Sutil brillo para el título */
+}
