@@ -18,16 +18,15 @@
 html{ scroll-behavior:smooth; }
 
 /* Fondo: movido a #page-bg para evitar artefactos con blur */
-body{
-  background:none !important;
-  color:var(--light);
-  min-height:100vh;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  position:relative;
-  overflow-x:hidden;
+body {
+  background: none !important;
+  color: var(--light);
+  min-height: 100vh;
+  /* Así se verá después del cambio */
+  font-family: 'Lato', sans-serif;
+  position: relative;
+  overflow-x: hidden;
 }
-body::before{ content:none !important; }
-
 #page-bg{
   position:fixed; inset:0; z-index:-1; pointer-events:none;
   background:
@@ -238,3 +237,4 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
   font-size: 3.5rem; /* Un poco más grande para mayor impacto */
   text-shadow: 0 0 15px rgba(32, 201, 151, 0.2); /* Sutil brillo para el título */
 }
+
