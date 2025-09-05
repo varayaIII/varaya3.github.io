@@ -240,3 +240,14 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
   text-shadow: 0 0 15px rgba(32, 201, 151, 0.2); /* Sutil brillo para el título */
 }
 
+/* Estilos para el nuevo icono de DevOps en el Hero */
+.devops-icon {
+  width: clamp(100px, 15vw, 140px); /* Tamaño responsive */
+  margin: 0 auto 1.5rem auto; /* Centra y da espacio abajo */
+}
+.devops-icon svg {
+  width: 100%;
+  height: auto;
+  fill: var(--accent); /* Usa el color de acento de tu web */
+  filter: drop-shadow(0 0 10px rgba(32, 201, 151, 0.4)); /* Efecto de brillo sutil */
+}
