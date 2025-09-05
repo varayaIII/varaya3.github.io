@@ -248,6 +248,6 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
 .devops-icon svg {
   width: 100%;
   height: auto;
-  fill: var(--accent); /* Usa el color de acento de tu web */
-  filter: drop-shadow(0 0 10px rgba(32, 201, 151, 0.4)); /* Efecto de brillo sutil */
+  fill: #e0e0e0; /* Un gris muy claro, casi blanco */
+  filter: drop-shadow(0 0 10px rgba(224, 224, 224, 0.3)); /* Ajusta el brillo al nuevo color */
 }
