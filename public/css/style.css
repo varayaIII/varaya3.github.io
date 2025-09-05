@@ -251,3 +251,16 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
   fill: #e0e0e0; /* Un gris muy claro, casi blanco */
   filter: drop-shadow(0 0 10px rgba(224, 224, 224, 0.3)); /* Ajusta el brillo al nuevo color */
 }
+
+/* Ajustes para botones de idioma con banderas */
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em; /* Espacio entre la bandera y el texto */
+}
+
+.flag-icon {
+  width: 1.2em; /* Ancho del icono de la bandera */
+  height: auto;
+  border-radius: 2px; /* Bordes ligeramente redondeados */
+}
