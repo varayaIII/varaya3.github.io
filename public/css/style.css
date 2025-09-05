@@ -92,9 +92,12 @@ header{
 }
 
 /* Proyectos */
-.projects-grid{
-  display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr));
-  gap:30px; margin-top:30px;
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
 }
 .project-card{
   background:var(--glass); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
