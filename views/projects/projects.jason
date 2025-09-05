@@ -6,6 +6,12 @@
     "icon": "fas fa-robot"
   },
   {
+    "titulo": "Seguridad Automatizada (DevSecOps)",
+    "descripcion": "Integra escaneo de vulnerabilidades y secretos en el pipeline para asegurar el código y los contenedores.",
+    "github": "https://github.com/varayaIII/devsecops-pipeline-demo",
+    "icon": "fas fa-shield-alt"
+  },
+  {
     "titulo": "Infraestructura como Código",
     "descripcion": "Implementación de infraestructura en la nube usando Terraform y AWS para despliegues automatizados.",
     "github": "https://github.com/varayaIII/proyecto-iac",
