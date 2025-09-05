@@ -18,6 +18,12 @@
     "icon": "fas fa-layer-group"
   },
   {
+    "titulo": "Automatización con Python",
+    "descripcion": "Creación de herramientas y scripts en Python para la gestión de recursos en la nube y la automatización de tareas.",
+    "github": "https://github.com/varayaIII/python-devops-tools",
+    "icon": "fab fa-python"
+  },
+  {
     "titulo": "Clúster de Kubernetes",
     "descripcion": "Configuración y gestión de un clúster de Kubernetes para aplicaciones en contenedores.",
     "github": "https://github.com/varayaIII/k8s-cluster",
