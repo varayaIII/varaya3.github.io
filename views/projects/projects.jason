@@ -1,26 +1,26 @@
 [
   {
     "titulo": "Pipeline CI/CD con GitHub Actions",
-    "descripcion": "Pipeline de despliegue continuo para este mismo portafolio, implementado nativamente con GitHub Actions.",
+    "descripcion": "Automatiza el despliegue de este portafolio mediante un pipeline de CI/CD con GitHub Actions.",
     "github": "https://github.com/varayaIII/varaya3.github.io/blob/main/.github/workflows/deploy.yml",
-    "icon": "fas fa-code-branch"
+    "icon": "fas fa-robot"
   },
   {
     "titulo": "Infraestructura como Código",
     "descripcion": "Implementación de infraestructura en la nube usando Terraform y AWS para despliegues automatizados.",
     "github": "https://github.com/varayaIII/proyecto-iac",
-    "icon": "fas fa-server"
+    "icon": "fas fa-layer-group"
   },
   {
     "titulo": "Clúster de Kubernetes",
     "descripcion": "Configuración y gestión de un clúster de Kubernetes para aplicaciones en contenedores.",
     "github": "https://github.com/varayaIII/k8s-cluster",
-    "icon": "fas fa-cloud"
+    "icon": "fas fa-cubes"
   },
   {
     "titulo": "Monitoreo de Sistemas",
     "descripcion": "Stack Prometheus, Grafana y Alertmanager para infraestructura distribuida.",
     "github": "https://github.com/varayaIII/monitoring-system",
-    "icon": "fas fa-chart-line"
+    "icon": "fas fa-chart-pie"
   }
 ]
