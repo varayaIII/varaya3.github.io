@@ -260,7 +260,7 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
 }
 
 .flag-icon {
-  width: 1.2em; /* Ancho del icono de la bandera */
+  width: 28px; /* Ancho del icono de la bandera */
   height: auto;
   border-radius: 2px; /* Bordes ligeramente redondeados */
 }
