@@ -264,3 +264,12 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
   height: auto;
   border-radius: 2px; /* Bordes ligeramente redondeados */
 }
+
+/* --- Añade esto al final de tu style.css --- */
+
+.flag-icon {
+  width: 24px; /* O el tamaño que prefieras */
+  height: auto;
+  vertical-align: middle; /* Alinea las banderas con el texto si fuera necesario */
+  border-radius: 3px; /* Opcional: para redondear un poco las esquinas */
+}
