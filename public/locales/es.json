@@ -1,1 +1,12 @@
-
+{
+  "nav_about": "Sobre mí",
+  "nav_projects": "Proyectos",
+  "nav_blog": "Blog",
+  "nav_contact": "Contacto",
+  "hero_title": "Víctor Araya",
+  "hero_subtitle": "Ingeniero DevOps",
+  "hero_description": "Construyendo sistemas fiables y escalables a través de la automatización, la infraestructura como código y la cultura colaborativa.",
+  "projects_title": "Proyectos Destacados",
+  "blog_title": "Últimas Publicaciones",
+  "contact_title": "Contacto"
+}
