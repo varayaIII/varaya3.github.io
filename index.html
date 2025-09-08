@@ -7,30 +7,20 @@
   <meta name="description" content="Portafolio y blog de Victor Araya (Varaya Labs). SRE/DevOps: IaC, CI/CD, Kubernetes, observabilidad." />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  
   <link href="./public/css/style.css" rel="stylesheet">
 </head>
 <body>
   <div id="page-bg" aria-hidden="true"></div>
-
   <header id="site-header" data-include="./views/partials/header.html"></header>
 
   <section class="hero" id="hero">
     <div class="container">
       <div class="hero-content">
         <div class="devops-icon" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50">
-            <path d="M50,25 A20,20 0 1,1 50,24.99" stroke="currentColor" stroke-width="3" fill="none"/>
-            <path d="M42,12 L50,5 L58,12" stroke="currentColor" stroke-width="3" fill="none"/>
-            <path d="M50,25 A20,20 0 1,0 50,25.01" stroke="currentColor" stroke-width="3" fill="none"/>
-            <path d="M58,38 L50,45 L42,38" stroke="currentColor" stroke-width="3" fill="none"/>
-            <path d="M25 17 L25 17 L22 18 L20 21 L20 24 L22 27 L25 28 L28 27 L30 24 L30 21 L28 18 L25 17 Z M25 21 A4 4 0 1 1 25 29 A4 4 0 0 1 25 21 Z" fill="currentColor"/>
-            <path d="M75 17 L75 17 L72 18 L70 21 L70 24 L72 27 L75 28 L78 27 L80 24 L80 21 L78 18 L75 17 Z M75 21 A4 4 0 1 1 75 29 A4 4 0 0 1 75 21 Z" fill="currentColor"/>
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><path d="M50,25 A20,20 0 1,1 50,24.99" stroke="currentColor" stroke-width="3" fill="none"/><path d="M42,12 L50,5 L58,12" stroke="currentColor" stroke-width="3" fill="none"/><path d="M50,25 A20,20 0 1,0 50,25.01" stroke="currentColor" stroke-width="3" fill="none"/><path d="M58,38 L50,45 L42,38" stroke="currentColor" stroke-width="3" fill="none"/><path d="M25 17 L25 17 L22 18 L20 21 L20 24 L22 27 L25 28 L28 27 L30 24 L30 21 L28 18 L25 17 Z M25 21 A4 4 0 1 1 25 29 A4 4 0 0 1 25 21 Z" fill="currentColor"/><path d="M75 17 L75 17 L72 18 L70 21 L70 24 L72 27 L75 28 L78 27 L80 24 L80 21 L78 18 L75 17 Z M75 21 A4 4 0 1 1 75 29 A4 4 0 0 1 75 21 Z" fill="currentColor"/></svg>
         </div>
         <h1 data-i18n-key="hero_title">Víctor Araya</h1>
         <h2 data-i18n-key="hero_subtitle">Ingeniero DevOps</h2>
@@ -42,8 +32,7 @@
   <section class="section" id="projects">
     <div class="container">
       <h2 class="section-title" data-i18n-key="projects_title">Proyectos Destacados</h2>
-      <div class="projects-grid" id="projects-grid">
-        </div>
+      <div class="projects-grid" id="projects-grid"></div>
     </div>
   </section>
 
@@ -51,20 +40,35 @@
     <div class="container">
       <h2 class="section-title" data-i18n-key="blog_title">Últimas Publicaciones</h2>
       <div class="blog-grid">
-        </div>
+        <article class="blog-card"><div class="blog-header"><div class="blog-date">15 de enero, 2025</div><h3 class="blog-title">Fundamentos</h3></div><div class="blog-content"><p class="blog-excerpt">Explorando los conceptos esenciales de Kubernetes y cómo aplicarlos en entornos de Site Reliability Engineering…</p><a href="./views/blog/fundamentos.html" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div></article>
+        <article class="blog-card"><div class="blog-header"><div class="blog-date">10 de enero, 2025</div><h3 class="blog-title">Automatización</h3></div><div class="blog-content"><p class="blog-excerpt">Cómo implementar infraestructura como código usando Terraform para gestionar recursos en múltiples nubes…</p><a href="./views/blog/automatizacion.html" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div></article>
+        <article class="blog-card"><div class="blog-header"><div class="blog-date">5 de enero, 2025</div><h3 class="blog-title">Monitoreo</h3></div><div class="blog-content"><p class="blog-excerpt">Configuración avanzada de Prometheus para monitoreo de sistemas distribuidos y estrategias de alerting efectivas…</p><a href="./views/blog/monitoreo.html" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div></article>
+      </div>
     </div>
   </section>
 
   <section class="section spacer-xl" id="contacto">
     <div class="container">
       <h2 class="section-title" data-i18n-key="contact_title">Contacto</h2>
+      <div id="contact-form-wrap">
+        <form id="contact-form" action="https://formspree.io/f/mldlybyj" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde tu website www.victor-araya.xyz">
+          <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;">
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label" for="nombre">Nombre</label><input id="nombre" class="form-control form-control-sm" type="text" name="nombre" autocomplete="name" required></div>
+            <div class="col-md-6"><label class="form-label" for="email">Email</label><input id="email" class="form-control form-control-sm" type="email" name="email" autocomplete="email" required></div>
+            <div class="col-12"><label class="form-label" for="mensaje">Deja tu mensaje</label><textarea id="mensaje" class="form-control form-control-sm" name="mensaje" rows="4" required></textarea></div>
+            <div class="col-12 d-flex align-items-center gap-2"><button class="btn btn-primary btn-sm btn-send" type="submit">Enviar</button></div>
+          </div>
+        </form>
+        <div id="form-status" class="mt-3"></div>
       </div>
+    </div>
   </section>
 
   <footer id="site-footer" data-include="./views/partials/footer.html"></footer>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="./public/js/app.js" defer></script>
-
 </body>
 </html>
