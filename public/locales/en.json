@@ -1,4 +1,5 @@
 {
+  "nav_home": "Home",
   "nav_about": "About Me",
   "nav_projects": "Projects",
   "nav_blog": "Blog",
@@ -8,5 +9,17 @@
   "hero_description": "Building reliable and scalable systems through automation, infrastructure as code, and a collaborative culture.",
   "projects_title": "Featured Projects",
   "blog_title": "Latest Posts",
-  "contact_title": "Contact"
+  "contact_title": "Contact",
+  "project_cicd_title": "CI/CD Pipeline with GitHub Actions",
+  "project_cicd_desc": "Automates the deployment of this portfolio through a CI/CD pipeline using GitHub Actions.",
+  "project_security_title": "Automated Security (DevSecOps)",
+  "project_security_desc": "Integrates vulnerability and secret scanning into the pipeline to secure code and containers.",
+  "project_iac_title": "Infrastructure as Code",
+  "project_iac_desc": "Implementation of cloud infrastructure using Terraform and AWS for automated deployments.",
+  "project_python_title": "Automation with Python",
+  "project_python_desc": "Creation of tools and scripts in Python for cloud resource management and task automation.",
+  "project_k8s_title": "Kubernetes Cluster",
+  "project_k8s_desc": "Configuration and management of a Kubernetes cluster for containerized applications.",
+  "project_monitoring_title": "Systems Monitoring",
+  "project_monitoring_desc": "Prometheus, Grafana, and Alertmanager stack for distributed infrastructure."
 }
