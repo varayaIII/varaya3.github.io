@@ -21,9 +21,7 @@
   "project_k8s_title": "Kubernetes Cluster",
   "project_k8s_desc": "Configuration and management of a Kubernetes cluster for containerized applications.",
   "project_monitoring_title": "Systems Monitoring",
-  "project_monitoring_desc": "Prometheus, Grafana, and Alertmanager stack for distributed infrastructure."
-}
-,
+  "project_monitoring_desc": "Prometheus, Grafana, and Alertmanager stack for distributed infrastructure.",
   "about_page_title": "About Me - Víctor Araya",
   "about_main_title": "My Work Philosophy",
   "about_p1": "I'm Víctor Araya, a family man and a self-taught systems engineer focused on the Cloud ecosystem. My journey in technology has taught me a fundamental lesson: the most robust systems are not those that never fail, but those designed to be resilient, observable, and able to recover quickly.",
@@ -33,3 +31,4 @@
   "about_subtitle2": "Culture of Continuous Improvement",
   "about_p4": "I adopt an iterative improvement mindset in everything I do. I firmly believe that automation is the key to unlocking human potential, allowing teams to focus on innovation rather than crisis management. To me, a well-designed CI/CD pipeline or an idempotent Terraform script are more than just tools; they are the embodiment of a culture that values consistency, predictability, and collaboration.",
   "about_back_button": "← Back to home"
+}
