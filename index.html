@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Víctor Araya</title>
+  <title data-i18n-key="hero_title">Víctor Araya</title>
   <meta name="description" content="Portafolio y blog de Victor Araya (Varaya Labs). SRE/DevOps: IaC, CI/CD, Kubernetes, observabilidad." />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -13,247 +13,58 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   
   <link href="./public/css/style.css" rel="stylesheet">
-  <style>
-    /* ... */
-  </style>
 </head>
 <body>
-  <!-- Capa de fondo fija para que el blur funcione sin artefactos -->
   <div id="page-bg" aria-hidden="true"></div>
 
-  <!-- Header -->
   <header id="site-header" data-include="./views/partials/header.html"></header>
 
-  <!-- Hero -->
   <section class="hero" id="hero">
-  <div class="container">
-    <div class="hero-content">
-  <div class="devops-icon" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50">
-      <path d="M50,25 A20,20 0 1,1 50,24.99" stroke="currentColor" stroke-width="3" fill="none"/>
-      <path d="M42,12 L50,5 L58,12" stroke="currentColor" stroke-width="3" fill="none"/>
-      <path d="M50,25 A20,20 0 1,0 50,25.01" stroke="currentColor" stroke-width="3" fill="none"/>
-      <path d="M58,38 L50,45 L42,38" stroke="currentColor" stroke-width="3" fill="none"/>
-      <path d="M25 17 L25 17 L22 18 L20 21 L20 24 L22 27 L25 28 L28 27 L30 24 L30 21 L28 18 L25 17 Z M25 21 A4 4 0 1 1 25 29 A4 4 0 0 1 25 21 Z" fill="currentColor"/>
-      <path d="M75 17 L75 17 L72 18 L70 21 L70 24 L72 27 L75 28 L78 27 L80 24 L80 21 L78 18 L75 17 Z M75 21 A4 4 0 1 1 75 29 A4 4 0 0 1 75 21 Z" fill="currentColor"/>
-    </svg>
-  </div>
-
-  <h1 data-i18n-key="hero_title">Víctor Araya</h1>
-  <h2 data-i18n-key="hero_subtitle">Ingeniero DevOps</h2>
-  <p data-i18n-key="hero_description">Construyendo sistemas fiables y escalables a través de la automatización, la infraestructura como código y la cultura colaborativa.</p>
-  </div>
-  </div>
-</section>
-
-  <!-- Proyectos -->
-  <section class="section" id="projects">
-  <div class="container">
-    <h2 class="section-title" data-i18n-key="projects_title">Proyectos Destacados</h2>
-
-    <div class="projects-grid" id="projects-grid">
+    <div class="container">
+      <div class="hero-content">
+        <div class="devops-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50">
+            <path d="M50,25 A20,20 0 1,1 50,24.99" stroke="currentColor" stroke-width="3" fill="none"/>
+            <path d="M42,12 L50,5 L58,12" stroke="currentColor" stroke-width="3" fill="none"/>
+            <path d="M50,25 A20,20 0 1,0 50,25.01" stroke="currentColor" stroke-width="3" fill="none"/>
+            <path d="M58,38 L50,45 L42,38" stroke="currentColor" stroke-width="3" fill="none"/>
+            <path d="M25 17 L25 17 L22 18 L20 21 L20 24 L22 27 L25 28 L28 27 L30 24 L30 21 L28 18 L25 17 Z M25 21 A4 4 0 1 1 25 29 A4 4 0 0 1 25 21 Z" fill="currentColor"/>
+            <path d="M75 17 L75 17 L72 18 L70 21 L70 24 L72 27 L75 28 L78 27 L80 24 L80 21 L78 18 L75 17 Z M75 21 A4 4 0 1 1 75 29 A4 4 0 0 1 75 21 Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h1 data-i18n-key="hero_title">Víctor Araya</h1>
+        <h2 data-i18n-key="hero_subtitle">Ingeniero DevOps</h2>
+        <p data-i18n-key="hero_description">Construyendo sistemas fiables y escalables a través de la automatización, la infraestructura como código y la cultura colaborativa.</p>
+      </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <section class="section" id="projects">
+    <div class="container">
+      <h2 class="section-title" data-i18n-key="projects_title">Proyectos Destacados</h2>
+      <div class="projects-grid" id="projects-grid">
+        </div>
+    </div>
+  </section>
 
-  <!-- Blog -->
   <section class="section" id="blog">
     <div class="container">
-      <h2 class="section-title">Últimas Publicaciones</h2>
-
+      <h2 class="section-title" data-i18n-key="blog_title">Últimas Publicaciones</h2>
       <div class="blog-grid">
-        <article class="blog-card">
-          <div class="blog-header">
-            <div class="blog-date">15 de enero, 2025</div>
-            <h3 class="blog-title">Fundamentos</h3>
-          </div>
-          <div class="blog-content">
-            <p class="blog-excerpt">Explorando los conceptos esenciales de Kubernetes y cómo aplicarlos en entornos de Site Reliability Engineering…</p>
-            <a href="./views/blog/fundamentos.html" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
-
-        <article class="blog-card">
-          <div class="blog-header">
-            <div class="blog-date">10 de enero, 2025</div>
-            <h3 class="blog-title">Automatización</h3>
-          </div>
-          <div class="blog-content">
-            <p class="blog-excerpt">Cómo implementar infraestructura como código usando Terraform para gestionar recursos en múltiples nubes…</p>
-            <a href="./views/blog/automatizacion.html" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
-
-        <article class="blog-card">
-          <div class="blog-header">
-            <div class="blog-date">5 de enero, 2025</div>
-            <h3 class="blog-title">Monitoreo</h3>
-          </div>
-          <div class="blog-content">
-            <p class="blog-excerpt">Configuración avanzada de Prometheus para monitoreo de sistemas distribuidos y estrategias de alerting efectivas…</p>
-            <a href="./views/blog/monitoreo.html" class="blog-link">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
-      </div>
+        </div>
     </div>
   </section>
 
-  <!-- Contacto (solo formulario) -->
   <section class="section spacer-xl" id="contacto">
     <div class="container">
-      <h2 class="section-title">Contacto</h2>
-
-      <!-- Formulario -->
-      <div id="contact-form-wrap">
-        <form id="contact-form"
-              action="https://formspree.io/f/mldlybyj"
-              method="POST"
-              novalidate>
-          <!-- Opcionales útiles -->
-          <input type="hidden" name="_subject" value="Nuevo mensaje desde tu website www.victor-araya.xyz">
-          <!-- Honeypot antispam (invisible) -->
-          <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;">
-
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label class="form-label" for="nombre">Nombre</label>
-              <input id="nombre" class="form-control form-control-sm" type="text" name="nombre" autocomplete="name" required>
-            </div>
-            <div class="col-md-6">
-              <label class="form-label" for="email">Email</label>
-              <input id="email" class="form-control form-control-sm" type="email" name="email" autocomplete="email" required>
-            </div>
-            <div class="col-12">
-              <label class="form-label" for="mensaje">Deja tu mensaje</label>
-              <textarea id="mensaje" class="form-control form-control-sm" name="mensaje" rows="4" required></textarea>
-            </div>
-            <div class="col-12 d-flex align-items-center gap-2">
-              <button class="btn btn-primary btn-sm btn-send" type="submit">Enviar</button>
-            </div>
-          </div>
-        </form>
-
-        <!-- Mensajes de éxito/error -->
-        <div id="form-status" class="mt-3"></div>
+      <h2 class="section-title" data-i18n-key="contact_title">Contacto</h2>
       </div>
-    </div>
   </section>
 
-  <!-- Footer -->
   <footer id="site-footer" data-include="./views/partials/footer.html"></footer>
-  
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-
-  <script defer>
-    document.addEventListener('DOMContentLoaded', () => {
-      const el = document.getElementById('year');
-      if (el) el.textContent = new Date().getFullYear();
-    });
-  </script>
-
-  <!-- Carga dinámica de proyectos desde JSON con fallback -->
-  <script>
-  (function () {
-    const grid = document.getElementById('projects-grid') || document.querySelector('.projects-grid');
-    if (!grid) return;
-
-    const tpl = (p) => `
-      <div class="project-card">
-        <div class="project-image"><i class="${p.icon || 'fas fa-circle-nodes'}" aria-hidden="true"></i></div>
-        <div class="project-content">
-          <h3 class="project-title">${p.titulo}</h3>
-          <p class="project-description">${p.descripcion}</p>
-          <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">
-            Ver en GitHub <i class="fas fa-arrow-right" aria-hidden="true"></i>
-          </a>
-        </div>
-      </div>`;
-
-    function render(items) { grid.innerHTML = items.map(tpl).join(""); }
-
-    // Fallback leyendo las cards actuales si el JSON no existe
-    const fallback = Array.from(grid.querySelectorAll('.project-card')).map(card => ({
-      titulo: card.querySelector('.project-title')?.textContent?.trim() || 'Proyecto',
-      descripcion: card.querySelector('.project-description')?.textContent?.trim() || '',
-      github: card.querySelector('.project-link')?.href || '#',
-      icon: card.querySelector('.project-image i')?.className || 'fas fa-circle-nodes'
-    }));
-
-    const sources = [
-      './views/projects/projects.json',
-      './views/projects/projects.jason'
-    ];
-
-    (async () => {
-      for (const url of sources) {
-        try {
-          const r = await fetch(url, { cache: 'no-store' });
-          if (r.ok) {
-            const data = await r.json();
-            if (Array.isArray(data) && data.length) render(data);
-            else render(fallback);
-            return;
-          }
-        } catch (e) { /* probar siguiente */ }
-      }
-      // Si ninguno funcionó, se mantienen las cards estáticas
-    })();
-  })();
-  </script>
-
-  <!-- Envío del formulario (AJAX) con mensajes de estado -->
-  <script>
-  (() => {
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('form-status');
-    if (!form || !status) return;
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      btn?.setAttribute('disabled', 'true');
-      status.innerHTML = '';
-
-      try {
-        const resp = await fetch(form.action, {
-          method: form.method,
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(form)
-        });
-
-        if (resp.ok) {
-          form.reset();
-          status.innerHTML = `
-            <div class="alert alert-success mb-0" role="alert">
-              ¡Gracias! Tu mensaje fue enviado correctamente.
-            </div>`;
-        } else {
-          const data = await resp.json().catch(() => ({}));
-          status.innerHTML = `
-            <div class="alert alert-danger mb-0" role="alert">
-              No se pudo enviar. ${data.message ? data.message : 'Intenta nuevamente más tarde.'}
-            </div>`;
-        }
-      } catch {
-        status.innerHTML = `
-          <div class="alert alert-danger mb-0" role="alert">
-            Hubo un problema de red. Intenta otra vez.
-          </div>`;
-      } finally {
-        btn?.removeAttribute('disabled');
-      }
-    });
-  })();
-  </script>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="./public/js/app.js" defer></script>
 
-  <script defer>
-    // ... tu script para el año ...
-  </script>
-
-  </body>
+</body>
 </html>
