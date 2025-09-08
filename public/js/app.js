@@ -13,15 +13,15 @@ function applyTranslations(lang) {
 
 // Función principal para cambiar el idioma
 async function setLanguage(lang) {
-  // Carga las traducciones solo si no las tenemos ya
   if (!translations[lang]) {
     try {
-      const response = await fetch(`/public/locales/${lang}.json`);
+      // RUTA CORREGIDA (./ en lugar de /)
+      const response = await fetch(`./public/locales/${lang}.json`);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       translations[lang] = await response.json();
     } catch (error) {
       console.error(`Could not load translations for ${lang}:`, error);
-      return; // No continuar si falla la carga
+      return;
     }
   }
 
@@ -29,7 +29,6 @@ async function setLanguage(lang) {
   localStorage.setItem('language', lang);
   document.documentElement.lang = lang;
 
-  // Actualiza el botón activo
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
@@ -54,7 +53,6 @@ async function loadProjects() {
     const grid = document.getElementById('projects-grid');
     if (!grid) return;
 
-    // Se asocia cada proyecto a una clave de traducción
     const projectKeys = [
         { titleKey: "project_cicd_title", descKey: "project_cicd_desc" },
         { titleKey: "project_security_title", descKey: "project_security_desc" },
@@ -65,10 +63,10 @@ async function loadProjects() {
     ];
 
     try {
-        const response = await fetch('/views/projects/projects.json');
+        // RUTA CORREGIDA (./ en lugar de /)
+        const response = await fetch('./views/projects/projects.json');
         const projects = await response.json();
 
-        // Combina los datos del JSON con las claves de traducción
         const projectData = projects.map((p, i) => ({ ...p, ...projectKeys[i] }));
 
         const tpl = (p) => `
@@ -86,26 +84,21 @@ async function loadProjects() {
         grid.innerHTML = projectData.map(tpl).join("");
     } catch (e) {
         console.error("Failed to load projects:", e);
-        // Opcional: Mostrar un mensaje de error en la UI
     }
 }
 
 
 // --- INICIALIZACIÓN DE LA PÁGINA ---
 document.addEventListener('DOMContentLoaded', async () => {
-  // 1. Cargar Header y Footer
   await includePartials();
 
-  // 2. Cargar los proyectos en la grilla
   if (document.getElementById('projects-grid')) {
     await loadProjects();
   }
   
-  // 3. Configurar y aplicar el idioma
   const userLang = localStorage.getItem('language') || 'es';
   await setLanguage(userLang);
 
-  // 4. Añadir los event listeners a los botones de idioma (ahora que el header existe)
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const selectedLang = btn.dataset.lang;
@@ -116,7 +109,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // 5. Funciones adicionales
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
