@@ -23,3 +23,13 @@
   "project_monitoring_title": "Monitoreo de Sistemas",
   "project_monitoring_desc": "Stack Prometheus, Grafana y Alertmanager para infraestructura distribuida."
 }
+,
+  "about_page_title": "Sobre Mí - Víctor Araya",
+  "about_main_title": "Mi Filosofía de Trabajo",
+  "about_p1": "Soy Víctor Araya, padre de familia, un ingeniero de sistemas autodidacta enfocado en el ecosistema Cloud. Mi trayectoria en tecnología me ha enseñado una lección fundamental: los sistemas más robustos no son los que nunca fallan, sino los que están diseñados para ser resilientes, observables y capaces de recuperarse con rapidez.",
+  "about_subtitle1": "Del \"Cómo\" al \"Porqué\"",
+  "about_p2": "Mi pasión por DevOps nació de la curiosidad por ir más allá de la simple ejecución de tareas. En lugar de preguntar \"¿cómo despliego esta aplicación?\", comencé a preguntarme \"¿cómo construimos un sistema que permita despliegues seguros y automatizados, a cualquier hora y con mínima intervención humana?\".",
+  "about_p3": "Esta pregunta me llevó a profundizar en los principios de la Infraestructura como Código (IaC), la entrega continua (CI/CD) y la observabilidad. Entiendo la tecnología no como un fin en sí misma, sino como un medio para alcanzar objetivos de negocio cruciales: agilidad, estabilidad y confianza.",
+  "about_subtitle2": "Cultura de Mejora Continua",
+  "about_p4": "Adopto una mentalidad de mejora iterativa en todo lo que hago. Creo firmemente que la automatización es la clave para liberar el potencial humano, permitiendo que los equipos se centren en la innovación en lugar de en la gestión de crisis. Para mí, un pipeline de CI/CD bien diseñado o un script de Terraform idempotente son más que simples herramientas; son la materialización de una cultura que valora la consistencia, la previsibilidad y la colaboración.",
+  "about_back_button": "← Ir al inicio"
