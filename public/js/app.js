@@ -1,7 +1,10 @@
 // --- MANEJO DE TRADUCCIONES (i18n) ---
 const translations = {};
 
-// Función para aplicar las traducciones a los elementos de la página
+// Determina la ruta base correcta para cargar archivos
+const basePath = window.location.pathname.includes('/views/') ? '../' : './';
+
+// Función para aplicar las traducciones
 function applyTranslations(lang) {
   document.querySelectorAll('[data-i18n-key]').forEach(element => {
     const key = element.getAttribute('data-i18n-key');
@@ -15,8 +18,8 @@ function applyTranslations(lang) {
 async function setLanguage(lang) {
   if (!translations[lang]) {
     try {
-      // RUTA CORREGIDA (./ en lugar de /)
-      const response = await fetch(`./public/locales/${lang}.json`);
+      // RUTA CORREGIDA con basePath
+      const response = await fetch(`${basePath}public/locales/${lang}.json`);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       translations[lang] = await response.json();
     } catch (error) {
@@ -24,11 +27,9 @@ async function setLanguage(lang) {
       return;
     }
   }
-
   applyTranslations(lang);
   localStorage.setItem('language', lang);
   document.documentElement.lang = lang;
-
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
@@ -52,7 +53,6 @@ async function includePartials() {
 async function loadProjects() {
     const grid = document.getElementById('projects-grid');
     if (!grid) return;
-
     const projectKeys = [
         { titleKey: "project_cicd_title", descKey: "project_cicd_desc" },
         { titleKey: "project_security_title", descKey: "project_security_desc" },
@@ -61,14 +61,11 @@ async function loadProjects() {
         { titleKey: "project_k8s_title", descKey: "project_k8s_desc" },
         { titleKey: "project_monitoring_title", descKey: "project_monitoring_desc" }
     ];
-
     try {
-        // RUTA CORREGIDA (./ en lugar de /)
-        const response = await fetch('./views/projects/projects.json');
+        // RUTA CORREGIDA con basePath
+        const response = await fetch(`${basePath}views/projects/projects.json`);
         const projects = await response.json();
-
         const projectData = projects.map((p, i) => ({ ...p, ...projectKeys[i] }));
-
         const tpl = (p) => `
           <div class="project-card">
             <div class="project-image"><i class="${p.icon}" aria-hidden="true"></i></div>
@@ -80,13 +77,11 @@ async function loadProjects() {
               </a>
             </div>
           </div>`;
-
         grid.innerHTML = projectData.map(tpl).join("");
     } catch (e) {
         console.error("Failed to load projects:", e);
     }
 }
-
 
 // --- INICIALIZACIÓN DE LA PÁGINA ---
 document.addEventListener('DOMContentLoaded', async () => {
