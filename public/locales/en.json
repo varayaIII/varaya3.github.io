@@ -30,7 +30,7 @@
   "about_p3": "This question led me to delve into the principles of Infrastructure as Code (IaC), continuous delivery (CI/CD), and observability. I see technology not as an end in itself, but as a means to achieve crucial business objectives: agility, stability, and trust.",
   "about_subtitle2": "Culture of Continuous Improvement",
   "about_p4": "I adopt an iterative improvement mindset in everything I do. I firmly believe that automation is the key to unlocking human potential, allowing teams to focus on innovation rather than crisis management. To me, a well-designed CI/CD pipeline or an idempotent Terraform script are more than just tools; they are the embodiment of a culture that values consistency, predictability, and collaboration.",
-  "about_back_button": "← Back to home"
+  "about_back_button": "← Back to home",
   "blog_fundamentos_title": "Foundations",
   "blog_fundamentos_excerpt": "Exploring the essential concepts of Kubernetes and how to apply them in Site Reliability Engineering environments…",
   "blog_automatizacion_title": "Automation",
