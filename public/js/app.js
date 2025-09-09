@@ -104,6 +104,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
+  // Dentro de la función loadProjects()
+
+// ... (código existente)
+    const tpl = (p) => `
+      <div class="project-card">
+        <div class="project-image"><i class="${p.icon}" aria-hidden="true"></i></div>
+        <div class="project-content">
+          <h3 class="project-title" data-i18n-key="${p.titleKey}">${p.titulo}</h3>
+          <p class="project-description" data-i18n-key="${p.descKey}">${p.descripcion}</p>
+          <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">
+            <span data-i18n-key="project_view_on_github">Ver en GitHub</span> <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>`;
+    // ... (resto del código)
+
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
