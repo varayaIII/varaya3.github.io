@@ -34,7 +34,38 @@ async function setLanguage(lang) {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 }
+// ... después de la función applyTranslations(lang) { ... }
 
+// --- FUNCIÓN PARA ACTUALIZAR ENLACES DEL BLOG ---
+function updateBlogLinks(lang) {
+    const blogLinks = document.querySelectorAll('#blog .blog-link');
+    blogLinks.forEach(link => {
+        // Obtenemos la ruta original del post (ej: "fundamentos.html")
+        const href = link.getAttribute('href');
+        const postName = href.substring(href.lastIndexOf('/') + 1);
+
+        if (lang === 'en') {
+            link.href = `${basePath}views/blog/en/${postName}`;
+        } else {
+            link.href = `${basePath}views/blog/${postName}`;
+        }
+    });
+}
+
+// Y ahora, llama a esta nueva función desde setLanguage
+async function setLanguage(lang) {
+  // ... (tu código existente para cargar el JSON)
+  
+  applyTranslations(lang);
+  
+  // AÑADE ESTA LÍNEA para que los enlaces se actualicen
+  if (document.getElementById('blog')) {
+      updateBlogLinks(lang);
+  }
+
+  localStorage.setItem('language', lang);
+  // ... (resto de la función)
+}
 // --- CARGA DE COMPONENTES PARCIALES (HEADER/FOOTER) ---
 async function includePartials() {
   const targets = document.querySelectorAll('[data-include]');
