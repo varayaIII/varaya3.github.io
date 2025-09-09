@@ -31,4 +31,11 @@
   "about_subtitle2": "Cultura de Mejora Continua",
   "about_p4": "Adopto una mentalidad de mejora iterativa en todo lo que hago. Creo firmemente que la automatización es la clave para liberar el potencial humano, permitiendo que los equipos se centren en la innovación en lugar de en la gestión de crisis. Para mí, un pipeline de CI/CD bien diseñado o un script de Terraform idempotente son más que simples herramientas; son la materialización de una cultura que valora la consistencia, la previsibilidad y la colaboración.",
   "about_back_button": "← Ir al inicio"
+  "blog_fundamentos_title": "Fundamentos",
+  "blog_fundamentos_excerpt": "Explorando los conceptos esenciales de Kubernetes y cómo aplicarlos en entornos de Site Reliability Engineering…",
+  "blog_automatizacion_title": "Automatización",
+  "blog_automatizacion_excerpt": "Cómo implementar infraestructura como código usando Terraform para gestionar recursos en múltiples nubes…",
+  "blog_monitoreo_title": "Monitoreo",
+  "blog_monitoreo_excerpt": "Configuración avanzada de Prometheus para monitoreo de sistemas distribuidos y estrategias de alerting efectivas…",
+  "blog_read_more": "Leer más"
 }
