@@ -31,4 +31,11 @@
   "about_subtitle2": "Culture of Continuous Improvement",
   "about_p4": "I adopt an iterative improvement mindset in everything I do. I firmly believe that automation is the key to unlocking human potential, allowing teams to focus on innovation rather than crisis management. To me, a well-designed CI/CD pipeline or an idempotent Terraform script are more than just tools; they are the embodiment of a culture that values consistency, predictability, and collaboration.",
   "about_back_button": "← Back to home"
+  "blog_fundamentos_title": "Foundations",
+  "blog_fundamentos_excerpt": "Exploring the essential concepts of Kubernetes and how to apply them in Site Reliability Engineering environments…",
+  "blog_automatizacion_title": "Automation",
+  "blog_automatizacion_excerpt": "How to implement infrastructure as code using Terraform to manage resources across multiple clouds…",
+  "blog_monitoreo_title": "Monitoring",
+  "blog_monitoreo_excerpt": "Advanced Prometheus configuration for monitoring distributed systems and effective alerting strategies…",
+  "blog_read_more": "Read more"
 }
