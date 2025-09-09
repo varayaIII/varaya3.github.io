@@ -12,7 +12,14 @@ function applyTranslations(lang) {
   document.querySelectorAll('[data-i18n-key]').forEach(element => {
     const key = element.getAttribute('data-i18n-key');
     if (translations[lang] && translations[lang][key]) {
-      element.textContent = translations[lang][key];
+      let text = translations[lang][key];
+
+      // Reemplaza la variable {year} si la clave es la del copyright
+      if (key === 'footer_copyright') {
+        text = text.replace('{year}', new Date().getFullYear());
+      }
+
+      element.textContent = text;
     }
   });
 }
@@ -26,8 +33,7 @@ function updateBlogLinks(lang) {
   blogLinks.forEach(link => {
     const href = link.getAttribute('href');
     const postName = href.substring(href.lastIndexOf('/') + 1);
-    // Aseguramos que el nombre del post no contenga la carpeta /en/
-    const cleanPostName = postName.replace('en/', '');
+    const cleanPostName = postName.replace('en/', ''); // Limpia por si acaso
 
     if (lang === 'en') {
       link.href = `${basePath}views/blog/en/${cleanPostName}`;
@@ -145,7 +151,4 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     });
   });
-
-  const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
