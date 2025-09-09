@@ -1,10 +1,13 @@
-// --- MANEJO DE TRADUCCIONES (i18n) ---
+// --- CONFIGURACIÓN GLOBAL ---
 const translations = {};
-
-// Determina la ruta base correcta para cargar archivos
 const basePath = window.location.pathname.includes('/views/') ? '../' : './';
 
-// Función para aplicar las traducciones
+// --- FUNCIONES DE TRADUCCIÓN (i18n) ---
+
+/**
+ * Aplica las traducciones a todos los elementos marcados con data-i18n-key.
+ * @param {string} lang - El idioma a aplicar (ej: 'es', 'en').
+ */
 function applyTranslations(lang) {
   document.querySelectorAll('[data-i18n-key]').forEach(element => {
     const key = element.getAttribute('data-i18n-key');
@@ -14,11 +17,33 @@ function applyTranslations(lang) {
   });
 }
 
-// Función principal para cambiar el idioma
+/**
+ * Actualiza los enlaces de las tarjetas del blog para que apunten a la versión correcta del post.
+ * @param {string} lang - El idioma actual.
+ */
+function updateBlogLinks(lang) {
+  const blogLinks = document.querySelectorAll('#blog .blog-link');
+  blogLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    const postName = href.substring(href.lastIndexOf('/') + 1);
+    // Aseguramos que el nombre del post no contenga la carpeta /en/
+    const cleanPostName = postName.replace('en/', '');
+
+    if (lang === 'en') {
+      link.href = `${basePath}views/blog/en/${cleanPostName}`;
+    } else {
+      link.href = `${basePath}views/blog/${cleanPostName}`;
+    }
+  });
+}
+
+/**
+ * Carga el archivo de idioma, aplica las traducciones y actualiza la UI.
+ * @param {string} lang - El idioma a establecer.
+ */
 async function setLanguage(lang) {
   if (!translations[lang]) {
     try {
-      // RUTA CORREGIDA con basePath
       const response = await fetch(`${basePath}public/locales/${lang}.json`);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       translations[lang] = await response.json();
@@ -27,46 +52,26 @@ async function setLanguage(lang) {
       return;
     }
   }
+
   applyTranslations(lang);
+  
+  if (document.getElementById('blog')) {
+    updateBlogLinks(lang);
+  }
+
   localStorage.setItem('language', lang);
   document.documentElement.lang = lang;
+  
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 }
-// ... después de la función applyTranslations(lang) { ... }
 
-// --- FUNCIÓN PARA ACTUALIZAR ENLACES DEL BLOG ---
-function updateBlogLinks(lang) {
-    const blogLinks = document.querySelectorAll('#blog .blog-link');
-    blogLinks.forEach(link => {
-        // Obtenemos la ruta original del post (ej: "fundamentos.html")
-        const href = link.getAttribute('href');
-        const postName = href.substring(href.lastIndexOf('/') + 1);
+// --- CARGA DE COMPONENTES DINÁMICOS ---
 
-        if (lang === 'en') {
-            link.href = `${basePath}views/blog/en/${postName}`;
-        } else {
-            link.href = `${basePath}views/blog/${postName}`;
-        }
-    });
-}
-
-// Y ahora, llama a esta nueva función desde setLanguage
-async function setLanguage(lang) {
-  // ... (tu código existente para cargar el JSON)
-  
-  applyTranslations(lang);
-  
-  // AÑADE ESTA LÍNEA para que los enlaces se actualicen
-  if (document.getElementById('blog')) {
-      updateBlogLinks(lang);
-  }
-
-  localStorage.setItem('language', lang);
-  // ... (resto de la función)
-}
-// --- CARGA DE COMPONENTES PARCIALES (HEADER/FOOTER) ---
+/**
+ * Carga los componentes parciales como el header y el footer.
+ */
 async function includePartials() {
   const targets = document.querySelectorAll('[data-include]');
   for (const el of targets) {
@@ -80,38 +85,43 @@ async function includePartials() {
   }
 }
 
-// --- FUNCIÓN PARA CARGAR PROYECTOS DINÁMICAMENTE ---
+/**
+ * Carga y renderiza la cuadrícula de proyectos desde un JSON.
+ */
 async function loadProjects() {
-    const grid = document.getElementById('projects-grid');
-    if (!grid) return;
-    const projectKeys = [
-        { titleKey: "project_cicd_title", descKey: "project_cicd_desc" },
-        { titleKey: "project_security_title", descKey: "project_security_desc" },
-        { titleKey: "project_iac_title", descKey: "project_iac_desc" },
-        { titleKey: "project_python_title", descKey: "project_python_desc" },
-        { titleKey: "project_k8s_title", descKey: "project_k8s_desc" },
-        { titleKey: "project_monitoring_title", descKey: "project_monitoring_desc" }
-    ];
-    try {
-        // RUTA CORREGIDA con basePath
-        const response = await fetch(`${basePath}views/projects/projects.json`);
-        const projects = await response.json();
-        const projectData = projects.map((p, i) => ({ ...p, ...projectKeys[i] }));
-        const tpl = (p) => `
-          <div class="project-card">
-            <div class="project-image"><i class="${p.icon}" aria-hidden="true"></i></div>
-            <div class="project-content">
-              <h3 class="project-title" data-i18n-key="${p.titleKey}">${p.titulo}</h3>
-              <p class="project-description" data-i18n-key="${p.descKey}">${p.descripcion}</p>
-              <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">
-                Ver en GitHub <i class="fas fa-arrow-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>`;
-        grid.innerHTML = projectData.map(tpl).join("");
-    } catch (e) {
-        console.error("Failed to load projects:", e);
-    }
+  const grid = document.getElementById('projects-grid');
+  if (!grid) return;
+
+  const projectKeys = [
+    { titleKey: "project_cicd_title", descKey: "project_cicd_desc" },
+    { titleKey: "project_security_title", descKey: "project_security_desc" },
+    { titleKey: "project_iac_title", descKey: "project_iac_desc" },
+    { titleKey: "project_python_title", descKey: "project_python_desc" },
+    { titleKey: "project_k8s_title", descKey: "project_k8s_desc" },
+    { titleKey: "project_monitoring_title", descKey: "project_monitoring_desc" }
+  ];
+
+  try {
+    const response = await fetch(`${basePath}views/projects/projects.json`);
+    const projects = await response.json();
+    const projectData = projects.map((p, i) => ({ ...p, ...projectKeys[i] }));
+    
+    const tpl = (p) => `
+      <div class="project-card">
+        <div class="project-image"><i class="${p.icon}" aria-hidden="true"></i></div>
+        <div class="project-content">
+          <h3 class="project-title" data-i18n-key="${p.titleKey}">${p.titulo}</h3>
+          <p class="project-description" data-i18n-key="${p.descKey}">${p.descripcion}</p>
+          <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">
+            <span data-i18n-key="project_view_on_github">Ver en GitHub</span> <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>`;
+      
+    grid.innerHTML = projectData.map(tpl).join("");
+  } catch (e) {
+    console.error("Failed to load projects:", e);
+  }
 }
 
 // --- INICIALIZACIÓN DE LA PÁGINA ---
@@ -125,6 +135,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const userLang = localStorage.getItem('language') || 'es';
   await setLanguage(userLang);
 
+  // Solo después de cargar los parciales, asignamos los listeners a los botones de idioma
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const selectedLang = btn.dataset.lang;
@@ -134,22 +145,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     });
   });
-
-  // Dentro de la función loadProjects()
-
-// ... (código existente)
-    const tpl = (p) => `
-      <div class="project-card">
-        <div class="project-image"><i class="${p.icon}" aria-hidden="true"></i></div>
-        <div class="project-content">
-          <h3 class="project-title" data-i18n-key="${p.titleKey}">${p.titulo}</h3>
-          <p class="project-description" data-i18n-key="${p.descKey}">${p.descripcion}</p>
-          <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">
-            <span data-i18n-key="project_view_on_github">Ver en GitHub</span> <i class="fas fa-arrow-right" aria-hidden="true"></i>
-          </a>
-        </div>
-      </div>`;
-    // ... (resto del código)
 
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
