@@ -37,5 +37,11 @@
   "blog_automatizacion_excerpt": "How to implement infrastructure as code using Terraform to manage resources across multiple clouds…",
   "blog_monitoreo_title": "Monitoring",
   "blog_monitoreo_excerpt": "Advanced Prometheus configuration for monitoring distributed systems and effective alerting strategies…",
-  "blog_read_more": "Read more"
+  "blog_read_more": "Read more",
+  "form_name": "Name",
+  "form_email": "Email",
+  "form_message": "Leave your message",
+  "form_send": "Send",
+  "footer_copyright": "© {year} Varaya Labs. All rights reserved.",
+  "project_view_on_github": "View on GitHub"
 }
