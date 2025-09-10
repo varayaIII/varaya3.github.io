@@ -159,7 +159,11 @@ footer{
 .social-github{ background:#24292f; }   /* GitHub */
 .social-x{ background:#000000; }        /* X / Twitter */
 .social-linkedin{ background:#0a66c2; } /* LinkedIn */
-footer .copyright{ font-size:.9rem; color:rgba(255,255,255,.65); }
+footer .copyright {
+  font-size: .9rem;
+  color: rgba(255, 255, 255, .65);
+  text-align: center; /* <-- AÑADE ESTA LÍNEA */
+}
 
 /* Fallback si no hay soporte de backdrop-filter */
 @supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
