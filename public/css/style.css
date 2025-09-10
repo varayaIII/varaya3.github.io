@@ -284,8 +284,8 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
   display: inline-flex; /* Asegura que el contenedor se ajuste a la imagen */
   justify-content: center;
   align-items: center;
-  width: 110px;  /* Ancho del contenedor (ajusta a tu gusto) */
-  height: 110px; /* Alto del contenedor (igual al ancho para que sea un círculo/cuadrado perfecto) */
+  width: 120px;  /* Ancho del contenedor (ajusta a tu gusto) */
+  height: 120px; /* Alto del contenedor (igual al ancho para que sea un círculo/cuadrado perfecto) */
   margin-bottom: 2.5rem; /* Espacio debajo del ícono */
   
   /* Estilo visual idéntico a las tarjetas de proyecto */
