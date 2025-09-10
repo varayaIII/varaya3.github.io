@@ -277,3 +277,29 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
   height: 100%;
   object-fit: cover;
 }
+
+/* --- ESTILOS PARA EL CONTENEDOR DEL ICONO PNG EN EL HERO --- */
+
+.hero-icon-container {
+  display: inline-flex; /* Asegura que el contenedor se ajuste a la imagen */
+  justify-content: center;
+  align-items: center;
+  width: 140px;  /* Ancho del contenedor (ajusta a tu gusto) */
+  height: 140px; /* Alto del contenedor (igual al ancho para que sea un círculo/cuadrado perfecto) */
+  margin-bottom: 1.5rem; /* Espacio debajo del ícono */
+  
+  /* Estilo visual idéntico a las tarjetas de proyecto */
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%; /* ¡Cámbialo a 15px si prefieres un cuadrado redondeado en vez de un círculo! */
+  
+  box-shadow: 0 10px 30px rgba(0,0,0,.3);
+  overflow: hidden; /* Esconde las esquinas de la imagen PNG */
+}
+
+.hero-icon-img {
+  width: 75%;  /* La imagen ocupará el 75% del contenedor, dejando un margen bonito */
+  height: auto;
+}
