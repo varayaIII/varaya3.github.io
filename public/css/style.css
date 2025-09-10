@@ -303,3 +303,15 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
   width: 75%;  /* La imagen ocupará el 75% del contenedor, dejando un margen bonito */
   height: auto;
 }
+
+.footer-brand-link {
+  color: var(--accent); /* Usa el color de acento (#20c997) que ya tienes definido */
+  text-decoration: none; /* Quita el subrayado */
+  font-weight: 600; /* Le da un poco más de grosor para destacarlo */
+  transition: color 0.2s ease-in-out; /* Transición suave al pasar el mouse */
+}
+
+.footer-brand-link:hover {
+  color: var(--light); /* Cambia a color blanco al pasar el mouse */
+  text-decoration: underline; /* Opcional: muestra el subrayado solo al pasar el mouse */
+}
