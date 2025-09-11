@@ -19,7 +19,7 @@ function applyTranslations(lang) {
         text = text.replace('{year}', new Date().getFullYear());
       }
 
-      // Usamos innerHTML para permitir que el enlace del footer se renderice
+      // LA CORRECCIÓN CLAVE: Usamos innerHTML para que el enlace y el año se rendericen correctamente
       element.innerHTML = text;
     }
   });
