@@ -14,13 +14,13 @@ function applyTranslations(lang) {
     if (translations[lang] && translations[lang][key]) {
       let text = translations[lang][key];
 
-      // **** ESTA ES LA LÓGICA CLAVE QUE FALTABA ****
-      // Si la clave es la del copyright, reemplazamos la variable {year}
+      // Reemplaza la variable {year} si la clave es la del copyright
       if (key === 'footer_copyright') {
         text = text.replace('{year}', new Date().getFullYear());
       }
 
-      element.textContent = text;
+      // Usamos innerHTML para permitir que el enlace del footer se renderice
+      element.innerHTML = text;
     }
   });
 }
