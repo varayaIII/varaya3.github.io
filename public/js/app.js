@@ -116,7 +116,7 @@ async function loadProjects() {
     const tpl = (p) => `
       <div class="project-card">
         <div class="project-image"><i class="${p.icon}" aria-hidden="true"></i></div>
-        <div class="project-content">
+        <div class.project-content">
           <h3 class="project-title" data-i18n-key="${p.titleKey}">${p.titulo}</h3>
           <p class="project-description" data-i18n-key="${p.descKey}">${p.descripcion}</p>
           <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">
