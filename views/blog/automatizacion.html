@@ -16,40 +16,53 @@
   <main class="section" id="post">
     <div class="container">
       <article class="post">
-        <p class="text-secondary small mb-2">Publicado el 10 de enero, 2025</p>
-        <h1>Automatización DevOps: De la Infraestructura al Despliegue</h1>
-        <p class="lead">La automatización es el corazón que bombea la sangre en las venas de DevOps y SRE...</p>
 
-        <h2 class="mt-4">Infraestructura como Código (IaC): Los Cimientos</h2>
-        <p>Atrás quedaron los días de aprovisionar servidores manualmente...</p>
-        <ul>
-            <li><strong>Modularización:</strong> No escribo un archivo gigante de Terraform para todo...</li>
-            <li><strong>Reutilización:</strong> Gracias a los módulos, puedo crear un nuevo entorno completo en minutos...</li>
-            <li><strong>Manejo de Estados Remotos:</strong> Terraform necesita un archivo de "estado" para saber qué infraestructura ha creado...</li>
-        </ul>
-        <p class="text-center">
-            <img src="../../public/assets/automatizacion-1.png" class="img-fluid rounded my-3" alt="Esquema de Infraestructura como Código (IaC) con Terraform y AWS.">
-            <small class="text-muted d-block mb-2">Definiendo la nube con código versionado.</small>
+        <!-- Fecha: prefijo traducible + fecha formateada por JS -->
+        <p class="text-secondary small mb-2">
+          <span data-i18n-key="post_published_on">Publicado el </span>
+          <time class="post-date" data-post-date="2025-01-10"></time>
         </p>
 
-        <h2 class="mt-4">Pipelines de CI/CD: La Línea de Ensamblaje</h2>
-        <p>Un pipeline de CI/CD es una línea de ensamblaje automatizada...</p>
-        <ol>
+        <!-- Título del post -->
+        <h1 data-i18n-key="post_automatizacion_title">
+          Automatización DevOps: De la Infraestructura al Despliegue
+        </h1>
+
+        <!-- Cuerpo del post (todo el contenido se traduce como innerHTML) -->
+        <div class="lead-and-body" data-i18n-key="post_automatizacion_body">
+          <p class="lead">La automatización es el corazón que bombea la sangre en las venas de DevOps y SRE...</p>
+
+          <h2 class="mt-4">Infraestructura como Código (IaC): Los Cimientos</h2>
+          <p>Atrás quedaron los días de aprovisionar servidores manualmente...</p>
+          <ul>
+            <li><strong>Modularización:</strong> No escribo un archivo gigante de Terraform para todo...</li>
+            <li><strong>Reutilización:</strong> Gracias a los módulos, puedo crear un nuevo entorno completo en minutos...</li>
+            <li><strong>Manejo de Estados Remotos:</strong> Terraform necesita un archivo de estado para saber qué infraestructura ha creado...</li>
+          </ul>
+          <p class="text-center">
+            <img src='../../public/assets/automatizacion-1.png' class='img-fluid rounded my-3' alt='Esquema de Infraestructura como Código (IaC) con Terraform y AWS.'>
+            <small class='text-muted d-block mb-2'>Definiendo la nube con código versionado.</small>
+          </p>
+
+          <h2 class="mt-4">Pipelines de CI/CD: La Línea de Ensamblaje</h2>
+          <p>Un pipeline de CI/CD es una línea de ensamblaje automatizada...</p>
+          <ol>
             <li><strong>Build:</strong> Se compila el código y, más comúnmente hoy en día, se construye una imagen de contenedor (Docker)...</li>
             <li><strong>Test:</strong> Se ejecutan pruebas automatizadas contra el artefacto recién creado...</li>
             <li><strong>Seguridad:</strong> ¡La seguridad no es negociable!...</li>
-            <li><strong>Despliegue:</strong> Si todas las etapas anteriores (o "gates de calidad") se superan, el pipeline despliega el artefacto...</li>
-        </ol>
-        <p class="text-center">
-            <img src="../../public/assets/automatizacion-2.png" class="img-fluid rounded my-3" alt="Diagrama de un pipeline CI/CD típico con fases de Build, Test, Security y Deploy.">
-            <small class="text-muted d-block mb-2">El camino automatizado del código a producción.</small>
-        </p>
+            <li><strong>Despliegue:</strong> Si todas las etapas anteriores (o gates de calidad) se superan, el pipeline despliega el artefacto...</li>
+          </ol>
+          <p class="text-center">
+            <img src='../../public/assets/automatizacion-2.png' class='img-fluid rounded my-3' alt='Diagrama de un pipeline CI/CD con fases de Build, Test, Security y Deploy.'>
+            <small class='text-muted d-block mb-2'>El camino automatizado del código a producción.</small>
+          </p>
 
-        <h2 class="mt-4">Operación Confiable: Despliegues a Prueba de Fallos</h2>
-        <p>Llegar a producción es solo la mitad del camino...</p>
-        
+          <h2 class="mt-4">Operación Confiable: Despliegues a Prueba de Fallos</h2>
+          <p>Llegar a producción es solo la mitad del camino...</p>
+        </div>
+
         <nav class="mt-5">
-          <a href="../../index.html#blog" class="btn btn-outline-light btn-sm">← Volver al blog</a>
+          <a href='../../index.html#blog' class='btn btn-outline-light btn-sm' data-i18n-key="post_back_to_blog">← Volver al blog</a>
         </nav>
       </article>
     </div>
@@ -57,6 +70,6 @@
 
   <footer id="site-footer" data-include="../partials/footer.html"></footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-  <script src="../../public/js/app.js" defer></script>
+  <script src='../../public/js/app.js' defer></script>
 </body>
 </html>
