@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  function applyTranslations(dict) {
-    document.querySelectorAll('[data-i18n-key]').forEach(el => {
+  function applyTranslations(dict, root = document) {
+    root.querySelectorAll('[data-i18n-key]').forEach(el => {
       const key = el.getAttribute('data-i18n-key');
       if (dict[key]) {
         let text = dict[key].replace('{year}', new Date().getFullYear());
@@ -52,10 +52,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   async function includePartials() {
     const targets = document.querySelectorAll('[data-include]');
     for (const el of targets) {
-      const url = `${basePath}views/${el.dataset.include}`;
+      const url = el.getAttribute('data-include'); // <-- Lógica corregida para usar la ruta del HTML
+      if (!url) continue;
       try {
         const res = await fetch(url);
-        if (res.ok) el.innerHTML = await res.text();
+        if (res.ok) {
+            el.innerHTML = await res.text();
+        }
       } catch (error) {
         console.error("Failed to include partial:", error);
       }
@@ -109,38 +112,44 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   async function loadProjects() {
-      const grid = document.getElementById('projects-grid');
-      if (!grid) return;
+    const grid = document.getElementById('projects-grid');
+    if (!grid) return;
+    try {
+        const response = await fetch(`${basePath}views/projects/projects.json`);
+        const projects = await response.json();
+        const dict = await fetchTranslations(currentLang);
+        
+        // Asocia las claves de traducción con los datos del proyecto
+        const projectKeys = ["project_cicd", "project_security", "project_iac", "project_python", "project_k8s", "project_monitoring"];
+        const projectData = projects.map((p, i) => ({
+            ...p,
+            titleKey: `${projectKeys[i]}_title`,
+            descKey: `${projectKeys[i]}_desc`
+        }));
 
-      try {
-          const response = await fetch(`${basePath}views/projects/projects.json`);
-          const projects = await response.json();
-          const dict = await fetchTranslations(currentLang);
-          
-          grid.innerHTML = projects.map(p => `
-              <div class="project-card">
-                  <div class="project-image"><i class="${p.icon}" aria-hidden="true"></i></div>
-                  <div class="project-content">
-                      <h3 class="project-title" data-i18n-key="${p.titleKey}">${dict[p.titleKey]}</h3>
-                      <p class="project-description" data-i18n-key="${p.descKey}">${dict[p.descKey]}</p>
-                      <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">
-                          <span data-i18n-key="project_view_on_github">${dict['project_view_on_github']}</span>
-                          <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                      </a>
-                  </div>
-              </div>`).join('');
-      } catch (e) {
-          console.error("Failed to load projects:", e);
-      }
+        grid.innerHTML = projectData.map(p => `
+            <div class="project-card">
+                <div class="project-image"><i class="${p.icon}" aria-hidden="true"></i></div>
+                <div class="project-content">
+                    <h3 class="project-title">${dict[p.titleKey]}</h3>
+                    <p class="project-description">${dict[p.descKey]}</p>
+                    <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">
+                        <span>${dict['project_view_on_github']}</span>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>`).join('');
+    } catch (e) {
+        console.error("Failed to load projects:", e);
+    }
   }
-
 
   // --- SECUENCIA DE INICIALIZACIÓN ---
   
   // 1. Cargar Header y Footer
   await includePartials();
   
-  // 2. Cargar el idioma y traducir todo
+  // 2. Cargar el idioma y traducir todo (incluyendo los parciales recién cargados)
   await setLanguage(currentLang);
   
   // 3. Cargar proyectos (si estamos en la página de inicio)
