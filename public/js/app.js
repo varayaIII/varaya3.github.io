@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const translations = {};
   let currentLang = localStorage.getItem('language') || 'es';
 
-  // --- LÓGICA DE RUTAS CORREGIDA ---
+  // --- LÓGICA DE RUTAS ---
   let basePath = './';
   if (window.location.pathname.includes('/views/blog/')) {
     basePath = '../../';
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   async function includePartials() {
     const targets = document.querySelectorAll('[data-include]');
     for (const el of targets) {
-      const url = el.getAttribute('data-include'); // <-- Lógica corregida para usar la ruta del HTML
+      const url = el.getAttribute('data-include');
       if (!url) continue;
       try {
         const res = await fetch(url);
@@ -111,13 +111,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
+  // ===== FUNCIÓN CORREGIDA =====
   async function loadProjects() {
     const grid = document.getElementById('projects-grid');
     if (!grid) return;
     try {
         const response = await fetch(`${basePath}views/projects/projects.json`);
         const projects = await response.json();
-        const dict = await fetchTranslations(currentLang);
         
         // Asocia las claves de traducción con los datos del proyecto
         const projectKeys = ["project_cicd", "project_security", "project_iac", "project_python", "project_k8s", "project_monitoring"];
@@ -127,14 +127,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             descKey: `${projectKeys[i]}_desc`
         }));
 
+        // Se crea el HTML con las etiquetas data-i18n-key
         grid.innerHTML = projectData.map(p => `
             <div class="project-card">
                 <div class="project-image"><i class="${p.icon}" aria-hidden="true"></i></div>
                 <div class="project-content">
-                    <h3 class="project-title">${dict[p.titleKey]}</h3>
-                    <p class="project-description">${dict[p.descKey]}</p>
+                    <h3 class="project-title" data-i18n-key="${p.titleKey}"></h3>
+                    <p class="project-description" data-i18n-key="${p.descKey}"></p>
                     <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">
-                        <span>${dict['project_view_on_github']}</span>
+                        <span data-i18n-key="project_view_on_github"></span>
                         <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -149,13 +150,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 1. Cargar Header y Footer
   await includePartials();
   
-  // 2. Cargar el idioma y traducir todo (incluyendo los parciales recién cargados)
-  await setLanguage(currentLang);
-  
-  // 3. Cargar proyectos (si estamos en la página de inicio)
+  // 2. Cargar proyectos (si estamos en la página de inicio)
   if (document.getElementById('projects-grid')) {
       await loadProjects();
   }
+  
+  // 3. Cargar el idioma y traducir todo (incluyendo los parciales y proyectos)
+  await setLanguage(currentLang);
   
   // 4. Activar los listeners para botones y formularios
   bindLanguageButtons();
