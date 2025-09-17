@@ -12,6 +12,12 @@
     "github": "https://github.com/varayaIII"
   },
   {
+    "icon": "fas fa-cubes",
+    "titulo": "Kubernetes Avanzado",
+    "descripcion": "Helm, RBAC, PodSecurity y NetworkPolicy para endurecer el clúster.",
+    "github": "https://github.com/varayaIII"
+  },
+  {
     "icon": "fas fa-shield-halved",
     "titulo": "DevSecOps en Kubernetes",
     "descripcion": "Trivy/Snyk/Checkov y gestión de secretos con Vault.",
@@ -24,21 +30,15 @@
     "github": "https://github.com/varayaIII"
   },
   {
-    "icon": "fas fa-coins",
-    "titulo": "FinOps con OpenCost",
-    "descripcion": "Visibilidad de costos por namespace/workload con OpenCost + Prometheus; dashboards y alertas de gasto.",
-    "github": "https://github.com/varayaIII"
-  },
-  {
-    "icon": "fas fa-cubes",
-    "titulo": "Kubernetes Avanzado",
-    "descripcion": "Helm, RBAC, PodSecurity y NetworkPolicy para endurecer el clúster.",
-    "github": "https://github.com/varayaIII"
-  },
-  {
     "icon": "fas fa-robot",
     "titulo": "AIOps & Auto-remediación",
     "descripcion": "Alertmanager + webhook en Python ejecutando runbooks (restart/scale).",
+    "github": "https://github.com/varayaIII"
+  },
+  {
+    "icon": "fas fa-coins",
+    "titulo": "FinOps con OpenCost",
+    "descripcion": "Visibilidad de costos por namespace/workload con OpenCost + Prometheus; dashboards y alertas de gasto.",
     "github": "https://github.com/varayaIII"
   }
 ]
