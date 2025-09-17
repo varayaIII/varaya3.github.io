@@ -119,13 +119,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         const response = await fetch(`${basePath}views/projects/projects.json`);
         const projects = await response.json();
         
-        // Asocia las claves de traducción con los datos del proyecto
-        const projectKeys = ["project_cicd", "project_security", "project_iac", "project_python", "project_k8s", "project_monitoring"];
-        const projectData = projects.map((p, i) => ({
-            ...p,
-            titleKey: `${projectKeys[i]}_title`,
-            descKey: `${projectKeys[i]}_desc`
-        }));
+        // Orden por dificultad: IaC → CI/CD → DevSecOps → Observabilidad → FinOps → K8s Avanzado → AIOps
+        const projectKeys = [
+          { titleKey: "project_iac_title",        descKey: "project_iac_desc" },        // 1
+          { titleKey: "project_cicd_title",       descKey: "project_cicd_desc" },       // 2
+          { titleKey: "project_security_title",   descKey: "project_security_desc" },   // 3
+          { titleKey: "project_monitoring_title", descKey: "project_monitoring_desc" }, // 4
+          { titleKey: "project_finops_title",     descKey: "project_finops_desc" },     // 5  ← NUEVO
+          { titleKey: "project_k8s_title",        descKey: "project_k8s_desc" },        // 6
+          { titleKey: "project_python_title",     descKey: "project_python_desc" }      // 7
+        ];
+
 
         // Se crea el HTML con las etiquetas data-i18n-key
         grid.innerHTML = projectData.map(p => `
