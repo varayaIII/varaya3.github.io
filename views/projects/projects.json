@@ -1,38 +1,44 @@
 [
   {
-    "titulo": "Pipeline CI/CD con GitHub Actions",
-    "descripcion": "Automatiza el despliegue de este portafolio mediante un pipeline de CI/CD con GitHub Actions.",
-    "github": "https://github.com/varayaIII/varaya3.github.io/blob/main/.github/workflows/deploy.yml",
-    "icon": "fas fa-robot"
+    "icon": "fas fa-layer-group",
+    "titulo": "IaC modular con Terraform",
+    "descripcion": "Módulos Terraform reutilizables y bases de infraestructura versionadas.",
+    "github": "https://github.com/varayaIII"
   },
   {
-    "titulo": "Seguridad Automatizada (DevSecOps)",
-    "descripcion": "Integra escaneo de vulnerabilidades y secretos en el pipeline para asegurar el código y los contenedores.",
-    "github": "https://github.com/varayaIII/devsecops-pipeline-demo",
-    "icon": "fas fa-shield-alt"
+    "icon": "fas fa-diagram-project",
+    "titulo": "Pipeline CI/CD + GitOps",
+    "descripcion": "Integración/entrega continua y despliegue declarativo con ArgoCD.",
+    "github": "https://github.com/varayaIII"
   },
   {
-    "titulo": "Infraestructura como Código",
-    "descripcion": "Implementación de infraestructura en la nube usando Terraform y AWS para despliegues automatizados.",
-    "github": "https://github.com/varayaIII/proyecto-iac",
-    "icon": "fas fa-layer-group"
+    "icon": "fas fa-shield-halved",
+    "titulo": "DevSecOps en Kubernetes",
+    "descripcion": "Trivy/Snyk/Checkov y gestión de secretos con Vault.",
+    "github": "https://github.com/varayaIII"
   },
   {
-    "titulo": "Automatización con Python",
-    "descripcion": "Creación de herramientas y scripts en Python para la gestión de recursos en la nube y la automatización de tareas.",
-    "github": "https://github.com/varayaIII/python-devops-tools",
-    "icon": "fab fa-python"
+    "icon": "fas fa-chart-line",
+    "titulo": "Observabilidad 360°",
+    "descripcion": "Prometheus, Grafana y OpenTelemetry para métricas, trazas y logs.",
+    "github": "https://github.com/varayaIII"
   },
   {
-    "titulo": "Clúster de Kubernetes",
-    "descripcion": "Configuración y gestión de un clúster de Kubernetes para aplicaciones en contenedores.",
-    "github": "https://github.com/varayaIII/k8s-cluster",
-    "icon": "fas fa-cubes"
+    "icon": "fas fa-coins",
+    "titulo": "FinOps con OpenCost",
+    "descripcion": "Visibilidad de costos por namespace/workload con OpenCost + Prometheus; dashboards y alertas de gasto.",
+    "github": "https://github.com/varayaIII"
   },
   {
-    "titulo": "Monitoreo de Sistemas",
-    "descripcion": "Stack Prometheus, Grafana y Alertmanager para infraestructura distribuida.",
-    "github": "https://github.com/varayaIII/monitoring-system",
-    "icon": "fas fa-chart-pie"
+    "icon": "fas fa-cubes",
+    "titulo": "Kubernetes Avanzado",
+    "descripcion": "Helm, RBAC, PodSecurity y NetworkPolicy para endurecer el clúster.",
+    "github": "https://github.com/varayaIII"
+  },
+  {
+    "icon": "fas fa-robot",
+    "titulo": "AIOps & Auto-remediación",
+    "descripcion": "Alertmanager + webhook en Python ejecutando runbooks (restart/scale).",
+    "github": "https://github.com/varayaIII"
   }
 ]
