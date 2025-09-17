@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // ===== FUNCIÓN CORREGIDA =====
+  // ===== FUNCIÓN CORREGIDA Y ACTUALIZADA =====
   async function loadProjects() {
     const grid = document.getElementById('projects-grid');
     if (!grid) return;
@@ -119,25 +119,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         const response = await fetch(`${basePath}views/projects/projects.json`);
         const projects = await response.json();
         
-        // Orden por dificultad: IaC → CI/CD → DevSecOps → Observabilidad → FinOps → K8s Avanzado → AIOps
         const projectKeys = [
-          { titleKey: "project_iac_title",        descKey: "project_iac_desc" },        // 1
-          { titleKey: "project_cicd_title",       descKey: "project_cicd_desc" },       // 2
-          { titleKey: "project_security_title",   descKey: "project_security_desc" },   // 3
-          { titleKey: "project_monitoring_title", descKey: "project_monitoring_desc" }, // 4
-          { titleKey: "project_finops_title",     descKey: "project_finops_desc" },     // 5  ← NUEVO
-          { titleKey: "project_k8s_title",        descKey: "project_k8s_desc" },        // 6
-          { titleKey: "project_python_title",     descKey: "project_python_desc" }      // 7
+          "project_iac_modular_title", "project_iac_modular_desc",
+          "project_cicd_gitops_title", "project_cicd_gitops_desc",
+          "project_devsecops_k8s_title", "project_devsecops_k8s_desc",
+          "project_observability_360_title", "project_observability_360_desc",
+          "project_finops_opencost_title", "project_finops_opencost_desc",
+          "project_k8s_advanced_title", "project_k8s_advanced_desc",
+          "project_aiops_title", "project_aiops_desc"
         ];
 
-
-        // Se crea el HTML con las etiquetas data-i18n-key
-        grid.innerHTML = projectData.map(p => `
+        // Se crea el HTML con las etiquetas data-i18n-key correctas
+        grid.innerHTML = projects.map((p, i) => `
             <div class="project-card">
                 <div class="project-image"><i class="${p.icon}" aria-hidden="true"></i></div>
                 <div class="project-content">
-                    <h3 class="project-title" data-i18n-key="${p.titleKey}"></h3>
-                    <p class="project-description" data-i18n-key="${p.descKey}"></p>
+                    <h3 class="project-title" data-i18n-key="${projectKeys[i*2]}"></h3>
+                    <p class="project-description" data-i18n-key="${projectKeys[i*2+1]}"></p>
                     <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">
                         <span data-i18n-key="project_view_on_github"></span>
                         <i class="fas fa-arrow-right" aria-hidden="true"></i>
@@ -154,12 +152,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 1. Cargar Header y Footer
   await includePartials();
   
-  // 2. Cargar proyectos (si estamos en la página de inicio)
+  // 2. Cargar la estructura de los proyectos (si estamos en la página de inicio)
   if (document.getElementById('projects-grid')) {
       await loadProjects();
   }
   
-  // 3. Cargar el idioma y traducir todo (incluyendo los parciales y proyectos)
+  // 3. Cargar el idioma y traducir todo (incluyendo los parciales y la estructura de proyectos)
   await setLanguage(currentLang);
   
   // 4. Activar los listeners para botones y formularios
