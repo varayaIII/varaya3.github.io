@@ -1,9 +1,9 @@
 [
   {
-    "icon": "fas fa-layer-group",
-    "titulo": "IaC modular con Terraform",
-    "descripcion": "Módulos Terraform reutilizables y bases de infraestructura versionadas.",
-    "github": "https://github.com/varayaIII"
+  "icon": "fas fa-layer-group",
+  "titulo": "IaC modular con Terraform",
+  "descripcion": "Módulos Terraform reutilizables y bases de infraestructura versionadas.",
+  "github": "https://github.com/varayaIII/terraform-nginx-module"
   },
   {
     "icon": "fas fa-diagram-project",
