@@ -63,5 +63,18 @@
   "form_message_short": "El mensaje debe tener al menos 10 caracteres",
   "form_message_long": "El mensaje no puede exceder 500 caracteres",
   "form_field_valid": "¡Perfecto!",
-  "form_validation_error": "Por favor, corrige los errores en el formulario"
+  "form_validation_error": "Por favor, corrige los errores en el formulario",
+   // Placeholders
+  "form_name_placeholder": "Your full name",
+  "form_email_placeholder": "your@email.com",
+  "form_message_placeholder": "Tell me about your project or inquiry...",
+  // Validation messages
+  "form_required": "This field is required",
+  "form_email_invalid": "Please enter a valid email", 
+  "form_name_short": "Name must be at least 2 characters",
+  "form_name_long": "Name cannot exceed 50 characters", 
+  "form_message_short": "Message must be at least 10 characters",
+  "form_message_long": "Message cannot exceed 500 characters",
+  "form_field_valid": "Perfect!",
+  "form_validation_error": "Please correct the errors in the form"
 }
