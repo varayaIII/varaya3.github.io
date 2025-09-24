@@ -1,651 +1,418 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // --- CONFIGURACIÓN GLOBAL ---
-    const translations = {};
-    let currentLang = localStorage.getItem('language') || 'es';
+  // --- CONFIGURACIÓN GLOBAL ---
+  const translations = {};
+  let currentLang = localStorage.getItem('language') || 'es';
 
-    // --- LÓGICA DE RUTAS ---
-    let basePath = './';
-    if (window.location.pathname.includes('/views/blog/')) {
-        basePath = '../../';
-    } else if (window.location.pathname.includes('/views/')) {
-        basePath = '../';
+  // --- LÓGICA DE RUTAS ---
+  let basePath = './';
+  if (window.location.pathname.includes('/views/blog/')) {
+    basePath = '../../';
+  } else if (window.location.pathname.includes('/views/')) {
+    basePath = '../';
+  }
+
+  // --- FUNCIONES BÁSICAS (MANTENER COMO ESTABAN) ---
+
+  async function fetchTranslations(lang) {
+    if (translations[lang]) return translations[lang];
+    try {
+      const response = await fetch(`${basePath}public/locales/${lang}.json`);
+      if (!response.ok) throw new Error(`Cannot fetch ${lang}.json`);
+      translations[lang] = await response.json();
+      return translations[lang];
+    } catch (error) {
+      console.error("Error fetching translation file:", error);
+      return {};
     }
+  }
 
-    // --- FUNCIONES EXISTENTES (SIN CAMBIOS) ---
-
-    async function fetchTranslations(lang) {
-        if (translations[lang]) return translations[lang];
-        try {
-            const response = await fetch(`${basePath}public/locales/${lang}.json`);
-            if (!response.ok) throw new Error(`Cannot fetch ${lang}.json`);
-            translations[lang] = await response.json();
-            return translations[lang];
-        } catch (error) {
-            console.error("Error fetching translation file:", error);
-            return {};
+  function applyTranslations(dict, root = document) {
+    // Traducir textos normales
+    root.querySelectorAll('[data-i18n-key]').forEach(el => {
+      const key = el.getAttribute('data-i18n-key');
+      if (dict[key]) {
+        let text = dict[key].replace('{year}', new Date().getFullYear());
+        
+        // ARREGLO: Si es un label del formulario con icono, preservar el icono
+        if (el.tagName === 'LABEL' && el.classList.contains('form-label-enhanced')) {
+          const existingIcon = el.querySelector('i');
+          if (existingIcon) {
+            // Mantener el icono y solo cambiar el texto
+            const iconHTML = existingIcon.outerHTML;
+            el.innerHTML = iconHTML + ' ' + text;
+          } else {
+            el.innerHTML = text;
+          }
+        } else {
+          el.innerHTML = text;
         }
-    }
-
-    function bindLanguageButtons() {
-        document.body.addEventListener('click', (e) => {
-            const langBtn = e.target.closest('.lang-btn');
-            if (langBtn) {
-                const lang = langBtn.dataset.lang;
-                if (lang && lang !== currentLang) {
-                    setLanguage(lang);
-                }
-            }
-        });
-    }
-
-    async function includePartials() {
-        const targets = document.querySelectorAll('[data-include]');
-        await Promise.all(Array.from(targets).map(async el => {
-            const url = el.getAttribute('data-include');
-            if (!url) return;
-            try {
-                const res = await fetch(url);
-                if (res.ok) {
-                    el.innerHTML = await res.text();
-                }
-            } catch (error) {
-                console.error("Failed to include partial:", error);
-            }
-        }));
-    }
-
-    // ===== FUNCIONES DE TRADUCCIÓN Y FORMULARIO (NUEVAS Y MEJORADAS) =====
-    // Este es el código que me proporcionaste, pero integrado de forma completa.
-
-    function applyTranslations(dict, root = document) {
-        // Traducir textos SIN reemplazar innerHTML completamente para preservar iconos
-        root.querySelectorAll('[data-i18n-key]').forEach(el => {
-            const key = el.getAttribute('data-i18n-key');
-            if (dict[key]) {
-                let text = dict[key].replace('{year}', new Date().getFullYear());
-                
-                // Si el elemento tiene iconos (labels del formulario), preservarlos
-                const existingIcon = el.querySelector('i');
-                if (existingIcon && el.tagName === 'LABEL') {
-                    // Solo actualizar el texto, no el HTML completo
-                    const textNodes = Array.from(el.childNodes).filter(node => 
-                        node.nodeType === Node.TEXT_NODE || 
-                        (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'I')
-                    );
-                    
-                    // Limpiar solo el texto, mantener iconos
-                    textNodes.forEach(node => {
-                        if (node.nodeType === Node.TEXT_NODE) {
-                            node.textContent = text;
-                        }
-                    });
-                    
-                    // Si no hay texto, agregarlo después del icono
-                    if (textNodes.length === 0) {
-                        el.appendChild(document.createTextNode(' ' + text));
-                    }
-                } else {
-                    // Para elementos sin iconos, usar innerHTML normalmente
-                    el.innerHTML = text;
-                }
-            }
-        });
-        
-        // Traducir placeholders
-        root.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            const key = el.getAttribute('data-i18n-placeholder');
-            if (dict[key]) {
-                el.placeholder = dict[key];
-            }
-        });
-        
-        // Re-aplicar traducciones a mensajes de validación dinámicos
-        updateFormValidationMessages(dict);
-    }
-
-    async function setLanguage(lang) {
-        const dict = await fetchTranslations(lang);
-        applyTranslations(dict);
-        
-        currentLang = lang;
-        localStorage.setItem('language', lang);
-        document.documentElement.lang = lang;
-        
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.lang === lang);
-        });
-        
-        // IMPORTANTE: Re-aplicar iconos del formulario si se perdieron
-        setTimeout(() => {
-            reapplyFormIconsIfMissing();
-        }, 100);
-    }
-
-    // Nueva función para re-aplicar iconos si se perdieron
-    function reapplyFormIconsIfMissing() {
-        const form = document.getElementById('contact-form');
-        if (!form) return;
-        
-        const labels = form.querySelectorAll('.form-label-enhanced');
-        labels.forEach(label => {
-            // Solo agregar icono si no existe
-            if (!label.querySelector('i')) {
-                const field = form.querySelector(`#${label.getAttribute('for')}`);
-                if (field) {
-                    const iconMap = {
-                        'nombre': 'fas fa-user',
-                        'email': 'fas fa-envelope',
-                        'mensaje': 'fas fa-comment-dots'
-                    };
-                    
-                    const iconClass = iconMap[field.name] || 'fas fa-edit';
-                    const icon = document.createElement('i');
-                    icon.className = iconClass;
-                    label.insertBefore(icon, label.firstChild);
-                    label.insertBefore(document.createTextNode(' '), icon.nextSibling);
-                }
-            }
-        });
-    }
-
-    // Nueva función para actualizar mensajes de validación con traducciones
-    function updateFormValidationMessages(dict) {
-        // Si existe el formulario mejorado, actualizar sus mensajes
-        if (window.enhancedContactForm && window.enhancedContactForm.validateField) {
-            const form = document.getElementById('contact-form');
-            if (form) {
-                // Re-validar campos que tengan contenido para actualizar mensajes
-                form.querySelectorAll('.form-control-enhanced').forEach(field => {
-                    if (field.value.trim() && window.enhancedContactForm) {
-                        // Forzar re-validación para actualizar el mensaje
-                        setTimeout(() => {
-                            if (typeof window.enhancedContactForm.validateField === 'function') {
-                                window.enhancedContactForm.validateField(field);
-                            }
-                        }, 50);
-                    }
-                });
-            }
-        }
-    }
-
-    // ===== FUNCIÓN CORREGIDA Y ACTUALIZADA =====
-    async function loadProjects() {
-        const grid = document.getElementById('projects-grid');
-        if (!grid) return;
-        try {
-            const response = await fetch(`${basePath}views/projects/projects.json`);
-            const projects = await response.json();
-            
-            const projectKeys = [
-                "project_iac_modular_title", "project_iac_modular_desc",
-                "project_cicd_gitops_title", "project_cicd_gitops_desc",
-                "project_devsecops_k8s_title", "project_devsecops_k8s_desc",
-                "project_observability_360_title", "project_observability_360_desc",
-                "project_finops_opencost_title", "project_finops_opencost_desc",
-                "project_k8s_advanced_title", "project_k8s_advanced_desc",
-                "project_aiops_title", "project_aiops_desc"
-            ];
-
-            // Se crea el HTML con las etiquetas data-i18n-key correctas
-            grid.innerHTML = projects.map((p, i) => `
-                <div class="project-card">
-                    <div class="project-image"><i class="${p.icon}" aria-hidden="true"></i></div>
-                    <div class="project-content">
-                        <h3 class="project-title" data-i18n-key="${projectKeys[i*2]}"></h3>
-                        <p class="project-description" data-i18n-key="${projectKeys[i*2+1]}"></p>
-                        <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">
-                            <span data-i18n-key="project_view_on_github"></span>
-                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>`).join('');
-        } catch (e) {
-            console.error("Failed to load projects:", e);
-        }
-    }
-
-    // ===== FUNCIÓN DE CONTACTO MEJORADA =====
-    class EnhancedContactForm {
-        constructor() {
-            this.form = document.getElementById('contact-form');
-            if (!this.form) return;
-            
-            this.submitBtn = null;
-            this.successMessage = null;
-            this.charCounter = null;
-            
-            this.init();
-        }
-        
-        init() {
-            this.enhanceForm();
-            this.attachEventListeners();
-            this.createSuccessMessage();
-        }
-        
-        enhanceForm() {
-            // Convertir campos normales a mejorados
-            const fields = this.form.querySelectorAll('.form-control');
-            fields.forEach(field => {
-                field.classList.add('form-control-enhanced');
-                this.enhanceField(field);
-            });
-            
-            // Mejorar el botón de envío
-            const submitBtn = this.form.querySelector('.btn-send');
-            if (submitBtn) {
-                submitBtn.classList.add('btn-send-enhanced');
-                this.enhanceSubmitButton(submitBtn);
-                this.submitBtn = submitBtn;
-            }
-        }
-        
-        enhanceField(field) {
-            const wrapper = field.parentElement;
-            wrapper.classList.add('form-group-enhanced');
-            
-            // Mejorar el label
-            const label = wrapper.querySelector('label');
-            if (label) {
-                label.classList.add('form-label-enhanced');
-                this.addIconToLabel(label, field);
-            }
-            
-            // Agregar icono de estado
-            const statusIcon = document.createElement('i');
-            statusIcon.className = 'form-icon fas';
-            wrapper.appendChild(statusIcon);
-            
-            // Agregar feedback
-            const feedback = document.createElement('div');
-            feedback.className = 'form-feedback';
-            wrapper.appendChild(feedback);
-            
-            // Si es textarea, agregar contador de caracteres
-            if (field.tagName === 'TEXTAREA') {
-                this.addCharacterCounter(wrapper, field);
-            }
-        }
-        
-        addIconToLabel(label, field) {
-            const iconMap = {
-                'nombre': 'fas fa-user',
-                'email': 'fas fa-envelope',
-                'mensaje': 'fas fa-comment-dots'
-            };
-            
-            const fieldName = field.name;
-            const iconClass = iconMap[fieldName] || 'fas fa-edit';
-            
-            const icon = document.createElement('i');
-            icon.className = iconClass;
-            label.insertBefore(icon, label.firstChild);
-        }
-        
-        addCharacterCounter(wrapper, field) {
-            const maxLength = field.getAttribute('maxlength') || 500;
-            
-            const counter = document.createElement('div');
-            counter.className = 'character-counter';
-            counter.innerHTML = `<span class="char-count">0</span>/${maxLength} caracteres`;
-            
-            wrapper.appendChild(counter);
-            wrapper.classList.add('has-counter');
-            
-            this.charCounter = counter.querySelector('.char-count');
-        }
-        
-        enhanceSubmitButton(btn) {
-            const originalText = btn.textContent;
-            
-            btn.innerHTML = `
-                <span class="btn-text">
-                    <i class="fas fa-paper-plane"></i>
-                    ${originalText}
-                </span>
-                <div class="btn-spinner">
-                    <div class="spinner"></div>
-                </div>
-            `;
-        }
-        
-        createSuccessMessage() {
-            const successDiv = document.createElement('div');
-            successDiv.id = 'form-success-message';
-            successDiv.className = 'success-message';
-            successDiv.innerHTML = `
-                <i class="fas fa-check-circle"></i>
-                <span data-i18n-key="form_success_message">¡Mensaje enviado exitosamente!</span>
-            `;
-            
-            this.form.parentElement.appendChild(successDiv);
-            this.successMessage = successDiv;
-        }
-        
-        attachEventListeners() {
-            // Validación en tiempo real
-            this.form.querySelectorAll('.form-control-enhanced').forEach(input => {
-                input.addEventListener('input', (e) => this.validateField(e.target));
-                input.addEventListener('blur', (e) => this.validateField(e.target));
-                input.addEventListener('focus', (e) => this.handleFocus(e.target));
-            });
-            
-            // Contador de caracteres para textarea
-            const textarea = this.form.querySelector('#mensaje');
-            if (textarea) {
-                textarea.addEventListener('input', (e) => this.updateCharCounter(e.target));
-            }
-            
-            // Envío del formulario
-            this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-        }
-        
-        validateField(field) {
-            const value = field.value.trim();
-            const fieldType = field.type;
-            const isRequired = field.required;
-            
-            let isValid = true;
-            let message = '';
-            
-            // Obtener mensajes traducidos
-            const dict = translations[currentLang] || {};
-            const messages = {
-                required: dict.form_required || 'Este campo es requerido',
-                email_invalid: dict.form_email_invalid || 'Ingresa un email válido',
-                name_short: dict.form_name_short || 'El nombre debe tener al menos 2 caracteres',
-                name_long: dict.form_name_long || 'El nombre no puede exceder 50 caracteres',
-                message_short: dict.form_message_short || 'El mensaje debe tener al menos 10 caracteres',
-                message_long: dict.form_message_long || 'El mensaje no puede exceder 500 caracteres',
-                valid: dict.form_field_valid || '¡Perfecto!'
-            };
-            
-            // Validaciones específicas
-            if (isRequired && !value) {
-                isValid = false;
-                message = messages.required;
-            } else if (fieldType === 'email' && value) {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(value)) {
-                    isValid = false;
-                    message = messages.email_invalid;
-                } else {
-                    message = messages.valid;
-                }
-            } else if (field.name === 'nombre' && value) {
-                if (value.length < 2) {
-                    isValid = false;
-                    message = messages.name_short;
-                } else if (value.length > 50) {
-                    isValid = false;
-                    message = messages.name_long;
-                } else {
-                    message = messages.valid;
-                }
-            } else if (field.name === 'mensaje' && value) {
-                if (value.length < 10) {
-                    isValid = false;
-                    message = messages.message_short;
-                } else if (value.length > 500) {
-                    isValid = false;
-                    message = messages.message_long;
-                } else {
-                    message = messages.valid;
-                }
-            } else if (value) {
-                message = messages.valid;
-            }
-            
-            this.updateFieldState(field, isValid, message);
-            return isValid;
-        }
-        
-        updateFieldState(field, isValid, message) {
-            const wrapper = field.parentElement;
-            const icon = wrapper.querySelector('.form-icon');
-            const feedback = wrapper.querySelector('.form-feedback');
-            
-            // Remover clases anteriores
-            field.classList.remove('is-valid', 'is-invalid');
-            if (icon) icon.classList.remove('fa-check', 'fa-times', 'valid', 'invalid', 'show');
-            if (feedback) feedback.classList.remove('valid', 'invalid', 'show');
-            
-            // Si el campo no está vacío, aplicar estado
-            if (field.value.trim()) {
-                if (isValid) {
-                    field.classList.add('is-valid');
-                    if (icon) icon.classList.add('fa-check', 'valid', 'show');
-                    if (feedback) {
-                        feedback.textContent = message;
-                        feedback.classList.add('valid', 'show');
-                    }
-                } else {
-                    field.classList.add('is-invalid');
-                    if (icon) icon.classList.add('fa-times', 'invalid', 'show');
-                    if (feedback) {
-                        feedback.textContent = message;
-                        feedback.classList.add('invalid', 'show');
-                    }
-                }
-            }
-        }
-        
-        handleFocus(field) {
-            // Mostrar contador de caracteres si es textarea
-            if (field.name === 'mensaje') {
-                const counter = field.parentElement.querySelector('.character-counter');
-                if (counter) {
-                    counter.classList.add('show');
-                }
-            }
-        }
-        
-        updateCharCounter(textarea) {
-            if (!this.charCounter) return;
-            
-            const count = textarea.value.length;
-            const maxLength = parseInt(textarea.getAttribute('maxlength')) || 500;
-            
-            this.charCounter.textContent = count;
-            
-            // Cambiar color si se acerca al límite
-            const counter = textarea.parentElement.querySelector('.character-counter');
-            if (counter) {
-                counter.style.color = count > maxLength * 0.8 ? '#dc3545' : 'rgba(255,255,255,.6)';
-            }
-        }
-        
-        async handleSubmit(e) {
-            e.preventDefault();
-            
-            // Validar todos los campos
-            const fields = this.form.querySelectorAll('.form-control-enhanced');
-            let allValid = true;
-            
-            fields.forEach(field => {
-                if (!this.validateField(field)) {
-                    allValid = false;
-                }
-            });
-            
-            if (!allValid) {
-                const dict = translations[currentLang] || {};
-                this.showError(dict.form_validation_error || 'Por favor, corrige los errores en el formulario');
-                return;
-            }
-            
-            // Mostrar estado de carga
-            this.setLoadingState(true);
-            
-            try {
-                // IMPORTANTE: Usar exactamente la misma configuración que Formspree requiere
-                const formData = new FormData(this.form);
-                
-                const response = await fetch(this.form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                const result = await response.json();
-                
-                if (response.ok) {
-                    console.log('Formulario enviado exitosamente:', result);
-                    this.showSuccess();
-                    this.resetForm();
-                } else {
-                    console.error('Error de Formspree:', result);
-                    // Si Formspree devuelve errores específicos, mostrarlos
-                    if (result.errors) {
-                        const errorMsg = result.errors.map(err => err.message).join(', ');
-                        throw new Error(errorMsg);
-                    } else {
-                        throw new Error('Error al procesar el formulario');
-                    }
-                }
-            } catch (error) {
-                console.error('Error completo:', error);
-                const dict = translations[currentLang] || {};
-                this.showError(dict.form_error_message || 'Hubo un error al enviar el mensaje. Inténtalo nuevamente.');
-            } finally {
-                this.setLoadingState(false);
-            }
-        }
-        
-        setLoadingState(loading) {
-            if (!this.submitBtn) return;
-            
-            if (loading) {
-                this.submitBtn.classList.add('loading');
-                this.submitBtn.disabled = true;
-            } else {
-                this.submitBtn.classList.remove('loading');
-                this.submitBtn.disabled = false;
-            }
-        }
-        
-        showSuccess() {
-            if (this.successMessage) {
-                // Aplicar traducción al mensaje de éxito
-                const dict = translations[currentLang] || {};
-                applyTranslations(dict, this.successMessage);
-                
-                this.successMessage.classList.add('show');
-                setTimeout(() => {
-                    this.successMessage.classList.remove('show');
-                }, 5000);
-            }
-        }
-        
-        showError(message) {
-            // Crear un toast de error temporal
-            const errorToast = document.createElement('div');
-            errorToast.className = 'success-message';
-            errorToast.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
-            errorToast.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
-            
-            this.form.parentElement.appendChild(errorToast);
-            
-            setTimeout(() => errorToast.classList.add('show'), 100);
-            setTimeout(() => {
-                errorToast.classList.remove('show');
-                setTimeout(() => errorToast.remove(), 500);
-            }, 4000);
-        }
-        
-        resetForm() {
-            this.form.reset();
-            
-            // Limpiar estados visuales
-            this.form.querySelectorAll('.form-control-enhanced').forEach(field => {
-                field.classList.remove('is-valid', 'is-invalid');
-                const wrapper = field.parentElement;
-                const icon = wrapper.querySelector('.form-icon');
-                const feedback = wrapper.querySelector('.form-feedback');
-                
-                if (icon) icon.classList.remove('fa-check', 'fa-times', 'valid', 'invalid', 'show');
-                if (feedback) feedback.classList.remove('valid', 'invalid', 'show');
-            });
-            
-            // Resetear contador
-            if (this.charCounter) {
-                this.charCounter.textContent = '0';
-            }
-        }
-    }
-
-    // ===== FUNCIÓN DE CONTACTO SIMPLIFICADA (FALLBACK) =====
-    function handleContactForm() {
-        // Si ya existe una instancia de EnhancedContactForm, no hacer nada
-        if (window.enhancedContactForm) return;
-        
-        const form = document.getElementById('contact-form');
-        if (!form) return;
-
-        // Verificar que el formulario tiene la configuración correcta de Formspree
-        console.log('Configuración del formulario:', {
-            action: form.action,
-            method: form.method,
-            hasHiddenFields: form.querySelector('input[name="_subject"]') ? 'Sí' : 'No'
-        });
-
-        // Intentar crear el formulario mejorado
-        try {
-            window.enhancedContactForm = new EnhancedContactForm();
-        } catch (error) {
-            console.error('Error creating enhanced contact form, falling back to basic:', error);
-            
-            // Fallback a la versión básica original (IDÉNTICA a tu versión original)
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const status = document.getElementById('form-status');
-                const btn = form.querySelector('button[type="submit"]');
-                const dict = translations[currentLang] || {};
-                
-                btn.disabled = true;
-                if (status) status.innerHTML = '';
-
-                try {
-                    const response = await fetch(form.action, {
-                        method: form.method,
-                        body: new FormData(form),
-                        headers: { 'Accept': 'application/json' }
-                    });
-
-                    if (response.ok) {
-                        form.reset();
-                        if (status) status.innerHTML = dict.form_success_message || "¡Mensaje enviado!";
-                        console.log('Formulario enviado exitosamente (fallback)');
-                    } else {
-                        if (status) status.innerHTML = dict.form_error_message || "Error al enviar.";
-                    }
-                } catch (error) {
-                    console.error('Error en fallback:', error);
-                    if (status) status.innerHTML = dict.form_error_message || "Error de red.";
-                } finally {
-                    btn.disabled = false;
-                }
-            });
-        }
-    }
-
-    // --- SECUENCIA DE INICIALIZACIÓN ---
+      }
+    });
     
+    // Traducir placeholders
+    root.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key]) {
+        el.placeholder = dict[key];
+      }
+    });
+  }
+
+  async function setLanguage(lang) {
+    const dict = await fetchTranslations(lang);
+    applyTranslations(dict);
+    
+    currentLang = lang;
+    localStorage.setItem('language', lang);
+    document.documentElement.lang = lang;
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+  }
+
+  async function includePartials() {
+    const targets = document.querySelectorAll('[data-include]');
+    for (const el of targets) {
+      const url = el.getAttribute('data-include');
+      if (!url) continue;
+      try {
+        const res = await fetch(url);
+        if (res.ok) {
+            el.innerHTML = await res.text();
+        }
+      } catch (error) {
+        console.error("Failed to include partial:", error);
+      }
+    }
+  }
+
+  function bindLanguageButtons() {
+    document.body.addEventListener('click', (e) => {
+      const langBtn = e.target.closest('.lang-btn');
+      if (langBtn) {
+        const lang = langBtn.dataset.lang;
+        if (lang && lang !== currentLang) {
+          setLanguage(lang);
+        }
+      }
+    });
+  }
+
+  async function loadProjects() {
+    const grid = document.getElementById('projects-grid');
+    if (!grid) return;
+    try {
+        const response = await fetch(`${basePath}views/projects/projects.json`);
+        const projects = await response.json();
+        
+        const projectKeys = [
+          "project_iac_modular_title", "project_iac_modular_desc",
+          "project_cicd_gitops_title", "project_cicd_gitops_desc",
+          "project_devsecops_k8s_title", "project_devsecops_k8s_desc",
+          "project_observability_360_title", "project_observability_360_desc",
+          "project_finops_opencost_title", "project_finops_opencost_desc",
+          "project_k8s_advanced_title", "project_k8s_advanced_desc",
+          "project_aiops_title", "project_aiops_desc"
+        ];
+
+        grid.innerHTML = projects.map((p, i) => `
+            <div class="project-card">
+                <div class="project-image"><i class="${p.icon}" aria-hidden="true"></i></div>
+                <div class="project-content">
+                    <h3 class="project-title" data-i18n-key="${projectKeys[i*2]}"></h3>
+                    <p class="project-description" data-i18n-key="${projectKeys[i*2+1]}"></p>
+                    <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-link">
+                        <span data-i18n-key="project_view_on_github"></span>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>`).join('');
+    } catch (e) {
+        console.error("Failed to load projects:", e);
+    }
+  }
+
+  // --- FORMULARIO MEJORADO PERO SEGURO ---
+  function handleContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    console.log('🔧 Inicializando formulario mejorado...');
+
+    // APLICAR MEJORAS VISUALES
+    enhanceFormAppearance(form);
+
+    // MANEJAR ENVÍO CON TU LÓGICA ORIGINAL
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = document.getElementById('form-status');
+      const btn = form.querySelector('button[type="submit"]');
+      const dict = translations[currentLang] || {};
+      
+      // Validar antes de enviar
+      if (!validateAllFields(form)) {
+        showFormMessage('Por favor, corrige los errores en el formulario', 'error');
+        return;
+      }
+      
+      // Estado de loading
+      setButtonLoading(btn, true);
+      if (status) status.innerHTML = '';
+
+      try {
+        console.log('📤 Enviando formulario a:', form.action);
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          console.log('✅ Formulario enviado exitosamente');
+          form.reset();
+          clearFormValidation(form);
+          if (status) status.innerHTML = dict.form_success_message || "¡Mensaje enviado!";
+          showFormMessage(dict.form_success_message || '¡Mensaje enviado exitosamente!', 'success');
+        } else {
+          console.error('❌ Error del servidor:', response.status);
+          if (status) status.innerHTML = dict.form_error_message || "Error al enviar.";
+          showFormMessage(dict.form_error_message || 'Error al enviar el mensaje', 'error');
+        }
+      } catch (error) {
+        console.error('❌ Error de red:', error);
+        if (status) status.innerHTML = dict.form_error_message || "Error de red.";
+        showFormMessage(dict.form_error_message || 'Error de conexión', 'error');
+      } finally {
+        setButtonLoading(btn, false);
+      }
+    });
+  }
+
+  // FUNCIONES AUXILIARES PARA EL FORMULARIO
+  function enhanceFormAppearance(form) {
+    const fields = form.querySelectorAll('.form-control');
+    fields.forEach(field => {
+      field.classList.add('form-control-enhanced');
+      enhanceFieldVisually(field);
+      addFieldValidation(field);
+    });
+    
+    const submitBtn = form.querySelector('.btn-send');
+    if (submitBtn) {
+      submitBtn.classList.add('btn-send-enhanced');
+      enhanceSubmitButton(submitBtn);
+    }
+  }
+
+  function enhanceFieldVisually(field) {
+    const wrapper = field.parentElement;
+    wrapper.classList.add('form-group-enhanced');
+    
+    // Mejorar label con icono
+    const label = wrapper.querySelector('label');
+    if (label) {
+      label.classList.add('form-label-enhanced');
+      addIconToLabel(label, field);
+    }
+    
+    // Agregar icono de estado si no existe
+    if (!wrapper.querySelector('.form-icon')) {
+      const statusIcon = document.createElement('i');
+      statusIcon.className = 'form-icon fas';
+      wrapper.appendChild(statusIcon);
+    }
+    
+    // Agregar feedback si no existe
+    if (!wrapper.querySelector('.form-feedback')) {
+      const feedback = document.createElement('div');
+      feedback.className = 'form-feedback';
+      wrapper.appendChild(feedback);
+    }
+  }
+
+  function addIconToLabel(label, field) {
+    // Solo agregar si no tiene icono ya
+    if (label.querySelector('i')) return;
+    
+    const iconMap = {
+      'nombre': 'fas fa-user',
+      'email': 'fas fa-envelope',
+      'mensaje': 'fas fa-comment-dots'
+    };
+    
+    const iconClass = iconMap[field.name] || 'fas fa-edit';
+    const icon = document.createElement('i');
+    icon.className = iconClass;
+    label.insertBefore(icon, label.firstChild);
+    label.insertBefore(document.createTextNode(' '), icon.nextSibling);
+  }
+
+  function addFieldValidation(field) {
+    field.addEventListener('input', () => validateField(field));
+    field.addEventListener('blur', () => validateField(field));
+  }
+
+  function validateField(field) {
+    const value = field.value.trim();
+    const wrapper = field.parentElement;
+    const icon = wrapper.querySelector('.form-icon');
+    const feedback = wrapper.querySelector('.form-feedback');
+    
+    let isValid = true;
+    let message = '';
+    
+    // Obtener mensajes traducidos
+    const dict = translations[currentLang] || {};
+    
+    if (field.required && !value) {
+      isValid = false;
+      message = dict.form_required || 'Este campo es requerido';
+    } else if (field.type === 'email' && value) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        isValid = false;
+        message = dict.form_email_invalid || 'Email inválido';
+      } else {
+        message = dict.form_field_valid || '¡Perfecto!';
+      }
+    } else if (field.name === 'nombre' && value) {
+      if (value.length < 2) {
+        isValid = false;
+        message = dict.form_name_short || 'Muy corto';
+      } else {
+        message = dict.form_field_valid || '¡Correcto!';
+      }
+    } else if (field.name === 'mensaje' && value) {
+      if (value.length < 10) {
+        isValid = false;
+        message = dict.form_message_short || 'Muy corto';
+      } else {
+        message = dict.form_field_valid || '¡Correcto!';
+      }
+    } else if (value) {
+      message = dict.form_field_valid || '¡Correcto!';
+    }
+    
+    // Aplicar estado visual
+    updateFieldVisualState(field, isValid, message, icon, feedback);
+    return isValid;
+  }
+
+  function updateFieldVisualState(field, isValid, message, icon, feedback) {
+    // Limpiar estados
+    field.classList.remove('is-valid', 'is-invalid');
+    icon.classList.remove('fa-check', 'fa-times', 'valid', 'invalid', 'show');
+    feedback.classList.remove('valid', 'invalid', 'show');
+    
+    if (field.value.trim()) {
+      if (isValid) {
+        field.classList.add('is-valid');
+        icon.classList.add('fa-check', 'valid', 'show');
+        feedback.textContent = message;
+        feedback.classList.add('valid', 'show');
+      } else {
+        field.classList.add('is-invalid');
+        icon.classList.add('fa-times', 'invalid', 'show');
+        feedback.textContent = message;
+        feedback.classList.add('invalid', 'show');
+      }
+    }
+  }
+
+  function validateAllFields(form) {
+    const fields = form.querySelectorAll('.form-control-enhanced');
+    let allValid = true;
+    
+    fields.forEach(field => {
+      if (!validateField(field)) {
+        allValid = false;
+      }
+    });
+    
+    return allValid;
+  }
+
+  function enhanceSubmitButton(btn) {
+    const originalText = btn.textContent;
+    btn.innerHTML = `
+      <span class="btn-text">
+        <i class="fas fa-paper-plane"></i>
+        ${originalText}
+      </span>
+      <div class="btn-spinner">
+        <div class="spinner"></div>
+      </div>
+    `;
+  }
+
+  function setButtonLoading(btn, loading) {
+    if (loading) {
+      btn.classList.add('loading');
+      btn.disabled = true;
+    } else {
+      btn.classList.remove('loading');
+      btn.disabled = false;
+    }
+  }
+
+  function showFormMessage(message, type) {
+    const form = document.getElementById('contact-form');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `success-message ${type === 'error' ? 'error-message' : ''}`;
+    
+    if (type === 'error') {
+      messageDiv.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+      messageDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+    } else {
+      messageDiv.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+    }
+    
+    form.parentElement.appendChild(messageDiv);
+    
+    setTimeout(() => messageDiv.classList.add('show'), 100);
+    setTimeout(() => {
+      messageDiv.classList.remove('show');
+      setTimeout(() => messageDiv.remove(), 500);
+    }, 4000);
+  }
+
+  function clearFormValidation(form) {
+    form.querySelectorAll('.form-control-enhanced').forEach(field => {
+      field.classList.remove('is-valid', 'is-invalid');
+      const wrapper = field.parentElement;
+      const icon = wrapper.querySelector('.form-icon');
+      const feedback = wrapper.querySelector('.form-feedback');
+      
+      if (icon) icon.classList.remove('fa-check', 'fa-times', 'valid', 'invalid', 'show');
+      if (feedback) feedback.classList.remove('valid', 'invalid', 'show');
+    });
+  }
+
+  // --- SECUENCIA DE INICIALIZACIÓN ---
+  console.log('🚀 Iniciando aplicación...');
+  
+  try {
     // 1. Cargar Header y Footer
     await includePartials();
+    console.log('✅ Partials cargados');
     
-    // 2. Cargar la estructura de los proyectos (si estamos en la página de inicio)
+    // 2. Cargar proyectos
     if (document.getElementById('projects-grid')) {
         await loadProjects();
+        console.log('✅ Proyectos cargados');
     }
     
-    // 3. Cargar el idioma y traducir todo (incluyendo los parciales y la estructura de proyectos)
+    // 3. Aplicar traducciones
     await setLanguage(currentLang);
+    console.log('✅ Traducciones aplicadas');
     
-    // 4. Activar los listeners para botones y formularios
+    // 4. Activar funcionalidades
     bindLanguageButtons();
     handleContactForm();
+    console.log('✅ Formulario inicializado');
+    
+  } catch (error) {
+    console.error('❌ Error durante la inicialización:', error);
+  }
 });
