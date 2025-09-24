@@ -64,11 +64,9 @@
   "form_message_long": "El mensaje no puede exceder 500 caracteres",
   "form_field_valid": "¡Perfecto!",
   "form_validation_error": "Por favor, corrige los errores en el formulario",
-   // Placeholders
   "form_name_placeholder": "Your full name",
   "form_email_placeholder": "your@email.com",
   "form_message_placeholder": "Tell me about your project or inquiry...",
-  // Validation messages
   "form_required": "This field is required",
   "form_email_invalid": "Please enter a valid email", 
   "form_name_short": "Name must be at least 2 characters",
