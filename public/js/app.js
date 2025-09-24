@@ -383,21 +383,35 @@ document.addEventListener('DOMContentLoaded', async () => {
       this.setLoadingState(true);
       
       try {
-        // Usar la misma lógica que ya tenías pero mejorada
+        // IMPORTANTE: Usar exactamente la misma configuración que Formspree requiere
+        const formData = new FormData(this.form);
+        
         const response = await fetch(this.form.action, {
-          method: this.form.method,
-          body: new FormData(this.form),
-          headers: { 'Accept': 'application/json' }
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
         });
         
+        const result = await response.json();
+        
         if (response.ok) {
+          console.log('Formulario enviado exitosamente:', result);
           this.showSuccess();
           this.resetForm();
         } else {
-          throw new Error('Error al enviar el formulario');
+          console.error('Error de Formspree:', result);
+          // Si Formspree devuelve errores específicos, mostrarlos
+          if (result.errors) {
+            const errorMsg = result.errors.map(err => err.message).join(', ');
+            throw new Error(errorMsg);
+          } else {
+            throw new Error('Error al procesar el formulario');
+          }
         }
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Error completo:', error);
         const dict = translations[currentLang] || {};
         this.showError(dict.form_error_message || 'Hubo un error al enviar el mensaje. Inténtalo nuevamente.');
       } finally {
@@ -475,13 +489,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     const form = document.getElementById('contact-form');
     if (!form) return;
 
+    // Verificar que el formulario tiene la configuración correcta de Formspree
+    console.log('Configuración del formulario:', {
+      action: form.action,
+      method: form.method,
+      hasHiddenFields: form.querySelector('input[name="_subject"]') ? 'Sí' : 'No'
+    });
+
     // Intentar crear el formulario mejorado
     try {
       window.enhancedContactForm = new EnhancedContactForm();
     } catch (error) {
       console.error('Error creating enhanced contact form, falling back to basic:', error);
       
-      // Fallback a la versión básica original
+      // Fallback a la versión básica original (IDÉNTICA a tu versión original)
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const status = document.getElementById('form-status');
@@ -501,10 +522,12 @@ document.addEventListener('DOMContentLoaded', async () => {
           if (response.ok) {
             form.reset();
             if (status) status.innerHTML = dict.form_success_message || "¡Mensaje enviado!";
+            console.log('Formulario enviado exitosamente (fallback)');
           } else {
             if (status) status.innerHTML = dict.form_error_message || "Error al enviar.";
           }
         } catch (error) {
+          console.error('Error en fallback:', error);
           if (status) status.innerHTML = dict.form_error_message || "Error de red.";
         } finally {
           btn.disabled = false;
