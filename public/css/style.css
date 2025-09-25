@@ -589,3 +589,41 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
     right: 12px;
   }
 }
+
+/* Botón con estilo accent para navegación */
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, #17a085 100%);
+  border: 1px solid var(--accent);
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  padding: 12px 24px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(32, 201, 151, 0.3);
+}
+
+.btn-accent:hover {
+  background: linear-gradient(135deg, #17a085 0%, var(--accent) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(32, 201, 151, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.btn-accent:active {
+  transform: translateY(0);
+}
+
+.btn-accent i {
+  transition: transform 0.2s ease;
+}
+
+.btn-accent:hover i {
+  transform: translateX(-3px);
+}
