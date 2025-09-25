@@ -1,24 +1,30 @@
-<!-- views/partials/header.html -->
-<div class="site-header-inner py-3">
-  <div class="container d-flex justify-content-between align-items-center">
-    <!-- Marca / Brand -->
-    <a href="/index.html" class="brand text-decoration-none">Varaya Labs</a>
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
 
-    <!-- Navegación principal -->
-    <nav aria-label="Primary navigation">
-      <ul class="nav-links list-unstyled d-flex align-items-center gap-4 m-0">
-        <li><a class="nav-link text-decoration-none" href="/index.html" data-i18n-key="nav_home">Inicio</a></li>
-        <li><a class="nav-link text-decoration-none" href="/views/about.html" data-i18n-key="nav_about">Sobre mí</a></li>
-        <li><a class="nav-link text-decoration-none" href="/index.html#projects" data-i18n-key="nav_projects">Proyectos</a></li>
-        <li><a class="nav-link text-decoration-none" href="/index.html#blog" data-i18n-key="nav_blog">Blog</a></li>
-        <li><a class="nav-link text-decoration-none" href="/index.html#contacto" data-i18n-key="nav_contact">Contacto</a></li>
-      </ul>
-    </nav>
+      <div class="language-switcher">
+        <button class="btn btn-sm lang-btn" data-lang="es" aria-label="Cambiar a Español">
+          <svg class="flag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><path fill="#ffc400" d="M0 0h3v2H0z"/><path fill="#c60b1e" d="M0 0h3v.5H0zm0 1.5h3V2H0z"/></svg>
+        </button>
+        <button class="btn btn-sm lang-btn" data-lang="en" aria-label="Switch to English">
+          <svg class="flag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"><clipPath id="a"><path d="M0 0v30h60V0z"/></clipPath><clipPath id="b"><path d="M30 15h30v15H30zm-30 0h30v15H0zm30-15h30v15H30zM0 0h30v15H0z"/></clipPath><g clip-path="url(#a)"><path d="M0 0v30h60V0z" fill="#012169"/><path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="M0 0l60 30m0-30L0 30" clip-path="url(#b)" stroke="#c8102e" stroke-width="4"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#c8102e" stroke-width="6"/></g></svg>
+        </button>
+      </div>
 
-    <!-- Selector de idioma (botones redondos que ya estilizas en tu CSS) -->
-    <div class="lang-switch d-flex align-items-center gap-2">
-      <button type="button" class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
-      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link nav-home" href="#hero" data-i18n-key="nav_home">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link nav-about" href="#about" data-i18n-key="nav_about">Sobre mí</a></li>
+          <li class="nav-item"><a class="nav-link nav-projects" href="#projects" data-i18n-key="nav_projects">Proyectos</a></li>
+          <li class="nav-item"><a class="nav-link nav-blog" href="#blog" data-i18n-key="nav_blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link nav-contact" href="#contacto" data-i18n-key="nav_contact">Contacto</a></li>
+        </ul>
+      </div>
+
     </div>
-  </div>
+  </nav>
 </div>
