@@ -66,6 +66,9 @@
   "form_message_short": "El mensaje debe tener al menos 10 caracteres",
   "form_message_long": "El mensaje no puede exceder 500 caracteres",
   "form_field_valid": "¡Perfecto!",
-  "form_validation_error": "Por favor, corrige los errores en el formulario",
-  "form_send": "Enviar"
+  "form_send": "Enviar",
+  "form_status_sending": "Enviando…",
+  "form_status_success": "¡Gracias! Tu mensaje fue enviado correctamente.",
+  "form_status_error": "No pudimos enviar el mensaje. Inténtalo nuevamente en unos minutos.",
+  "form_validation_error": "Revisa los campos obligatorios e inténtalo de nuevo."
 }
