@@ -411,6 +411,65 @@ document.addEventListener('DOMContentLoaded', async () => {
     bindLanguageButtons();
     handleContactForm();
     console.log('✅ Formulario inicializado');
+
+    // NAVEGACIÓN INTELIGENTE ENTRE PÁGINAS
+function setupSmartNavigation() {
+  // Detectar en qué página estamos
+  const currentPath = window.location.pathname;
+  const isHomePage = currentPath === '/' || currentPath.endsWith('index.html') || currentPath === '';
+  const isAboutPage = currentPath.includes('about.html');
+  const isBlogPage = currentPath.includes('/blog/');
+  
+  // Esperar a que se cargue el header
+  setTimeout(() => {
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+      const originalHref = link.getAttribute('href');
+      
+      // Ajustar rutas según la página actual
+      if (isHomePage) {
+        // En la página principal, mantener las rutas con #
+        if (originalHref === '#about') {
+          link.setAttribute('href', './views/about.html');
+        }
+      } else if (isAboutPage) {
+        // En about.html
+        if (originalHref === '#hero') {
+          link.setAttribute('href', '../index.html#hero');
+        } else if (originalHref === '#projects') {
+          link.setAttribute('href', '../index.html#projects');
+        } else if (originalHref === '#blog') {
+          link.setAttribute('href', '../index.html#blog');
+        } else if (originalHref === '#contacto') {
+          link.setAttribute('href', '../index.html#contacto');
+        } else if (originalHref === '#about') {
+          link.setAttribute('href', '#about'); // Se queda en la misma página
+        }
+      } else if (isBlogPage) {
+        // En páginas de blog
+        if (originalHref === '#hero') {
+          link.setAttribute('href', '../../index.html#hero');
+        } else if (originalHref === '#projects') {
+          link.setAttribute('href', '../../index.html#projects');
+        } else if (originalHref === '#blog') {
+          link.setAttribute('href', '../../index.html#blog');
+        } else if (originalHref === '#contacto') {
+          link.setAttribute('href', '../../index.html#contacto');
+        } else if (originalHref === '#about') {
+          link.setAttribute('href', '../about.html');
+        }
+      }
+    });
+  }, 500); // Esperar a que se cargue el header
+}
+
+// Ejecutar después de que todo esté listo
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    setupSmartNavigation();
+  }, 1000); // Dar tiempo para que se carguen los partials
+});
     
   } catch (error) {
     console.error('❌ Error durante la inicialización:', error);
