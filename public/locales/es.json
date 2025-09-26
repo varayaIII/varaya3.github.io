@@ -32,7 +32,7 @@
   "about_p3": "Esta pregunta me llevó a profundizar en los principios de la Infraestructura como Código (IaC), la entrega continua (CI/CD) y la observabilidad. Entiendo la tecnología no como un fin en sí misma, sino como un medio para alcanzar objetivos de negocio cruciales: agilidad, estabilidad y confianza.",
   "about_subtitle2": "Cultura de Mejora Continua",
   "about_p4": "Adopto una mentalidad de mejora iterativa en todo lo que hago. Creo firmemente que la automatización es la clave para liberar el potencial humano, permitiendo que los equipos se centren en la innovación en lugar de en la gestión de crisis. Para mí, un pipeline de CI/CD bien diseñado o un script de Terraform idempotente son más que simples herramientas; son la materialización de una cultura que valora la consistencia, la previsibilidad y la colaboración.",
-  "about_back_button": "← Ir al inicio",
+  "about_back_button": "Ir al inicio",
   "blog_fundamentos_title": "Fundamentos",
   "blog_fundamentos_excerpt": "Explorando los conceptos esenciales...",
   "blog_automatizacion_title": "Automatización",
