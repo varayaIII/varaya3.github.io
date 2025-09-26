@@ -43,7 +43,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           } else {
             el.innerHTML = text;
           }
-        } else if (el.querySelector('i')) {
+        } else if (el.tagName === 'SPAN' && el.closest('.btn-send')) {
+          // ARREGLO ESPECÍFICO: Traducir spans dentro de botones de envío
+          el.textContent = text;
+        } else if (el.classList.contains('btn-send') || el.querySelector('i')) {
           // Si el elemento tiene iconos (como botones o enlaces), preservarlos
           const icons = Array.from(el.querySelectorAll('i')).map(icon => icon.outerHTML);
           const textWithoutIcons = text;
@@ -51,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           // Detectar si los iconos van antes o después del texto
           const originalHTML = el.innerHTML;
           const hasIconsAtStart = originalHTML.trim().startsWith('<i');
-          const hasIconsAtEnd = originalHTML.trim().endsWith('</i>');
+          const hasIconsAtEnd = originalHTML.trim().endsWith('</i>') || originalHTML.includes('</i>');
           
           if (hasIconsAtStart && icons.length > 0) {
             el.innerHTML = icons[0] + ' ' + textWithoutIcons;
@@ -174,7 +177,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       
       // Validar antes de enviar
       if (!validateAllFields(form)) {
-        showFormMessage('Por favor, corrige los errores en el formulario', 'error');
+        // ARREGLO: Usar mensaje traducido para error de validación
+        const errorMsg = dict.form_validation_error || 'Por favor, corrige los errores en el formulario';
+        showFormMessage(errorMsg, 'error');
         return;
       }
       
@@ -195,16 +200,16 @@ document.addEventListener('DOMContentLoaded', async () => {
           form.reset();
           clearFormValidation(form);
           if (status) status.innerHTML = dict.form_success_message || "¡Mensaje enviado!";
-          showFormMessage(dict.form_success_message || '¡Mensaje enviado exitosamente!', 'success');
+          showFormMessage(dict.form_status_success || '¡Mensaje enviado exitosamente!', 'success');
         } else {
           console.error('❌ Error del servidor:', response.status);
           if (status) status.innerHTML = dict.form_error_message || "Error al enviar.";
-          showFormMessage(dict.form_error_message || 'Error al enviar el mensaje', 'error');
+          showFormMessage(dict.form_status_error || 'Error al enviar el mensaje', 'error');
         }
       } catch (error) {
         console.error('❌ Error de red:', error);
         if (status) status.innerHTML = dict.form_error_message || "Error de red.";
-        showFormMessage(dict.form_error_message || 'Error de conexión', 'error');
+        showFormMessage(dict.form_status_error || 'Error de conexión', 'error');
       } finally {
         setButtonLoading(btn, false);
       }
@@ -266,8 +271,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     const iconClass = iconMap[field.name] || 'fas fa-edit';
     const icon = document.createElement('i');
     icon.className = iconClass;
-    label.insertBefore(icon, label.firstChild);
-    label.insertBefore(document.createTextNode(' '), icon.nextSibling);
+    
+    // ARREGLO: Insertar correctamente sin romper traducciones
+    const textContent = label.textContent.trim();
+    label.innerHTML = '';
+    label.appendChild(icon);
+    label.appendChild(document.createTextNode(' ' + textContent));
+    
+    // Mantener el atributo de traducción
+    if (label.hasAttribute('data-i18n-key')) {
+      // El applyTranslations se encargará de mantener el icono
+    }
   }
 
   function addFieldValidation(field) {
@@ -284,7 +298,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let isValid = true;
     let message = '';
     
-    // Obtener mensajes traducidos
+    // ARREGLO: Obtener mensajes traducidos correctamente
     const dict = translations[currentLang] || {};
     
     if (field.required && !value) {
@@ -356,16 +370,34 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function enhanceSubmitButton(btn) {
-    const originalText = btn.textContent;
-    btn.innerHTML = `
-      <span class="btn-text">
-        <i class="fas fa-paper-plane"></i>
-        ${originalText}
-      </span>
-      <div class="btn-spinner">
-        <div class="spinner"></div>
-      </div>
-    `;
+    // ARREGLO CRÍTICO: Preservar la estructura de traducción del botón
+    const existingSpan = btn.querySelector('span[data-i18n-key]');
+    const existingIcon = btn.querySelector('i');
+    
+    if (existingSpan && existingIcon) {
+      // El botón ya tiene la estructura correcta con span traducible
+      // Solo agregamos el spinner
+      const spinner = document.createElement('div');
+      spinner.className = 'btn-spinner';
+      spinner.innerHTML = '<div class="spinner"></div>';
+      btn.appendChild(spinner);
+      
+      // Envolver el contenido existente en btn-text si no está ya
+      if (!btn.querySelector('.btn-text')) {
+        const btnText = document.createElement('span');
+        btnText.className = 'btn-text';
+        btnText.appendChild(existingIcon.cloneNode(true));
+        btnText.appendChild(document.createTextNode(' '));
+        btnText.appendChild(existingSpan.cloneNode(true));
+        
+        // Limpiar y reorganizar
+        btn.innerHTML = '';
+        btn.appendChild(btnText);
+        btn.appendChild(spinner);
+      }
+    } else {
+      console.warn('Botón no tiene la estructura esperada para traducción');
+    }
   }
 
   function setButtonLoading(btn, loading) {
