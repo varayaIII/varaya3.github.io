@@ -9,7 +9,7 @@
     "icon": "fas fa-diagram-project",
     "titulo": "Pipeline CI/CD + GitOps",
     "descripcion": "Integración/entrega continua y despliegue declarativo con ArgoCD.",
-    "github": "https://github.com/varayaIII"
+    "github": "https://github.com/varayaIII/pipeline-cicd-gitops"
   },
   {
     "icon": "fas fa-cubes",
