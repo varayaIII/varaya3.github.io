@@ -490,34 +490,48 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 300); // Tiempo suficiente para que se cargue el header
   }
 
-  // --- SECUENCIA DE INICIALIZACIÓN ---
+    // --- SECUENCIA DE INICIALIZACIÓN ---
   console.log('🚀 Iniciando aplicación...');
   
   try {
     // 1. Cargar Header y Footer
     await includePartials();
     console.log('✅ Partials cargados');
-    
-    // 2. Cargar proyectos
+  
+    // 2. Esperar brevemente para asegurar inserción en DOM
+    await new Promise(r => setTimeout(r, 150));
+  
+    // 3. Cargar proyectos si existe el grid
     if (document.getElementById('projects-grid')) {
-        await loadProjects();
-        console.log('✅ Proyectos cargados');
+      await loadProjects();
+      console.log('✅ Proyectos cargados');
     }
-    
-    // 3. Aplicar traducciones
+  
+    // 4. Aplicar traducciones
     await setLanguage(currentLang);
     console.log('✅ Traducciones aplicadas');
-    
-    // 4. Configurar navegación inteligente
+  
+    // 5. Configurar navegación inteligente (una sola vez)
     setupSmartNavigation();
     console.log('✅ Navegación configurada');
-    
-    // 5. Activar funcionalidades
+  
+    // 6. Activar funcionalidades
     bindLanguageButtons();
     handleContactForm();
     console.log('✅ Formulario inicializado');
-    
+  
+    // 7. 🔥 Ocultar loader tras carga exitosa
+    document.body.classList.add('loaded');
+    console.log('✨ Página lista');
+  
   } catch (error) {
     console.error('❌ Error durante la inicialización:', error);
+    // Siempre quitar loader para evitar bloqueo visual
+    document.body.classList.add('loaded');
+  
+    // Mostrar un mensaje visual opcional
+    const fallback = document.createElement('div');
+    fallback.style.cssText = "color:white;text-align:center;margin-top:50px;font-size:1.2rem;";
+    fallback.textContent = "⚠️ Error al cargar el sitio. Intenta recargar la página.";
+    document.body.appendChild(fallback);
   }
-});
