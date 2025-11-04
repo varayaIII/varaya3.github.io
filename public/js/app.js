@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   // ================================
   // FUNCIONES DE TRADUCCIÓN
   // ================================
-  async function fetchTranslations(lang) {
+    async function fetchTranslations(lang) {
     if (translations[lang]) return translations[lang];
     try {
-      const response = await fetch(`${basePath}public/locales/${lang}.json`);
+      const response = await fetch(`/public/locales/${lang}.json`);
       if (!response.ok) throw new Error(`Cannot fetch ${lang}.json`);
       translations[lang] = await response.json();
       return translations[lang];
@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       return {};
     }
   }
+  
 
   function applyTranslations(dict, root = document) {
     root.querySelectorAll('[data-i18n-key]').forEach(el => {
