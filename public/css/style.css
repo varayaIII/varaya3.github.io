@@ -776,3 +776,24 @@ section[id]{ scroll-margin-top: calc(var(--nav-h) + 12px); }
 .btn-accent:hover i {
   transform: translateX(-3px);
 }
+
+/* Mensaje de error en formulario */
+.error-message {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 1rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.error-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
