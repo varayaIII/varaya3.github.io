@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /public/js/
+Disallow: /public/css/
+
+# Sitemap
+Sitemap: https://www.victor-araya.xyz/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
