@@ -208,6 +208,11 @@ async function loadPartials() {
         const html = await response.text();
         partial.innerHTML = html;
         console.log(`✅ Partial cargado: ${url}`);
+        
+        // Después de cargar el header, ajustar rutas según la página actual
+        if (url.includes('header')) {
+          adjustHeaderPaths();
+        }
       } else {
         console.error(`❌ Error cargando partial: ${url}`);
       }
@@ -215,6 +220,53 @@ async function loadPartials() {
       console.error(`❌ Error al cargar ${url}:`, error);
     }
   }
+}
+
+// ============================================================================
+// 2.1 AJUSTAR RUTAS DEL HEADER SEGÚN LA UBICACIÓN
+// ============================================================================
+
+function adjustHeaderPaths() {
+  const currentPath = window.location.pathname;
+  let basePath = '';
+  
+  // Detectar nivel de profundidad
+  if (currentPath.includes('/views/blog/')) {
+    basePath = '../../';
+  } else if (currentPath.includes('/views/')) {
+    basePath = '../';
+  } else {
+    basePath = './';
+  }
+  
+  // Ajustar logo
+  const brandLogo = document.getElementById('brand-logo');
+  const brandLink = document.getElementById('brand-link');
+  if (brandLogo) {
+    brandLogo.src = `${basePath}public/assets/icono.png`;
+  }
+  if (brandLink) {
+    // Si estamos en home, href="#hero", si no, href a la raíz
+    if (basePath === './') {
+      brandLink.href = '#hero';
+    } else {
+      brandLink.href = basePath.slice(0, -1); // Quitar el último /
+    }
+  }
+  
+  // Ajustar link de "Sobre mí"
+  const aboutLinks = document.querySelectorAll('a[href*="about.html"]');
+  aboutLinks.forEach(link => {
+    if (currentPath.includes('/views/blog/')) {
+      link.href = '../about.html';
+    } else if (currentPath.includes('/views/about')) {
+      link.href = './about.html';
+    } else {
+      link.href = './views/about.html';
+    }
+  });
+  
+  console.log(`✅ Rutas ajustadas para: ${currentPath} (basePath: ${basePath})`);
 }
 
 // ============================================================================
@@ -235,8 +287,8 @@ async function loadProjects() {
           <div class="project-icon">
             <i class="${project.icon}" aria-hidden="true"></i>
           </div>
-          <h3 class="project-title">${currentLang === 'es' ? project.titulo : project.titulo}</h3>
-          <p class="project-description">${currentLang === 'es' ? project.descripcion : project.descripcion}</p>
+          <h3 class="project-title">${typeof project.titulo === 'object' ? project.titulo[currentLang] : project.titulo}</h3>
+          <p class="project-description">${typeof project.descripcion === 'object' ? project.descripcion[currentLang] : project.descripcion}</p>
           <a href="${project.github}" 
              class="btn btn-outline-primary btn-sm" 
              target="_blank" 
