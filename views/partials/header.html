@@ -2,7 +2,14 @@
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
 
-      <div class="language-switcher">
+      <!-- Logo (funciona como "Home") -->
+      <a class="navbar-brand" href="/">
+        <img src="./public/assets/icono.png" alt="Logo" style="height: 40px; width: 40px; border-radius: 50%; margin-right: 10px;">
+        <span>Víctor Araya</span>
+      </a>
+
+      <!-- Selector de idioma (visible siempre) -->
+      <div class="language-switcher d-lg-none">
         <button class="btn btn-sm lang-btn" data-lang="es" aria-label="Cambiar a Español">
           <svg class="flag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><path fill="#ffc400" d="M0 0h3v2H0z"/><path fill="#c60b1e" d="M0 0h3v.5H0zm0 1.5h3V2H0z"/></svg>
         </button>
@@ -11,17 +18,32 @@
         </button>
       </div>
 
+      <!-- Toggle para móvil -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
         <span class="navbar-toggler-icon"></span>
       </button>
 
+      <!-- Menú colapsable -->
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link nav-home" href="#hero" data-i18n-key="nav_home">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link nav-about" href="#about" data-i18n-key="nav_about">Sobre mí</a></li>
-          <li class="nav-item"><a class="nav-link nav-projects" href="#projects" data-i18n-key="nav_projects">Proyectos</a></li>
-          <li class="nav-item"><a class="nav-link nav-blog" href="#blog" data-i18n-key="nav_blog">Blog</a></li>
-          <li class="nav-item"><a class="nav-link nav-contact" href="#contacto" data-i18n-key="nav_contact">Contacto</a></li>
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item">
+            <a class="nav-link" href="./views/about.html" data-i18n-key="nav_about">Sobre mí</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#blog" data-i18n-key="nav_blog">Blog</a>
+          </li>
+          
+          <!-- Selector de idioma (desktop) -->
+          <li class="nav-item d-none d-lg-block">
+            <div class="language-switcher">
+              <button class="btn btn-sm lang-btn" data-lang="es" aria-label="Cambiar a Español">
+                <svg class="flag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><path fill="#ffc400" d="M0 0h3v2H0z"/><path fill="#c60b1e" d="M0 0h3v.5H0zm0 1.5h3V2H0z"/></svg>
+              </button>
+              <button class="btn btn-sm lang-btn" data-lang="en" aria-label="Switch to English">
+                <svg class="flag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"><clipPath id="a"><path d="M0 0v30h60V0z"/></clipPath><clipPath id="b"><path d="M30 15h30v15H30zm-30 0h30v15H0zm30-15h30v15H30zM0 0h30v15H0z"/></clipPath><g clip-path="url(#a)"><path d="M0 0v30h60V0z" fill="#012169"/><path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="M0 0l60 30m0-30L0 30" clip-path="url(#b)" stroke="#c8102e" stroke-width="4"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#c8102e" stroke-width="6"/></g></svg>
+              </button>
+            </div>
+          </li>
         </ul>
       </div>
 
