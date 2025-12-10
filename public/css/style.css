@@ -1289,3 +1289,200 @@ a:hover, button:hover, .btn:hover {
 .navbar-nav .language-switcher {
   margin-left: 1rem;
 }
+
+/* ============================================================================
+   FOOTER MEJORADO - Agregar a style.css
+   ============================================================================ */
+
+footer {
+  background: rgba(15, 12, 41, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem 0 2rem;
+  margin-top: 5rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+/* Links del footer */
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover {
+  color: var(--primary-color);
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+.footer-divider {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.8rem;
+}
+
+/* Redes sociales */
+.social-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.social::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.social:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.social:hover {
+  transform: translateY(-5px);
+  color: white;
+  border-color: currentColor;
+}
+
+.social i {
+  position: relative;
+  z-index: 1;
+}
+
+.social-github:hover {
+  background: #333;
+  border-color: #333;
+  box-shadow: 0 5px 20px rgba(51, 51, 51, 0.4);
+}
+
+.social-x:hover {
+  background: #000;
+  border-color: #000;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.social-linkedin:hover {
+  background: #0077b5;
+  border-color: #0077b5;
+  box-shadow: 0 5px 20px rgba(0, 119, 181, 0.4);
+}
+
+/* Copyright */
+.copyright {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer-brand-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-brand-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--secondary-color);
+  transition: width 0.3s ease;
+}
+
+.footer-brand-link:hover {
+  color: var(--secondary-color);
+}
+
+.footer-brand-link:hover::after {
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  footer {
+    padding: 2rem 0 1.5rem;
+  }
+  
+  .footer-content {
+    gap: 1.5rem;
+  }
+  
+  .footer-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .footer-divider {
+    display: none;
+  }
+  
+  .social-links {
+    gap: 0.75rem;
+  }
+  
+  .social {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
