@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
- <!-- Structured Data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -29,17 +28,19 @@
   ],
   "description": "Ingeniero DevOps especializado en automatización, infraestructura como código y sistemas escalables"
 }
-</script> 
+</script>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/png" href="./public/assets/icono.png">
-  <title data-i18n-key="hero_title">Víctor Araya</title>
+  <title data-i18n-key="hero_title">Víctor Araya - Ingeniero DevOps</title>
+  
   <!-- SEO Meta Tags -->
   <meta name="keywords" content="DevOps, SRE, Kubernetes, Docker, CI/CD, Infrastructure as Code, Victor Araya, Varaya Labs">
   <meta name="author" content="Victor Araya">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0f0c29">
+  <meta name="description" content="Portafolio y blog de Victor Araya (Varaya Labs). SRE/DevOps: IaC, CI/CD, Kubernetes, observabilidad." />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -70,7 +71,8 @@
   <link rel="preload" href="./public/css/style.css" as="style">
   <link rel="preload" href="./public/js/app.js" as="script">
   <link rel="preload" href="./public/assets/icono.png" as="image">
-  <meta name="description" content="Portafolio y blog de Victor Araya (Varaya Labs). SRE/DevOps: IaC, CI/CD, Kubernetes, observabilidad." />
+  
+  <!-- CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,7 +81,18 @@
   <link href="./public/css/style.css" rel="stylesheet">
 </head>
 <body>
+  <!-- Pantalla de carga - DEBE ESTAR PRIMERO -->
+  <div id="page-loader" class="page-loader">
+    <div class="loader-content">
+      <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+      <p class="mt-3 text-light">Cargando portafolio...</p>
+    </div>
+  </div>
+  
   <div id="page-bg" aria-hidden="true"></div>
+  
   <header id="site-header" data-include="./views/partials/header.html"></header>
 
   <section class="hero" id="hero">
@@ -96,13 +109,13 @@
   </section>
 
   <section class="section" id="projects" aria-labelledby="projects-heading">
-  <div class="container">
-    <h2 id="projects-heading" class="section-title" data-i18n-key="projects_title">Proyectos Destacados</h2>
-    <div class="projects-grid" id="projects-grid" role="list">
-      <!-- Los proyectos se cargarán dinámicamente -->
+    <div class="container">
+      <h2 id="projects-heading" class="section-title" data-i18n-key="projects_title">Proyectos Destacados</h2>
+      <div class="projects-grid" id="projects-grid" role="list">
+        <!-- Los proyectos se cargarán dinámicamente desde projects.json -->
+      </div>
     </div>
-  </div>
- </section>
+  </section>
 
   <section class="section" id="blog">
     <div class="container">
@@ -111,33 +124,42 @@
         <article class="blog-card">
           <div class="blog-header">
             <div class="blog-date">15 de enero, 2025</div>
-            <h3 class="blog-title" data-i18n-key="blog_fundamentos_title">Fundamentos</h3>
+            <h3 class="blog-title" data-i18n-key="blog_fundamentos_title">Fundamentos DevOps</h3>
           </div>
           <div class="blog-content">
-            <p class="blog-excerpt" data-i18n-key="blog_fundamentos_excerpt">Explorando los conceptos esenciales...</p>
-            <a href="./views/blog/fundamentos.html" class="blog-link" data-i18n-key="blog_read_more">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <p class="blog-excerpt" data-i18n-key="blog_fundamentos_excerpt">Explorando los conceptos esenciales de DevOps y cómo implementarlos en tu organización.</p>
+            <a href="./views/blog/fundamentos.html" class="blog-link">
+              <span data-i18n-key="blog_read_more">Leer más</span>
+              <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
           </div>
         </article>
 
         <article class="blog-card">
           <div class="blog-header">
             <div class="blog-date">10 de enero, 2025</div>
-            <h3 class="blog-title" data-i18n-key="blog_automatizacion_title">Automatización</h3>
+            <h3 class="blog-title" data-i18n-key="blog_automatizacion_title">Automatización de Infraestructura</h3>
           </div>
           <div class="blog-content">
-            <p class="blog-excerpt" data-i18n-key="blog_automatizacion_excerpt">Cómo implementar infraestructura como código...</p>
-            <a href="./views/blog/automatizacion.html" class="blog-link" data-i18n-key="blog_read_more">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <p class="blog-excerpt" data-i18n-key="blog_automatizacion_excerpt">Cómo implementar infraestructura como código de manera efectiva con Terraform y Ansible.</p>
+            <a href="./views/blog/automatizacion.html" class="blog-link">
+              <span data-i18n-key="blog_read_more">Leer más</span>
+              <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
           </div>
         </article>
 
         <article class="blog-card">
           <div class="blog-header">
             <div class="blog-date">5 de enero, 2025</div>
-            <h3 class="blog-title" data-i18n-key="blog_monitoreo_title">Monitoreo</h3>
+            <h3 class="blog-title" data-i18n-key="blog_monitoreo_title">Monitoreo Accionable</h3>
           </div>
           <div class="blog-content">
-            <p class="blog-excerpt" data-i18n-key="blog_monitoreo_excerpt">Configuración avanzada de Prometheus...</p>
-            <a href="./views/blog/monitoreo.html" class="blog-link" data-i18n-key="blog_read_more">Leer más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <p class="blog-excerpt" data-i18n-key="blog_monitoreo_excerpt">Configuración avanzada de Prometheus y Grafana para observabilidad en producción.</p>
+            <a href="./views/blog/monitoreo.html" class="blog-link">
+              <span data-i18n-key="blog_read_more">Leer más</span>
+              <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
           </div>
         </article>
       </div>
@@ -203,8 +225,6 @@
                 <i class="fas fa-paper-plane" aria-hidden="true"></i>
                 <span data-i18n-key="form_send">Enviar</span>
               </button>
-
-
             </div>
           </div>
         </form>
@@ -214,17 +234,8 @@
 
   <footer id="site-footer" data-include="./views/partials/footer.html"></footer>
   
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="./public/js/app.js" defer></script>
-<!-- Loading Indicator -->
-<div id="page-loader" class="page-loader">
-  <div class="loader-content">
-    <div class="spinner-border text-light" role="status">
-      <span class="visually-hidden">Cargando...</span>
-    </div>
-    <p class="mt-3 text-light">Cargando portafolio...</p>
-  </div>
-</div>   
 </body>
-
 </html>
