@@ -108,7 +108,9 @@ const translations = {
     form_send: "Send",
     
     // Footer
-    footer_copyright: "All rights reserved.",
+    footer_home: "Home",
+    footer_copyright_pre: "© ",
+    footer_copyright: ". All rights reserved.",
     
     // About
     about_page_title: "About Me - Víctor Araya",
