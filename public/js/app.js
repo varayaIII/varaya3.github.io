@@ -43,7 +43,9 @@ const translations = {
     form_send: "Enviar",
     
     // Footer
-    footer_copyright: "Todos los derechos reservados.",
+    footer_home: "Inicio",
+    footer_copyright_pre: "© ",
+    footer_copyright: ". Todos los derechos reservados.",
     
     // About
     about_page_title: "Sobre Mí - Víctor Araya",
