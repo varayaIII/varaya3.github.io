@@ -1218,3 +1218,74 @@ a:hover, button:hover, .btn:hover {
     background-position: -200% 0;
   }
 }
+
+/* ============================================================================
+   LOGO EN NAVBAR - Agregar a tu style.css
+   ============================================================================ */
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-color) !important;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.navbar-brand:hover {
+  transform: translateX(5px);
+  color: var(--secondary-color) !important;
+}
+
+.navbar-brand img {
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+  transform: rotate(360deg);
+}
+
+.navbar-brand span {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Ajustes para móvil */
+@media (max-width: 991px) {
+  .navbar-brand {
+    font-size: 1.1rem;
+  }
+  
+  .navbar-brand img {
+    height: 35px !important;
+    width: 35px !important;
+    margin-right: 8px !important;
+  }
+  
+  /* Selector de idioma en móvil - posición fija */
+  .language-switcher.d-lg-none {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+/* Mejorar el espaciado del menú */
+.navbar-nav {
+  gap: 1.5rem;
+}
+
+.navbar-nav .nav-item {
+  margin: 0;
+}
+
+/* Selector de idioma en el nav */
+.navbar-nav .language-switcher {
+  margin-left: 1rem;
+}
