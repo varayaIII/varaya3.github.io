@@ -772,3 +772,449 @@ footer {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, var(--secondary-color), var(--primary-color));
 }
+
+/* ============================================================================
+   MEJORAS VISUALES AVANZADAS
+   Agrega esto AL FINAL de tu style.css
+   ============================================================================ */
+
+/* ============================================================================
+   1. EFECTO PARALLAX EN EL FONDO
+   ============================================================================ */
+
+#page-bg::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.1) 0%, transparent 25%),
+    radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.1) 0%, transparent 25%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+  animation: parallaxMove 20s ease-in-out infinite;
+}
+
+@keyframes parallaxMove {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(5%, 5%) rotate(120deg);
+  }
+  66% {
+    transform: translate(-5%, 5%) rotate(240deg);
+  }
+}
+
+/* ============================================================================
+   2. MEJORAS EN LAS TARJETAS DE BLOG
+   ============================================================================ */
+
+.blog-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover::before {
+  transform: scaleX(1);
+}
+
+.blog-card .blog-date {
+  display: inline-block;
+  background: rgba(102, 126, 234, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* ============================================================================
+   3. MEJORAS EN TARJETAS DE PROYECTOS
+   ============================================================================ */
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+  animation: rotateGlow 3s linear infinite;
+}
+
+@keyframes rotateGlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================================
+   4. CTA EN EL HERO
+   ============================================================================ */
+
+.hero-cta {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease 0.8s both;
+}
+
+.hero-cta .btn {
+  padding: 0.875rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.hero-cta .btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border: none;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.hero-cta .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.hero-cta .btn-outline-light {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.hero-cta .btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+/* ============================================================================
+   5. ICONOS DECORATIVOS EN TÍTULOS DE SECCIONES
+   ============================================================================ */
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.section-title::before,
+.section-title::after {
+  content: '';
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-color));
+}
+
+.section-title::after {
+  background: linear-gradient(90deg, var(--primary-color), transparent);
+}
+
+/* ============================================================================
+   6. EFECTO GLASSMORPHISM MEJORADO
+   ============================================================================ */
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.37),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.project-card,
+.blog-card,
+#contact-form {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 
+    0 8px 32px 0 rgba(31, 38, 135, 0.37),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================================
+   7. SEPARADORES VISUALES ENTRE SECCIONES
+   ============================================================================ */
+
+.section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.5), transparent);
+}
+
+.section:last-of-type::after {
+  display: none;
+}
+
+/* ============================================================================
+   8. MEJORAS EN HOVER DE LINKS
+   ============================================================================ */
+
+.blog-link,
+a:not(.btn):not(.nav-link):not(.social) {
+  position: relative;
+}
+
+.blog-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transition: width 0.3s ease;
+}
+
+.blog-link:hover::after {
+  width: 100%;
+}
+
+/* ============================================================================
+   9. PARTÍCULAS FLOTANTES (OPCIONAL - PUEDE SER PESADO)
+   ============================================================================ */
+
+.floating-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: float 15s infinite ease-in-out;
+}
+
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+.particle:nth-child(3) { left: 30%; animation-delay: 4s; }
+.particle:nth-child(4) { left: 40%; animation-delay: 6s; }
+.particle:nth-child(5) { left: 50%; animation-delay: 8s; }
+.particle:nth-child(6) { left: 60%; animation-delay: 10s; }
+.particle:nth-child(7) { left: 70%; animation-delay: 12s; }
+.particle:nth-child(8) { left: 80%; animation-delay: 14s; }
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-100vh) translateX(50px);
+  }
+}
+
+/* ============================================================================
+   10. SOMBRAS Y PROFUNDIDAD MEJORADAS
+   ============================================================================ */
+
+.project-card,
+.blog-card {
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.project-card:hover,
+.blog-card:hover {
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 10px 20px rgba(102, 126, 234, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================================
+   11. BADGE DE "NUEVO" PARA POSTS RECIENTES
+   ============================================================================ */
+
+.blog-card:first-child .blog-header::before {
+  content: 'NUEVO';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4);
+  animation: pulse-badge 2s infinite;
+}
+
+.blog-card:first-child .blog-header {
+  position: relative;
+}
+
+@keyframes pulse-badge {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* ============================================================================
+   12. SKILLS PILLS (OPCIONAL - PARA AGREGAR TECNOLOGÍAS)
+   ============================================================================ */
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tech-pill {
+  padding: 0.4rem 1rem;
+  background: rgba(102, 126, 234, 0.2);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+.tech-pill:hover {
+  background: rgba(102, 126, 234, 0.3);
+  border-color: rgba(102, 126, 234, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ============================================================================
+   13. RESPONSIVE MEJORADO PARA MÓVILES
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .hero-cta {
+    flex-direction: column;
+  }
+  
+  .hero-cta .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .section-title::before,
+  .section-title::after {
+    width: 20px;
+  }
+  
+  #page-bg::after {
+    animation-duration: 30s;
+  }
+}
+
+/* ============================================================================
+   14. MODO OSCURO MEJORADO PARA INPUTS
+   ============================================================================ */
+
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(102, 126, 234, 0.2) inset;
+  box-shadow: 0 0 0px 1000px rgba(102, 126, 234, 0.2) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ============================================================================
+   15. CURSOR PERSONALIZADO (OPCIONAL)
+   ============================================================================ */
+
+body {
+  cursor: default;
+}
+
+a, button, .btn, .lang-btn {
+  cursor: pointer;
+}
+
+a:hover, button:hover, .btn:hover {
+  cursor: pointer;
+}
+
+/* ============================================================================
+   16. LOADING SKELETON PARA PROYECTOS
+   ============================================================================ */
+
+.project-card.loading {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
