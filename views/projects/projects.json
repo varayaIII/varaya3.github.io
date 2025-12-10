@@ -1,44 +1,86 @@
 [
   {
-  "icon": "fas fa-layer-group",
-  "titulo": "IaC modular con Terraform",
-  "descripcion": "Módulos Terraform reutilizables y bases de infraestructura versionadas.",
-  "github": "https://github.com/varayaIII/terraform-nginx-module"
+    "icon": "fas fa-layer-group",
+    "titulo": {
+      "es": "IaC modular con Terraform",
+      "en": "Modular IaC with Terraform"
+    },
+    "descripcion": {
+      "es": "Módulos Terraform reutilizables y bases de infraestructura versionadas.",
+      "en": "Reusable Terraform modules and versioned infrastructure foundations."
+    },
+    "github": "https://github.com/varayaIII/terraform-nginx-module"
   },
   {
     "icon": "fas fa-diagram-project",
-    "titulo": "Pipeline CI/CD + GitOps",
-    "descripcion": "Integración/entrega continua y despliegue declarativo con ArgoCD.",
+    "titulo": {
+      "es": "Pipeline CI/CD + GitOps",
+      "en": "CI/CD Pipeline + GitOps"
+    },
+    "descripcion": {
+      "es": "Integración/entrega continua y despliegue declarativo con ArgoCD.",
+      "en": "Continuous integration/delivery and declarative deployment with ArgoCD."
+    },
     "github": "https://github.com/varayaIII/pipeline-cicd-gitops"
   },
   {
     "icon": "fas fa-cubes",
-    "titulo": "Kubernetes Avanzado",
-    "descripcion": "Helm, RBAC, PodSecurity y NetworkPolicy para endurecer el clúster.",
+    "titulo": {
+      "es": "Kubernetes Avanzado",
+      "en": "Advanced Kubernetes"
+    },
+    "descripcion": {
+      "es": "Helm, RBAC, PodSecurity y NetworkPolicy para endurecer el clúster.",
+      "en": "Helm, RBAC, PodSecurity and NetworkPolicy for cluster hardening."
+    },
     "github": "https://github.com/varayaIII"
   },
   {
     "icon": "fas fa-shield-halved",
-    "titulo": "DevSecOps en Kubernetes",
-    "descripcion": "Trivy/Snyk/Checkov y gestión de secretos con Vault.",
+    "titulo": {
+      "es": "DevSecOps en Kubernetes",
+      "en": "DevSecOps on Kubernetes"
+    },
+    "descripcion": {
+      "es": "Trivy/Snyk/Checkov y gestión de secretos con Vault.",
+      "en": "Trivy/Snyk/Checkov and secrets management with Vault."
+    },
     "github": "https://github.com/varayaIII"
   },
   {
     "icon": "fas fa-chart-line",
-    "titulo": "Observabilidad 360°",
-    "descripcion": "Prometheus, Grafana y OpenTelemetry para métricas, trazas y logs.",
+    "titulo": {
+      "es": "Observabilidad 360°",
+      "en": "360° Observability"
+    },
+    "descripcion": {
+      "es": "Prometheus, Grafana y OpenTelemetry para métricas, trazas y logs.",
+      "en": "Prometheus, Grafana and OpenTelemetry for metrics, traces and logs."
+    },
     "github": "https://github.com/varayaIII"
   },
   {
     "icon": "fas fa-robot",
-    "titulo": "AIOps & Auto-remediación",
-    "descripcion": "Alertmanager + webhook en Python ejecutando runbooks (restart/scale).",
+    "titulo": {
+      "es": "AIOps & Auto-remediación",
+      "en": "AIOps & Auto-remediation"
+    },
+    "descripcion": {
+      "es": "Alertmanager + webhook en Python ejecutando runbooks (restart/scale).",
+      "en": "Alertmanager + Python webhook executing runbooks (restart/scale)."
+    },
     "github": "https://github.com/varayaIII"
   },
   {
     "icon": "fas fa-coins",
-    "titulo": "FinOps con OpenCost",
-    "descripcion": "Visibilidad de costos por namespace/workload con OpenCost + Prometheus; dashboards y alertas de gasto.",
+    "titulo": {
+      "es": "FinOps con OpenCost",
+      "en": "FinOps with OpenCost"
+    },
+    "descripcion": {
+      "es": "Visibilidad de costos por namespace/workload con OpenCost + Prometheus; dashboards y alertas de gasto.",
+      "en": "Cost visibility per namespace/workload with OpenCost + Prometheus; spending dashboards and alerts."
+    },
     "github": "https://github.com/varayaIII"
   }
 ]
