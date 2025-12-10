@@ -78,6 +78,8 @@ const translations = {
     hero_title: "Víctor Araya",
     hero_subtitle: "DevOps Engineer",
     hero_description: "Building reliable and scalable systems through automation, infrastructure as code, and collaborative culture.",
+    hero_cta_projects: "View Projects",
+    hero_cta_contact: "Contact Me",
     
     // Projects
     projects_title: "Featured Projects",
