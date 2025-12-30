@@ -200,26 +200,18 @@ function translatePage(lang) {
 async function loadPartials() {
   const partials = document.querySelectorAll('[data-include]');
   
-  for (const partial of partials) {
-    const url = partial.getAttribute('data-include');
+  await Promise.all(Array.from(partials).map(async (partial) => {
     try {
-      const response = await fetch(url);
-      if (response.ok) {
-        const html = await response.text();
-        partial.innerHTML = html;
-        console.log(`✅ Partial cargado: ${url}`);
-        
-        // Después de cargar el header, ajustar rutas según la página actual
-        if (url.includes('header')) {
-          adjustHeaderPaths();
-        }
-      } else {
-        console.error(`❌ Error cargando partial: ${url}`);
+      const response = await fetch(partial.dataset.include);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+      const html = await response.text();
+      partial.innerHTML = html;
     } catch (error) {
-      console.error(`❌ Error al cargar ${url}:`, error);
+      console.error('Error loading partial:', error);
     }
-  }
+  }));
 }
 
 // ============================================================================
