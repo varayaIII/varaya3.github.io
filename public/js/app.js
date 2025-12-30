@@ -328,24 +328,47 @@ function setupContactForm() {
       // Ejecutar reCAPTCHA v3
       const token = await grecaptcha.execute('6LfcpzssAAAAAFhrOsYOBo377mc4eLSOZNK2K89w', {action: 'submit'});
       
-      // Agregar token al formulario
-      let captchaInput = form.querySelector('input[name="g-recaptcha-response"]');
-      if (!captchaInput) {
-        captchaInput = document.createElement('input');
-        captchaInput.type = 'hidden';
-        captchaInput.name = 'g-recaptcha-response';
-        form.appendChild(captchaInput);
-      }
-      captchaInput.value = token;
+      // Crear FormData
+      const formData = new FormData(form);
+      formData.append('g-recaptcha-response', token);
       
-      // Enviar formulario
-      form.submit();
+      // Enviar con fetch
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        // Éxito - Mostrar mensaje
+        form.innerHTML = `
+          <div class="text-center py-5">
+            <i class="fas fa-check-circle text-success mb-3" style="font-size: 4rem;"></i>
+            <h3 class="text-white mb-3">¡Mensaje Enviado!</h3>
+            <p class="text-muted mb-4">Gracias por contactarme. Te responderé pronto.</p>
+            <button onclick="location.reload()" class="btn btn-primary">
+              <i class="fas fa-home me-2"></i>Volver al inicio
+            </button>
+          </div>
+        `;
+      } else {
+        throw new Error('Error en el envío');
+      }
       
     } catch (error) {
-      console.error('Error con reCAPTCHA:', error);
+      console.error('Error:', error);
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
-      alert('Error al validar el formulario. Por favor intenta nuevamente.');
+      
+      // Mostrar error en el formulario
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'alert alert-danger mt-3';
+      errorDiv.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i>Error al enviar. Intenta nuevamente.';
+      form.appendChild(errorDiv);
+      
+      setTimeout(() => errorDiv.remove(), 5000);
     }
   });
 }
