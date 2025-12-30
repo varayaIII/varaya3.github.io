@@ -318,6 +318,12 @@ function setupContactForm() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
+    // Validar formulario
+    if (!form.checkValidity()) {
+      form.classList.add('was-validated');
+      return;
+    }
+    
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
     
@@ -345,9 +351,9 @@ function setupContactForm() {
         // Éxito - Mostrar mensaje
         form.innerHTML = `
           <div class="text-center py-5">
-            <i class="fas fa-check-circle text-success mb-3" style="font-size: 4rem;"></i>
-            <h3 class="text-white mb-3">¡Mensaje Enviado!</h3>
-            <p class="text-muted mb-4">Gracias por contactarme. Te responderé pronto.</p>
+            <i class="fas fa-check-circle mb-3" style="font-size: 4rem; color: #4ade80;"></i>
+            <h3 class="mb-3" style="color: #ffffff; font-weight: 600;">¡Mensaje Enviado!</h3>
+            <p class="mb-4" style="color: rgba(255, 255, 255, 0.85); font-size: 1.1rem;">Gracias por contactarme. Te responderé pronto.</p>
             <button onclick="location.reload()" class="btn btn-primary">
               <i class="fas fa-home me-2"></i>Volver al inicio
             </button>
