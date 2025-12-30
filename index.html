@@ -189,7 +189,7 @@
     <div class="container">
       <h2 class="section-title" data-i18n-key="contact_title">Contacto</h2>
       <div id="contact-form-wrap">
-        <form id="contact-form" action="https://formspree.io/f/mldlybyj" method="POST" novalidate>
+        <form id="contact-form" action="https://formspree.io/f/mldlybyj" method="POST" novalidate data-captcha="true">
           <input type="hidden" name="_subject" value="Nuevo mensaje desde tu website www.victor-araya.xyz">
           <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;">
           
@@ -255,6 +255,7 @@
   
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=www.victor-araya.xyz"></script>
   <script src="./public/js/app.js" defer></script>
 </body>
 </html>
