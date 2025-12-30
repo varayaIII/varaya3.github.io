@@ -316,21 +316,40 @@ function setupContactForm() {
   if (!form) return;
   
   form.addEventListener('submit', async (e) => {
-    // El formulario se enviará normalmente a Formspree
-    // Pero podemos agregar feedback visual
+    e.preventDefault();
+    
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
     
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
     
-    // Después de 2 segundos (si no hay error), restaurar el botón
-    setTimeout(() => {
+    try {
+      // Ejecutar reCAPTCHA v3
+      const token = await grecaptcha.execute('6LdXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', {action: 'submit'});
+      
+      // Agregar token al formulario
+      let captchaInput = form.querySelector('input[name="g-recaptcha-response"]');
+      if (!captchaInput) {
+        captchaInput = document.createElement('input');
+        captchaInput.type = 'hidden';
+        captchaInput.name = 'g-recaptcha-response';
+        form.appendChild(captchaInput);
+      }
+      captchaInput.value = token;
+      
+      // Enviar formulario
+      form.submit();
+      
+    } catch (error) {
+      console.error('Error con reCAPTCHA:', error);
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
-    }, 2000);
+      alert('Error al validar el formulario. Por favor intenta nuevamente.');
+    }
   });
 }
+
 
 // ============================================================================
 // 5. NAVEGACIÓN SUAVE
