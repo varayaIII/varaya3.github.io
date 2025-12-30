@@ -326,7 +326,7 @@ function setupContactForm() {
     
     try {
       // Ejecutar reCAPTCHA v3
-      const token = await grecaptcha.execute('6LdXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', {action: 'submit'});
+      const token = await grecaptcha.execute('6LfcpzssAAAAAFhrOsYOBo377mc4eLSOZNK2K89w', {action: 'submit'});
       
       // Agregar token al formulario
       let captchaInput = form.querySelector('input[name="g-recaptcha-response"]');
