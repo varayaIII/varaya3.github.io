@@ -423,24 +423,6 @@ function updateYear() {
 }
 
 // ============================================================================
-// 7. OCULTAR PANTALLA DE CARGA
-// ============================================================================
-
-function hideLoader() {
-  const loader = document.getElementById('page-loader');
-  if (loader) {
-    // Esperar un poco para mostrar la animación
-    setTimeout(() => {
-      loader.style.opacity = '0';
-      setTimeout(() => {
-        loader.style.display = 'none';
-        console.log('✅ Pantalla de carga ocultada');
-      }, 300);
-    }, 500);
-  }
-}
-
-// ============================================================================
 // 8. CONFIGURAR BOTONES DE IDIOMA
 // ============================================================================
 
@@ -489,8 +471,6 @@ async function init() {
     // 7. Actualizar año en footer
     updateYear();
     
-    // 8. Ocultar pantalla de carga
-    hideLoader();
     
     console.log('✅ Aplicación iniciada correctamente');
     
