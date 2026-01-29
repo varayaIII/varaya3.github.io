@@ -70,5 +70,17 @@
   "form_status_sending": "Enviando…",
   "form_status_success": "¡Gracias! Tu mensaje fue enviado correctamente.",
   "form_status_error": "No pudimos enviar el mensaje. Inténtalo nuevamente en unos minutos.",
-  "form_validation_error": "Revisa los campos obligatorios e inténtalo de nuevo."
+  "form_validation_error": "Revisa los campos obligatorios e inténtalo de nuevo.",
+  "about_professional_title": "Experiencia Profesional",
+"about_professional_intro": "NOC Engineer con 10+ años en telecomunicaciones, enfocado en automatización y transición a DevOps.",
+"about_professional_p1": "Experiencia práctica en administración de sistemas críticos 24/7, virtualización (ProxMox/VMware), redes corporativas, y monitoreo de infraestructura.",
+"about_projects_title": "Proyectos Recientes",
+"about_project_1": "Plataforma SMS con alta disponibilidad (4 nodos: 2 gateways activo/standby, broker/DB, portal web)",
+"about_project_2": "Deployment automatizado con Ansible (Infrastructure as Code)",
+"about_project_3": "Administración de servicios cloud y virtualización",
+"about_certifications": "Certificaciones:",
+"about_certifications_list": "DevOps Essentials, Linux for DevOps, Test Automation Engineer",
+"about_location": "Valparaíso, Chile | Disponible remoto/híbrido",
+"about_github": "GitHub",
+"about_linkedin": "LinkedIn"
 }
